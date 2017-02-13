@@ -2,4 +2,9 @@
   {{title}}
 </h1>
 
-<input type="text" [(ngModel)]>
+<input [(ngModel)]="userName"/>
+<button (click)="onLogin()">Login</button>
+
+<div *ngIf="loginFailed">
+    Sorry, but this username is already taken
+</div>
