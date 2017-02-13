@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { RouterModule } from "@angular/router";
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -19,7 +20,15 @@ import { ChatService } from "./chat.service"
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    RouterModule.forRoot([{
+        path: "",
+        redirectTo: "login",
+        pathMatch: "full"
+    }, {
+        path: "login",
+        component: LoginComponent
+    }])
   ],
   providers: [ChatService],
   bootstrap: [AppComponent]
