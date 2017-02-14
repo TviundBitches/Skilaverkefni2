@@ -28,6 +28,9 @@ import { ChatService } from "./chat.service"
     }, {
         path: "login",
         component: LoginComponent
+    }, {
+        path: "rooms",
+        component: RoomListComponent
     }])
   ],
   providers: [ChatService],

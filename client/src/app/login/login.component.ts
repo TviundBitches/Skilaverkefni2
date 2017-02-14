@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from "../chat.service";
+import { Router } from "@angular/router";
 
 @Component({
     selector: 'app-login',
@@ -10,7 +11,8 @@ export class LoginComponent implements OnInit {
     userName: string;
     loginFailed: boolean = false;
 
-    constructor(private chatService : ChatService) {
+    constructor(private chatService : ChatService,
+        private router: Router) {
 
     }
 
@@ -18,9 +20,12 @@ export class LoginComponent implements OnInit {
     }
 
     onLogin() {
+        console.log("Login called in component");
         this.chatService.login(this.userName).subscribe(succeeded => {
+            console.log("Success!!")
             this.loginFailed = !succeeded;
             if(succeeded === true){
+                this.router.navigate(["/rooms"]);
                 // TODO Redirect to RoomList component!
             }
         });
