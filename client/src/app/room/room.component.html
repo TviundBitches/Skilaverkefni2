@@ -10,10 +10,10 @@
 <div class="row center-align chatRoom">
   <div class="col s2"></div>
   <div class="col s6">
-      <ul id="messages">
-          <li>just a test</li>
-          <li>to see</li>
-          <li>if it works</li>
+    <ul id="messages">
+      <div *ngFor="let message of msgs" >
+          <li>{{message}}</li>
+      </div>
       </ul>
   </div>
   <div class="col s2 guests">

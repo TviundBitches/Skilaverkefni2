@@ -11,6 +11,7 @@ export class RoomComponent implements OnInit {
 
   roomId: string;
   msg: string;
+  msgs: string[];
   constructor(private chatService: ChatService, private router: Router,
               private route: ActivatedRoute) {  }
 
@@ -21,13 +22,12 @@ export class RoomComponent implements OnInit {
 
   onSendMsg() {
     console.log('sending msg');
-    this.chatService.sendMsg(this.roomId, this.msg).subscribe(succeeded => {
-      console.log('Success!!');
-      //this.loginFailed = !succeeded;
-     // if (succeeded === true) {
-      //  this.router.navigate(['/rooms']);
-        // TODO Redirect to RoomList component!
-      //}
+    this.chatService.sendMsg(this.roomId, this.msg).subscribe(lst => {
+      for (const x in lst) { // Var var lint error
+        console.log(x)
+        console.log(lst[x])
+      }
+      this.msgs = lst;
     });
   }
 

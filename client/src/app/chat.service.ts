@@ -55,18 +55,24 @@ export class ChatService {
 		return observable;
 	}
 
-	sendMsg(roomName: string, msg: string): Observable<boolean> {
-    const observable = new Observable(observer => {
+	sendMsg(roomName: string, msg: string): Observable<string[]> {
+    let obs = new Observable(observer => {
       // validate room name
       const param = {
         roomName: roomName,
         msg: msg
       };
-      console.log(param);
       this.socket.emit('sendmsg', param);
-      console.log('smuu')
+      this.socket.on('updatechat', (roomName, lst) => {
+        console.log(lst)
+        let strArr: string[] = [];
+        for (var i = 0; i < lst.length; i++) { // Var var lint error
+          strArr.push(lst[i].message);
+        }
+        observer.next(strArr);
+      });
     });
-    return observable;
+    return obs;
   }
 
 //
