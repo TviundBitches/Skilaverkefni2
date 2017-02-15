@@ -1,58 +1,88 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import * as io from 'socket.io-client';
-import { Observable } from 'rxjs/Observable';
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class ChatService {
-    socket: any;
+	socket: any;
 
-    constructor() {
-        this.socket = io('http://localhost:8080/');
-        this.socket.on('connect', function(){
-            console.log('connect');
-        });
-    }
+	constructor() {
+		this.socket = io('http://localhost:8080/');
+		this.socket.on('connect', function () {
+			console.log('connect');
+		});
+	}
 
-    login(userName: string): Observable<boolean> {
-        let observable = new Observable(observer => {
-            this.socket.emit('adduser', userName, succeeded => {
-                console.log('Reply received');
-                observer.next(succeeded);
-            });
-        });
+	login(userName: string): Observable<boolean> {
+		let observable = new Observable(observer => {
+			this.socket.emit('adduser', userName, succeeded => {
+				console.log('Reply received');
+				observer.next(succeeded);
+			});
+		});
 
-        return observable;
-    }
+		return observable;
+	}
 
-    getRoomList(): Observable<string[]> {
-        let obs = new Observable(observer => {
-            this.socket.emit('rooms');
-            this.socket.on('roomlist', (lst) => {
-                let strArr: string[] = [];
-                for (const x in lst) { // Var var lint error
-                    strArr.push(x);
-                }
-                observer.next(strArr);
-            });
-        });
+	getRoomList(): Observable<string[]> {
+		let obs = new Observable(observer => {
+			this.socket.emit('rooms');
+			this.socket.on('roomlist', (lst) => {
+				let strArr: string[] = [];
+				for (const x in lst) { // Var var lint error
+					strArr.push(x);
+				}
+				observer.next(strArr);
+			});
+		});
 
-        return obs;
-    }
+		return obs;
+	}
 
-    addRoom(roomName: string): Observable<boolean> {
-        const observable = new Observable(observer => {
-            // validate room name
-            const param = { // Same
-                room: roomName
-            };
-            this.socket.emit('joinroom', param, function (a: boolean, b) {
-                if (a === true) {
-                    observer.next(a);
-                }
+	addRoom(roomName: string): Observable<boolean> {
+		const observable = new Observable(observer => {
+			// validate room name
+			const param = { // Same
+				room: roomName
+			};
+			this.socket.emit('joinroom', param, function (a: boolean, b) {
+				if (a === true) {
+				  observer.next(a);
+				}
 
-            });
-        });
-        return observable;
-    }
+			});
+		});
+		return observable;
+	}
+
+	sendMsg(roomName: string, msg: string): Observable<boolean> {
+    const observable = new Observable(observer => {
+      // validate room name
+      const param = {
+        roomName: roomName,
+        msg: msg
+      };
+      console.log(param);
+      this.socket.emit('sendmsg', param);
+      console.log('smuu')
+    });
+    return observable;
+  }
+
+//
+//   var socket = io();
+//   $('form').submit(function(){
+//   socket.emit('chat message', $('#m').val());
+//   $('#m').val('');
+//   return false;
+// });
+//   socket.on('chat message', function(msg){
+//   $('#messages').append($('<li>').text(msg));
+// });
+	// sendmsg
+	// Should get called when a user wants to send a message to a room.
+	// Parameters:
+	//   a single object containing the following properties: {roomName: "the room identifier", msg: "The message itself, only the first 200 chars are considered valid" }
+	// The server will then emit the "updatechat" event, after the message has been accepted.
 
 }
