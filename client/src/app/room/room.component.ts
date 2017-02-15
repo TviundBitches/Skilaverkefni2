@@ -38,4 +38,7 @@ export class RoomComponent implements OnInit {
   //   a single object containing the following properties: {roomName: "the room identifier", msg: "The message itself, only the first 200 chars are considered valid" }
   // The server will then emit the "updatechat" event, after the message has been accepted.
 
+  leaveRoom() {
+      this.router.navigate(['/rooms']);
+  }
 }

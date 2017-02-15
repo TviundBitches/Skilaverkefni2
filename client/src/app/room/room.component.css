@@ -30,4 +30,9 @@ form {
 .chatRoom {
     border-style: solid;
     border-color: lightgrey;
+    height: 250px;
+}
+
+.roomId {
+    font-size: 24px;
 }

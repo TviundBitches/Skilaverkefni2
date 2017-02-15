@@ -6,7 +6,8 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    title = 'My Chat App';
+    title = 'KittyChats';
+    underTitle = 'if you are a cat, then chat';
 
     constructor() {}
 }
