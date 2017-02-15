@@ -11,32 +11,32 @@ import { RoomComponent } from './room/room.component';
 import { ChatService } from './chat.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    RoomListComponent,
-    RoomComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    RouterModule.forRoot([{
-        path: '',
-        redirectTo: 'login',
-        pathMatch: 'full'
-    }, {
-        path: 'login',
-        component: LoginComponent
-    }, {
-        path: 'rooms',
-        component: RoomListComponent
-    }, {
-        path: 'rooms/:id',
-        component: RoomComponent
-    }])
-  ],
-  providers: [ChatService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        RoomListComponent,
+        RoomComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        RouterModule.forRoot([{
+            path: '',
+            redirectTo: 'login',
+            pathMatch: 'full'
+        }, {
+            path: 'login',
+            component: LoginComponent
+        }, {
+            path: 'rooms',
+            component: RoomListComponent
+        }, {
+            path: 'rooms/:id',
+            component: RoomComponent
+        }])
+    ],
+    providers: [ChatService],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
