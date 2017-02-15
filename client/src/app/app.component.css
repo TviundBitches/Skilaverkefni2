@@ -1,7 +1,17 @@
+@font-face {
+    font-family: header;
+    src: url(../Infinite_Stroke.otf);
+}
+
 nav {
     background-color: #4db6ac;
 }
 
 .page-footer {
     background-color: #4db6ac;
+}
+
+.headTitle {
+  font-family: header;
+  font-size: 50px;
 }
