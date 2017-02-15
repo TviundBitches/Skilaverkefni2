@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
     title = 'KittyChats';
-    underTitle = 'Are you a cat, then chat';
+    underTitle = 'if you are a cat, then chat';
 
     constructor() {}
 }
