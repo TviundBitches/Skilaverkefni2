@@ -15,7 +15,24 @@
         <div class="col s3"></div>
     </div>
 </div>
+<div class="row">
+    <div class="col s3"></div>
+    <div class="col s6 center-align lobbypic">
+        <div class="card">
+            <div class="card-image">
+                <img src="./kitten.jpg"/>
+                <span class="card-title">Add new room</span>
+            </div>
+            <div class="card-action">
+                <p><input [(ngModel)]="newRoomName" placeholder="Enter a name for the room"/></p>
+                <button class="waves-effect waves-light btn" (click)="onNewRoom()">Add new room</button>
+            </div>
+        </div>
+    </div>
+    <div class="col s3"></div>
+</div>
 
+<!-- 
 <div class="row center-align">
   <div class="col s3"></div>
   <div class="col s6">
@@ -26,4 +43,4 @@
 
 <div class="row center-align">
     <button class="waves-effect waves-light btn" (click)="onNewRoom()">Add new room</button>
-</div>
+</div> -->
