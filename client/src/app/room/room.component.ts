@@ -17,4 +17,8 @@ export class RoomComponent implements OnInit {
         // Varud haettulegt sja  fyrirlestur 6a ca 49. Aetti ad duga samt
   }
 
+  leaveRoom() {
+      this.router.navigate(['/rooms']);
+  }
+
 }
