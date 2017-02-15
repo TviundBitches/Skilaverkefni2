@@ -1,6 +1,17 @@
-<input [(ngModel)]="userName"/>
-<button (click)="onLogin()">Login</button>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+<div class="row center-align">
+    <div class="col s3"></div>
+    <div class="col s6">
+        <p><input [(ngModel)]="userName" placeholder="Enter your username"/></p>
+    </div>
+    <div class="col s3"></div>
+    <div *ngIf="loginFailed center-align">
+        Sorry, but this username is already taken
+    </div>
+</div>
 
-<div *ngIf="loginFailed">
-    Sorry, but this username is already taken
+
+
+<div class="row center-align">
+    <p><button class="waves-effect waves-light btn center-align" (click)="onLogin()">Login</button></p>
 </div>
