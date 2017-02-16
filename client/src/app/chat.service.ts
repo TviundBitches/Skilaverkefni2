@@ -5,6 +5,7 @@ import {Observable} from 'rxjs/Observable';
 @Injectable()
 export class ChatService {
 	socket: any;
+	userName: string;
 
 	constructor() {
 		this.socket = io('http://localhost:8080/');
@@ -24,6 +25,18 @@ export class ChatService {
 		return observable;
 	}
 
+	setUserName(userName: string) : any {
+		this.userName = userName;
+	}
+
+	getUserName() : Observable<string> {
+		let obs = new Observable(observer => {
+			console.log(this.userName);
+			observer.next(this.userName);
+		});
+		return obs;
+	}
+
 	getRoomList(): Observable<string[]> {
 		let obs = new Observable(observer => {
 			this.socket.emit('rooms');
@@ -36,6 +49,46 @@ export class ChatService {
 			});
 		});
 
+		return obs;
+	}
+
+	// List of all users
+	getUserList(): Observable<string[]> {
+		let obs = new Observable(observer => {
+			this.socket.emit('users');
+			this.socket.on('userlist', (lst) => {
+				console.log(lst);
+				let strArr: string[] = [];
+				for (var i = 0; i < lst.length; i++) { // Var var lint error
+					console.log(lst[i]);
+					if(this.userName !== lst[i])
+						strArr.push(lst[i]);
+		        }
+				observer.next(strArr);
+			});
+		});
+
+		return obs;
+	}
+
+	// updateUsers(roomId): Observable<string[]> {
+	// 	let obs = new Observable(observer => {
+	// 		this.socket.emit('updateUsers')
+	// 	})
+	// }
+
+	joinRoom(roomName: string): Observable<boolean> {
+		const obs = new Observable(observer => {
+			const param = { // Same
+				room: roomName
+			};
+			this.socket.emit('joinroom', param, function (a: boolean, b) {
+				if (a === true) {
+				  observer.next(a);
+				}
+
+			});
+		});
 		return obs;
 	}
 

@@ -6,12 +6,10 @@
         <p><input [(ngModel)]="userName" placeholder="Enter your username" class="center"/></p>
     </div>
     <div class="col s3"></div>
-    <div *ngIf="loginFailed center-align">
-        Sorry, but this username is already taken
-    </div>
 </div>
-
-
+<div *ngIf="loginFailed" class="row center-align">
+    Sorry, but this username is already taken
+</div>
 
 <div class="row center-align">
     <p><button class="waves-effect waves-light btn center-align" (click)="onLogin()">Login</button></p>

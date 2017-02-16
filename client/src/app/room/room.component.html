@@ -18,9 +18,9 @@
   </div>
   <div class="col s2 guests">
       <ul id="guests" class="collection">
-          <li class="collection-item">bob</li>
-          <li class="collection-item">lily</li>
-          <li class="collection-item">julie</li>
+          <div *ngFor="let user of users">
+              <li class="collection-item">{{user}}</li>
+          </div>
       </ul>
   </div>
   <div class="col s2"></div>
