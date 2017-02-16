@@ -2,10 +2,12 @@
   <div class="col s3"></div>
   <div class="col s6">
       <p class="roomId">{{roomId}}</p>
-      <button class="waves-effect waves-light btn" (click)="leaveRoom()">Leave Room</button>
+      <p>{{topic}}</p>
+      <button class="waves-effect waves-light btn" (click)="onLeaveRoom()">Leave Room</button>
   </div>
   <div class="col s3"></div>
 </div>
+
 
 <div class="row center-align chatRoom">
   <div class="col s2"></div>
@@ -17,6 +19,13 @@
      </ul>
   </div>
   <div class="col s2 guests">
+      <p>Ops</p>
+      <ul id="guests" class="collection">
+          <div *ngFor="let op of ops">
+              <li class="collection-item">{{op}}</li>
+          </div>
+      </ul>
+      <p>Guests</p>
       <ul id="guests" class="collection">
           <div *ngFor="let user of users">
               <li class="collection-item">{{user}}</li>

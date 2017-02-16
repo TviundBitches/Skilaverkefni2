@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter  } from '@angular/core';
 import { ChatService } from '../chat.service';
 import { Router } from '@angular/router';
+import {MaterializeAction} from 'angular2-materialize';
 
 @Component({
     selector: 'app-room-list',
@@ -14,6 +15,7 @@ export class RoomListComponent implements OnInit {
     userName: string;
     rooms: string[];
     users: string[];
+    modalActions = new EventEmitter<string|MaterializeAction>();
     constructor(private chatService: ChatService,
           private router: Router) { }
 
@@ -45,12 +47,20 @@ export class RoomListComponent implements OnInit {
     onJoinRoom(roomName) {
         console.log(roomName);
         this.chatService.joinRoom(roomName).subscribe(succeeded => {
+            console.log("success join room");
             if (succeeded === true) {
                 this.router.navigate(['rooms', roomName]);
-
             }
         });
           // this.newRoomName = "";
+    }
+
+
+    openModal() {
+      this.modalActions.emit({action:"modal",params:['open']});
+    }
+    closeModal() {
+      this.modalActions.emit({action:"modal",params:['close']});
     }
 
 }

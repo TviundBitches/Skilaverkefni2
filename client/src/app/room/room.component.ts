@@ -13,6 +13,7 @@ export class RoomComponent implements OnInit {
   msg: string;
   msgs: string[];
   users: string[];
+  ops: string[];
   userName: string;
   constructor(private chatService: ChatService, private router: Router,
               private route: ActivatedRoute) {  }
@@ -22,6 +23,12 @@ export class RoomComponent implements OnInit {
     // Varud haettulegt sja  fyrirlestur 6a ca 49. Aetti ad duga samt
     this.chatService.getUserName().subscribe(name => {
         this.userName = name;
+    })
+    this.chatService.getGuests(this.roomId).subscribe(lst => {
+        this.users = lst;
+    })
+    this.chatService.getOps(this.roomId).subscribe(lst => {
+        this.ops = lst;
     })
   }
 
@@ -35,7 +42,17 @@ export class RoomComponent implements OnInit {
       this.msgs = lst;
     });
   }
-
+  onLeaveRoom() {
+      console.log('Success leaving room!!');
+      this.router.navigate(['/rooms']);
+    //   this.chatService.leaveRoom(this.roomId).subscribe(succeeded => {
+    //       console.log('Success leaving room!!');
+    //       if (succeeded === true) {
+    //           console.log('hello');
+    //           this.router.navigate(['/rooms']);
+    //       }
+    //   });
+  }
 
   // sendmsg
   // Should get called when a user wants to send a message to a room.
@@ -43,8 +60,4 @@ export class RoomComponent implements OnInit {
   //   a single object containing the following properties: {roomName: "the room identifier", msg: "The message itself, only the first 200 chars are considered valid" }
   // The server will then emit the "updatechat" event, after the message has been accepted.
 
-  leaveRoom() {
-      this.chatService.
-      this.router.navigate(['/rooms']);
-  }
 }

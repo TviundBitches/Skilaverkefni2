@@ -1,3 +1,4 @@
+import { MaterializeModule } from 'angular2-materialize';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -23,6 +24,7 @@ import { ChatService } from './chat.service';
         BrowserModule,
         FormsModule,
         HttpModule,
+        MaterializeModule,
         RouterModule.forRoot([{
             path: '',
             redirectTo: 'login',
