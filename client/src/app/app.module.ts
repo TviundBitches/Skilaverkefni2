@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { UserComponent } from './user/user.component';
 import { RoomListComponent } from './room-list/room-list.component';
 import { RoomComponent } from './room/room.component';
 import { ChatService } from './chat.service';
@@ -15,7 +16,8 @@ import { ChatService } from './chat.service';
         AppComponent,
         LoginComponent,
         RoomListComponent,
-        RoomComponent
+        RoomComponent,
+        UserComponent
     ],
     imports: [
         BrowserModule,
@@ -34,6 +36,9 @@ import { ChatService } from './chat.service';
         }, {
             path: 'rooms/:id',
             component: RoomComponent
+        }, {
+            path: 'users/:id',
+            component: UserComponent
         }])
     ],
     providers: [ChatService],

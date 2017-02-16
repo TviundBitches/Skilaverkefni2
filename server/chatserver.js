@@ -27,11 +27,11 @@ io.sockets.on('connection', function (socket) {
 
 			//Store user object in global user roster.
 			users[username] = { username: socket.username, channels: {}, socket: this };
-			console.log("User added: " + username);
+			console.log("user added: " + username);
 			fn(true); // Callback, user name was available
 		}
 		else {
-			console.log("User " + username + " already present!");
+			console.log("user " + username + " already present!");
 			fn(false); // Callback, it wasn't available
 		}
 	});
