@@ -19,7 +19,6 @@ export class RoomComponent implements OnInit {
               private route: ActivatedRoute) {  }
 
   ngOnInit() {
-<<<<<<< HEAD
     this.roomId  = this.route.snapshot.params['id'];
     // Varud haettulegt sja  fyrirlestur 6a ca 49. Aetti ad duga samt
     this.chatService.getUserName().subscribe(name => {
@@ -31,16 +30,9 @@ export class RoomComponent implements OnInit {
     this.chatService.getOps(this.roomId).subscribe(lst => {
         this.ops = lst;
     })
-=======
-      this.roomId  = this.route.snapshot.params['id'];
-        // Varud haettulegt sja  fyrirlestur 6a ca 49. Aetti ad duga samt
-        this.chatService.getUserList().subscribe(lst => {
-            console.log(lst);
-            this.users = lst;
-        })
-      this.chatService.reciveMsg();
-      this.msgs = this.chatService.updateChat();
->>>>>>> 775b270c5e8ebd640b390ce51d05416a87c77c0b
+    this.chatService.reciveMsg();
+    this.msgs = this.chatService.updateChat();
+
   }
 
   onSendMsg() {
@@ -50,7 +42,6 @@ export class RoomComponent implements OnInit {
       this.msgs = lst;
     });
   }
-<<<<<<< HEAD
   onLeaveRoom() {
       console.log('Success leaving room!!');
       this.router.navigate(['/rooms']);
@@ -61,11 +52,10 @@ export class RoomComponent implements OnInit {
     //           this.router.navigate(['/rooms']);
     //       }
     //   });
-=======
+}
 
   onVisitProfile(user) {
     this.router.navigate(['/rooms/'+this.roomId+'/users/'+user]);
->>>>>>> 775b270c5e8ebd640b390ce51d05416a87c77c0b
   }
 
 /*  kick
