@@ -13,18 +13,26 @@ export class RoomComponent implements OnInit {
   msg: string;
   msgs: string[];
   users: string[];
+  ops: string[];
+  userName: string;
   constructor(private chatService: ChatService, private router: Router,
               private route: ActivatedRoute) {  }
 
   ngOnInit() {
-      this.roomId  = this.route.snapshot.params['id'];
-        // Varud haettulegt sja  fyrirlestur 6a ca 49. Aetti ad duga samt
-        this.chatService.getUserList().subscribe(lst => {
-            console.log(lst);
-            this.users = lst;
-        })
-      this.chatService.reciveMsg();
-      this.msgs = this.chatService.updateChat();
+    this.roomId  = this.route.snapshot.params['id'];
+    // Varud haettulegt sja  fyrirlestur 6a ca 49. Aetti ad duga samt
+    this.chatService.getUserName().subscribe(name => {
+        this.userName = name;
+    })
+    this.chatService.getGuests(this.roomId).subscribe(lst => {
+        this.users = lst;
+    })
+    this.chatService.getOps(this.roomId).subscribe(lst => {
+        this.ops = lst;
+    })
+    this.chatService.reciveMsg();
+    this.msgs = this.chatService.updateChat();
+
   }
 
   onSendMsg() {
@@ -34,6 +42,17 @@ export class RoomComponent implements OnInit {
       this.msgs = lst;
     });
   }
+  onLeaveRoom() {
+      console.log('Success leaving room!!');
+      this.router.navigate(['/rooms']);
+    //   this.chatService.leaveRoom(this.roomId).subscribe(succeeded => {
+    //       console.log('Success leaving room!!');
+    //       if (succeeded === true) {
+    //           console.log('hello');
+    //           this.router.navigate(['/rooms']);
+    //       }
+    //   });
+}
 
   onVisitProfile(user) {
     this.router.navigate(['/rooms/'+this.roomId+'/users/'+user]);
@@ -51,7 +70,4 @@ export class RoomComponent implements OnInit {
   a callback function, accepting a single boolean parameter, stating if the user could be kicked or not.
   The server will emit the following events if the user was successfully kicked: "kicked" to the user being kicked, and "updateusers" to the rest of the users in the room.*/
 
-  leaveRoom() {
-      this.router.navigate(['/rooms']);
-  }
 }

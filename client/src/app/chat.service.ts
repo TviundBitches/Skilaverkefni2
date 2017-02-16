@@ -7,6 +7,7 @@ export class ChatService {
 	socket: any;
 	userName: string;
 
+
 	constructor() {
 		this.socket = io('http://localhost:8080/');
 		this.socket.on('connect', function () {
@@ -92,6 +93,74 @@ export class ChatService {
 				  observer.next(a);
 				}
 			});
+		});
+		return obs;
+	}
+
+	getGuests(roomName: string): Observable<string[]> {
+		let obs = new Observable(observer => {
+			const param = {
+				room: roomName
+			};
+			this.socket.emit('updateroom', param);
+			this.socket.on('updateusers', (roomName, lstUsers, lstOps) => {
+			  let strArr: string[] = [];
+			  console.log(lstUsers);
+			  console.log(lstOps);
+			  for(const user in lstUsers) { // Var var lint error
+				  if(user !== this.userName)
+					strArr.push(user);
+				  else
+					strArr.push("You");
+	          }
+	          observer.next(strArr);
+			});
+		});
+		return obs;
+	}
+
+	getOps(roomName: string): Observable<string[]> {
+		let obs = new Observable(observer => {
+			const param = {
+				room: roomName
+			};
+			this.socket.emit('updateroom', param);
+			this.socket.on('updateusers', (roomName, lstUsers, lstOps) => {
+			  let strArr: string[] = [];
+			  for(const user in lstOps) { // Var var lint error
+				  if(user !== this.userName)
+					strArr.push(user);
+				  else
+				  	strArr.push("You");
+
+	          }
+	          observer.next(strArr);
+			});
+		});
+		return obs;
+	}
+
+	// login(userName: string): Observable<boolean> {
+	// 	let observable = new Observable(observer => {
+	// 		this.socket.emit('adduser', userName, succeeded => {
+	// 			console.log('Reply received');
+	// 			observer.next(succeeded);
+	// 		});
+	// 	});
+	//
+	// 	return observable;
+	// }
+
+	leaveRoom(roomName: string): Observable<boolean> {
+		const obs = new Observable(observer => {
+			// const param = {
+			// 	room: roomName
+			// };
+			// this.socket.emit('partroom', param, succeeded => {
+			// 	console.log("LeaveRoom succeeded (chat service)")
+			// 	observer.next(succeeded);
+			// });
+			observer.next(true);
 		});
 		return obs;
 	}
