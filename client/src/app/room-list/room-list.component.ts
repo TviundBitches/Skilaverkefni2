@@ -27,6 +27,7 @@ export class RoomListComponent implements OnInit {
         this.chatService.getUserName().subscribe(name => {
             this.userName = name;
         });
+        this.chatService.reciveMsg();
     }
 
     onNewRoom() {
@@ -43,7 +44,6 @@ export class RoomListComponent implements OnInit {
     }
 
     onJoinRoom(roomName) {
-        console.log(roomName);
         this.chatService.joinRoom(roomName).subscribe(succeeded => {
             if (succeeded === true) {
                 this.router.navigate(['rooms', roomName]);
@@ -51,6 +51,10 @@ export class RoomListComponent implements OnInit {
             }
         });
           // this.newRoomName = "";
+    }
+
+    onVisitProfile(user) {
+      this.router.navigate(['/rooms/default/users/'+user]);
     }
 
 }

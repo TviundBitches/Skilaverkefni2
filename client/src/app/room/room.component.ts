@@ -23,6 +23,8 @@ export class RoomComponent implements OnInit {
             console.log(lst);
             this.users = lst;
         })
+      this.chatService.reciveMsg();
+
   }
 
   onSendMsg() {
@@ -34,6 +36,10 @@ export class RoomComponent implements OnInit {
       }
       this.msgs = lst;
     });
+  }
+
+  onVisitProfile(user) {
+    this.router.navigate(['/rooms/'+this.roomId+'/users/'+user]);
   }
 
 

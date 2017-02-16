@@ -134,18 +134,15 @@ io.sockets.on('connection', function (socket) {
 	});
 
 	socket.on('privatemsg', function (msgObj, fn) {
-        console.log(msgObj)
 
 		//If user exists in global user list.
 		if(users[msgObj.nick] !== undefined) {
-            console.log(msgObj)
 
             //Send the message only to this user.
 			users[msgObj.nick].socket.emit('recv_privatemsg', socket.username, msgObj.message);
 			//Callback recieves true.
 			fn(true);
 		}
-        console.log('was undefined')
         fn(false);
 	});
 

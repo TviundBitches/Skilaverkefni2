@@ -12,12 +12,20 @@ export class ChatService {
 		this.socket.on('connect', function () {
 			console.log('connect');
 		});
+
 	}
+
+	reciveMsg() {
+    this.socket.on('recv_privatemsg', (username, message) => {
+      console.log("rect-priv: " + username)
+      console.log('rect-priv ' + message)
+    });
+
+  }
 
 	login(userName: string): Observable<boolean> {
 		let observable = new Observable(observer => {
 			this.socket.emit('adduser', userName, succeeded => {
-				console.log('Reply received');
 				observer.next(succeeded);
 			});
 		});
@@ -31,7 +39,6 @@ export class ChatService {
 
 	getUserName() : Observable<string> {
 		let obs = new Observable(observer => {
-			console.log(this.userName);
 			observer.next(this.userName);
 		});
 		return obs;
@@ -57,10 +64,8 @@ export class ChatService {
 		let obs = new Observable(observer => {
 			this.socket.emit('users');
 			this.socket.on('userlist', (lst) => {
-				console.log(lst);
 				let strArr: string[] = [];
 				for (var i = 0; i < lst.length; i++) { // Var var lint error
-					console.log(lst[i]);
 					if(this.userName !== lst[i])
 						strArr.push(lst[i]);
 		        }
@@ -117,7 +122,6 @@ export class ChatService {
       };
       this.socket.emit('sendmsg', param);
       this.socket.on('updatechat', (roomName, lst) => {
-        console.log(lst)
         let strArr: string[] = [];
         for (var i = 0; i < lst.length; i++) { // Var var lint error
           strArr.push(lst[i].message);
@@ -130,18 +134,14 @@ export class ChatService {
 
   sendPrivMsg(userName: string, msg: string): Observable<boolean> {
     let obs = new Observable(observer => {
-      // validate room name
       const param = {
         nick: userName,
         message: msg
       };
-      this.socket.emit('privatemsg', param, function (a: boolean) {
-        if (a === true) {
-          observer.next(a);
-        }
-     });
+      this.socket.emit('privatemsg', param, succeeded => {
+        observer.next(succeeded);
+      });
     });
-    console.log(obs)
     return obs;
   }
   /*
