@@ -91,7 +91,6 @@ export class ChatService {
 				if (a === true) {
 				  observer.next(a);
 				}
-
 			});
 		});
 		return obs;
@@ -128,8 +127,25 @@ export class ChatService {
         }
         observer.next(strArr);
       });
+
     });
     return obs;
+  }
+
+  updateChat(): string[] {
+	  console.log('smuu')
+    let strArr: string[] = [];
+      this.socket.on('updatechat', (roomName, lst) => {
+        console.log('smuuuuuu')
+        console.log(roomName)
+       // console.log(lst)
+        for (var i = 0; i < lst.length; i++) { // Var var lint error
+          strArr.push(lst[i].message);
+        }
+        console.log(strArr)
+        return strArr;
+      });
+    return strArr;
   }
 
   sendPrivMsg(userName: string, msg: string): Observable<boolean> {

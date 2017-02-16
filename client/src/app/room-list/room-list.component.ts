@@ -49,6 +49,7 @@ export class RoomListComponent implements OnInit {
                 this.router.navigate(['rooms', roomName]);
 
             }
+
         });
           // this.newRoomName = "";
     }
