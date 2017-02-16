@@ -39,6 +39,11 @@ export class RoomComponent implements OnInit {
     this.router.navigate(['/rooms/'+this.roomId+'/users/'+user]);
   }
 
+  onKick(userName) {
+    this.chatService.kick(userName, this.roomId);
+
+  }
+
 /*  kick
   When a room creator wants to kick a user from the room.
   Parameters:

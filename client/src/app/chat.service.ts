@@ -160,6 +160,28 @@ export class ChatService {
     });
     return obs;
   }
+
+  kick(userName, roomId) {
+    let obs = new Observable(observer => {
+      const param = {
+        user: userName,
+        room: roomId
+      };
+      this.socket.emit('kick', param, succeeded => {
+        observer.next(succeeded);
+      });
+
+    });
+    return obs;
+  }
+  /*  kick
+   When a room creator wants to kick a user from the room.
+   Parameters:
+   an object containing the following properties: { user : "The username of the user being kicked", room: "The ID of the room"
+   a callback function, accepting a single boolean parameter, stating if the user could be kicked or not.
+   The server will emit the following events if the user was successfully kicked: "kicked" to the user being kicked, and "updateusers" to the rest of the users in the room.*/
+
+
   /*
    privatemsg
    Used if the user wants to send a private message to another user.
