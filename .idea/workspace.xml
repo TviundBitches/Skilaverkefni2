@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dad8fb4b-f401-4e06-bd10-7ebddcef504e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/app.module.ts" afterPath="$PROJECT_DIR$/client/src/app/app.module.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/chat.service.ts" afterPath="$PROJECT_DIR$/client/src/app/chat.service.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/user/user.component.html" afterPath="$PROJECT_DIR$/client/src/app/user/user.component.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/user/user.component.ts" afterPath="$PROJECT_DIR$/client/src/app/user/user.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/chatserver.js" afterPath="$PROJECT_DIR$/server/chatserver.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -61,11 +57,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="chatserver.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="chatserver.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server/chatserver.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="538">
-              <caret line="150" column="0" lean-forward="true" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
+            <state relative-caret-position="195">
+              <caret line="151" column="52" lean-forward="true" selection-start-line="151" selection-start-column="52" selection-end-line="151" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -84,8 +80,8 @@
       <file leaf-file-name="user.component.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/app/user/user.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+            <state relative-caret-position="418">
+              <caret line="33" column="7" lean-forward="true" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="7" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
               </folding>
@@ -96,8 +92,8 @@
       <file leaf-file-name="chat.service.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/app/chat.service.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="90" column="4" lean-forward="false" selection-start-line="90" selection-start-column="4" selection-end-line="90" selection-end-column="4" />
+            <state relative-caret-position="283">
+              <caret line="90" column="20" lean-forward="true" selection-start-line="90" selection-start-column="20" selection-end-line="90" selection-end-column="20" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
               </folding>
@@ -105,11 +101,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.component.ts" pinned="false" current-in-tab="false">
+      <file leaf-file-name="login.component.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/src/app/login/login.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="40" lean-forward="true" selection-start-line="23" selection-start-column="55" selection-end-line="29" selection-end-column="13" />
+            <state relative-caret-position="465">
+              <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
               </folding>
@@ -178,8 +174,8 @@
         <option value="$PROJECT_DIR$/client/src/app/app.module.ts" />
         <option value="$PROJECT_DIR$/client/src/app/user/user.component.html" />
         <option value="$PROJECT_DIR$/client/src/app/user/user.component.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/chat.service.ts" />
         <option value="$PROJECT_DIR$/server/chatserver.js" />
+        <option value="$PROJECT_DIR$/client/src/app/chat.service.ts" />
       </list>
     </option>
   </component>
@@ -487,12 +483,12 @@
       <option name="presentableId" value="Default" />
       <updated>1487077003015</updated>
       <workItem from="1487077004609" duration="8747000" />
-      <workItem from="1487173656344" duration="20165000" />
+      <workItem from="1487173656344" duration="20865000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28912000" />
+    <option name="totallyTimeSpent" value="29612000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1985" y="24" width="1855" height="1056" extended-state="6" />
@@ -746,8 +742,8 @@
         <state relative-caret-position="420">
           <caret line="28" column="0" lean-forward="true" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#40#113#0" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
+            <element signature="e#40#113#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -799,23 +795,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/room/room.component.ts">
+    <entry file="file://$PROJECT_DIR$/server/chatserver.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="28" column="7" lean-forward="true" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/login/login.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="40" lean-forward="true" selection-start-line="23" selection-start-column="55" selection-end-line="29" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="195">
+          <caret line="151" column="52" lean-forward="true" selection-start-line="151" selection-start-column="52" selection-end-line="151" selection-end-column="52" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -827,10 +811,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/user/user.component.ts">
+    <entry file="file://$PROJECT_DIR$/client/src/app/room/room.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+        <state relative-caret-position="418">
+          <caret line="28" column="7" lean-forward="true" selection-start-line="28" selection-start-column="7" selection-end-line="28" selection-end-column="7" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
           </folding>
@@ -839,19 +823,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/app/chat.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="90" column="4" lean-forward="false" selection-start-line="90" selection-start-column="4" selection-end-line="90" selection-end-column="4" />
+        <state relative-caret-position="283">
+          <caret line="90" column="20" lean-forward="true" selection-start-line="90" selection-start-column="20" selection-end-line="90" selection-end-column="20" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/chatserver.js">
+    <entry file="file://$PROJECT_DIR$/client/src/app/user/user.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="538">
-          <caret line="150" column="0" lean-forward="true" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="418">
+          <caret line="33" column="7" lean-forward="true" selection-start-line="33" selection-start-column="7" selection-end-line="33" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/login/login.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="5" lean-forward="true" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

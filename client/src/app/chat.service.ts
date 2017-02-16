@@ -82,7 +82,7 @@ export class ChatService {
         nick: userName,
         message: msg
       };
-      this.socket.emit('privatemsg', param, function (a: boolean, b) {
+      this.socket.emit('privatemsg', param, function (a: boolean) {
         if (a === true) {
           observer.next(a);
         }
@@ -99,20 +99,5 @@ export class ChatService {
    a callback function, accepting a single boolean parameter, stating if the message could be sent or not.
    The server will then emit the "recv_privatemsg" event to the user which should receive the message.*/
 
-//
-//   var socket = io();
-//   $('form').submit(function(){
-//   socket.emit('chat message', $('#m').val());
-//   $('#m').val('');
-//   return false;
-// });
-//   socket.on('chat message', function(msg){
-//   $('#messages').append($('<li>').text(msg));
-// });
-	// sendmsg
-	// Should get called when a user wants to send a message to a room.
-	// Parameters:
-	//   a single object containing the following properties: {roomName: "the room identifier", msg: "The message itself, only the first 200 chars are considered valid" }
-	// The server will then emit the "updatechat" event, after the message has been accepted.
 
 }
