@@ -46,10 +46,10 @@ export class ChatService {
 			this.socket.on('userlist', (lst) => {
 				console.log(lst);
 				let strArr: string[] = [];
-				for (const x in lst) {
-					console.log(x)
-					strArr.push(x);
-				}
+				for (var i = 0; i < lst.length; i++) { // Var var lint error
+					console.log(lst[i]);
+					strArr.push(lst[i]);
+		        }
 				observer.next(strArr);
 			});
 		});
