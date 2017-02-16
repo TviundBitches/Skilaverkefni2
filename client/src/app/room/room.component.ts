@@ -14,7 +14,9 @@ export class RoomComponent implements OnInit {
   msgs: string[];
   users: string[];
   ops: string[];
+  topic: string;
   userName: string;
+  noUsers: boolean = false;
   constructor(private chatService: ChatService, private router: Router,
               private route: ActivatedRoute) {  }
 
@@ -33,6 +35,11 @@ export class RoomComponent implements OnInit {
     this.chatService.reciveMsg();
     this.msgs = this.chatService.updateChat();
 
+    // if(this.users.length === 0)
+    //     this.noUsers = true;
+    // else
+    //     this.noUsers = false;
+
   }
 
   onSendMsg() {
@@ -44,14 +51,15 @@ export class RoomComponent implements OnInit {
   }
   onLeaveRoom() {
       console.log('Success leaving room!!');
-      this.router.navigate(['/rooms']);
-    //   this.chatService.leaveRoom(this.roomId).subscribe(succeeded => {
-    //       console.log('Success leaving room!!');
-    //       if (succeeded === true) {
-    //           console.log('hello');
-    //           this.router.navigate(['/rooms']);
-    //       }
-    //   });
+      //this.router.navigate(['/rooms']);
+      this.chatService.leaveRoom(this.roomId).subscribe(succeeded => {
+          console.log('Success leaving room!!');
+          console.log(succeeded);
+          if (succeeded === true) {
+              console.log('hello');
+              this.router.navigate(['/rooms']);
+          }
+      });
 }
 
   onVisitProfile(user) {

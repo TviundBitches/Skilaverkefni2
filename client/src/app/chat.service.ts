@@ -105,8 +105,6 @@ export class ChatService {
 			this.socket.emit('updateroom', param);
 			this.socket.on('updateusers', (roomName, lstUsers, lstOps) => {
 			  let strArr: string[] = [];
-			  console.log(lstUsers);
-			  console.log(lstOps);
 			  for(const user in lstUsers) { // Var var lint error
 				  if(user !== this.userName)
 					strArr.push(user);
@@ -153,14 +151,9 @@ export class ChatService {
 
 	leaveRoom(roomName: string): Observable<boolean> {
 		const obs = new Observable(observer => {
-			// const param = {
-			// 	room: roomName
-			// };
-			// this.socket.emit('partroom', param, succeeded => {
-			// 	console.log("LeaveRoom succeeded (chat service)")
-			// 	observer.next(succeeded);
-			// });
-			observer.next(true);
+			this.socket.emit('partroom', roomName, succeeded => {
+				observer.next(succeeded);
+			});
 		});
 		return obs;
 	}
