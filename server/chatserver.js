@@ -144,12 +144,13 @@ io.sockets.on('connection', function (socket) {
 
 		//If user exists in global user list.
 		if(users[msgObj.nick] !== undefined) {
-			//Send the message only to this user.
+
+            //Send the message only to this user.
 			users[msgObj.nick].socket.emit('recv_privatemsg', socket.username, msgObj.message);
 			//Callback recieves true.
 			fn(true);
 		}
-		fn(false);
+        fn(false);
 	});
 
 	//When a user leaves a room this gets performed.

@@ -13,12 +13,20 @@ export class ChatService {
 		this.socket.on('connect', function () {
 			console.log('connect');
 		});
+
 	}
+
+	reciveMsg() {
+    this.socket.on('recv_privatemsg', (username, message) => {
+      console.log("rect-priv: " + username)
+      console.log('rect-priv ' + message)
+    });
+
+  }
 
 	login(userName: string): Observable<boolean> {
 		let observable = new Observable(observer => {
 			this.socket.emit('adduser', userName, succeeded => {
-				console.log('Reply received');
 				observer.next(succeeded);
 			});
 		});
@@ -57,10 +65,8 @@ export class ChatService {
 		let obs = new Observable(observer => {
 			this.socket.emit('users');
 			this.socket.on('userlist', (lst) => {
-				console.log(lst);
 				let strArr: string[] = [];
 				for (var i = 0; i < lst.length; i++) { // Var var lint error
-					console.log(lst[i]);
 					if(this.userName !== lst[i])
 						strArr.push(lst[i]);
 		        }
@@ -147,14 +153,14 @@ export class ChatService {
 
 	leaveRoom(roomName: string): Observable<boolean> {
 		const obs = new Observable(observer => {
-			const param = {
-				room: roomName
-			};
-			this.socket.emit('partroom', param, succeeded => {
-				console.log("LeaveRoom succeeded (chat service)")
-				observer.next(succeeded);
-
-			});
+			// const param = {
+			// 	room: roomName
+			// };
+			// this.socket.emit('partroom', param, succeeded => {
+			// 	console.log("LeaveRoom succeeded (chat service)")
+			// 	observer.next(succeeded);
+			// });
+			observer.next(true);
 		});
 		return obs;
 	}
@@ -184,31 +190,52 @@ export class ChatService {
       };
       this.socket.emit('sendmsg', param);
       this.socket.on('updatechat', (roomName, lst) => {
-        console.log(lst)
         let strArr: string[] = [];
         for (var i = 0; i < lst.length; i++) { // Var var lint error
           strArr.push(lst[i].message);
         }
         observer.next(strArr);
       });
+
     });
     return obs;
   }
 
-//
-//   var socket = io();
-//   $('form').submit(function(){
-//   socket.emit('chat message', $('#m').val());
-//   $('#m').val('');
-//   return false;
-// });
-//   socket.on('chat message', function(msg){
-//   $('#messages').append($('<li>').text(msg));
-// });
-	// sendmsg
-	// Should get called when a user wants to send a message to a room.
-	// Parameters:
-	//   a single object containing the following properties: {roomName: "the room identifier", msg: "The message itself, only the first 200 chars are considered valid" }
-	// The server will then emit the "updatechat" event, after the message has been accepted.
+  updateChat(): string[] {
+	  console.log('smuu')
+    let strArr: string[] = [];
+      this.socket.on('updatechat', (roomName, lst) => {
+        console.log('smuuuuuu')
+        console.log(roomName)
+       // console.log(lst)
+        for (var i = 0; i < lst.length; i++) { // Var var lint error
+          strArr.push(lst[i].message);
+        }
+        console.log(strArr)
+        return strArr;
+      });
+    return strArr;
+  }
+
+  sendPrivMsg(userName: string, msg: string): Observable<boolean> {
+    let obs = new Observable(observer => {
+      const param = {
+        nick: userName,
+        message: msg
+      };
+      this.socket.emit('privatemsg', param, succeeded => {
+        observer.next(succeeded);
+      });
+    });
+    return obs;
+  }
+  /*
+   privatemsg
+   Used if the user wants to send a private message to another user.
+   Parameters:
+   an object containing the following properties: {nick: "the userid which the message should be sent to", message: "The message itself" }
+   a callback function, accepting a single boolean parameter, stating if the message could be sent or not.
+   The server will then emit the "recv_privatemsg" event to the user which should receive the message.*/
+
 
 }

@@ -35,7 +35,9 @@
 <div class="row">
     <ul id="guests" class="collection">
         <div *ngFor="let user of users">
-            <li class="collection-item">{{user}}</li>
+          <div class="card-action" (click)="onVisitProfile(user)">
+            <a class="collection-item teal-text text-lighten-2" > {{user}} </a>
+          </div>
         </div>
     </ul>
 </div>

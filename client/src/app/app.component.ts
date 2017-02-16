@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-root',
@@ -7,7 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
     title = 'KittyChats';
-    underTitle = 'if you are a cat, then chat';
+    underTitle = 'If you are a cat, then chat';
 
-    constructor() {}
+    constructor(private router: Router) {}
+    navToRooms(){
+      this.router.navigate(['/rooms/']);
+    }
 }

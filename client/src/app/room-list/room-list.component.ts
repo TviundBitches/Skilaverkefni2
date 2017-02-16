@@ -26,9 +26,13 @@ export class RoomListComponent implements OnInit {
         this.chatService.getUserName().subscribe(name => {
             this.userName = name;
         });
+<<<<<<< HEAD
         this.chatService.getUserList().subscribe(lst => {
             this.users = lst;
         });
+=======
+        this.chatService.reciveMsg();
+>>>>>>> 775b270c5e8ebd640b390ce51d05416a87c77c0b
     }
 
     onNewRoom() {
@@ -45,22 +49,27 @@ export class RoomListComponent implements OnInit {
     }
 
     onJoinRoom(roomName) {
-        console.log(roomName);
         this.chatService.joinRoom(roomName).subscribe(succeeded => {
             console.log("success join room");
             if (succeeded === true) {
                 this.router.navigate(['rooms', roomName]);
             }
+
         });
           // this.newRoomName = "";
     }
 
+<<<<<<< HEAD
 
     openModal() {
       this.modalActions.emit({action:"modal",params:['open']});
     }
     closeModal() {
       this.modalActions.emit({action:"modal",params:['close']});
+=======
+    onVisitProfile(user) {
+      this.router.navigate(['/rooms/default/users/'+user]);
+>>>>>>> 775b270c5e8ebd640b390ce51d05416a87c77c0b
     }
 
 }
