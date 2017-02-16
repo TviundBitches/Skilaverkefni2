@@ -1,9 +1,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+<html>
+    <body>
 <header>
     <nav class="top-nav">
         <div class="container">
             <div class="nav-wrapper">
-                <a class="brand-logo center">{{title}}</a>
+                <a class="brand-logo center headTitle"> {{title}}  </a>
             </div>
         </div>
     </nav>
@@ -11,15 +13,15 @@
 
     <!-- <div class="col s12 center-align"><h1>{{title}}</h1></div> -->
     <!-- <div class="col s12 center-align"><h5>{{underTitle}}</h5></div> -->
-
+<main>
 <router-outlet></router-outlet>
-
+</main>
 <footer class="page-footer center">
     <div class="container">
         <div class="row">
             <div class="col l6 s12">
                 <h5 class="white-text">Assignment 2</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                <img src="./logo2.png" style="width:70px;height:70px;">
             </div>
             <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Authors</h5>
@@ -37,3 +39,5 @@
         </div>
     </div>
 </footer>
+    </body>
+</html>
