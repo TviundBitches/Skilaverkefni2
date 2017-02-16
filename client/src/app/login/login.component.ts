@@ -25,10 +25,12 @@ export class LoginComponent implements OnInit {
             console.log('Success!!');
             this.loginFailed = !succeeded;
             if (succeeded === true) {
+                this.chatService.setUserName(this.userName);
                 this.router.navigate(['/rooms']);
+
                 // TODO Redirect to RoomList component!
             }
         });
     }
-    
+
 }

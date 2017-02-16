@@ -5,6 +5,7 @@ import {Observable} from 'rxjs/Observable';
 @Injectable()
 export class ChatService {
 	socket: any;
+	userName: string;
 
 	constructor() {
 		this.socket = io('http://localhost:8080/');
@@ -22,6 +23,18 @@ export class ChatService {
 		});
 
 		return observable;
+	}
+
+	setUserName(userName: string) : any {
+		this.userName = userName;
+	}
+
+	getUserName() : Observable<string> {
+		let obs = new Observable(observer => {
+			console.log(this.userName);
+			observer.next(this.userName);
+		});
+		return obs;
 	}
 
 	getRoomList(): Observable<string[]> {
@@ -48,7 +61,8 @@ export class ChatService {
 				let strArr: string[] = [];
 				for (var i = 0; i < lst.length; i++) { // Var var lint error
 					console.log(lst[i]);
-					strArr.push(lst[i]);
+					if(this.userName !== lst[i])
+						strArr.push(lst[i]);
 		        }
 				observer.next(strArr);
 			});

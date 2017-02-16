@@ -11,6 +11,7 @@ export class RoomListComponent implements OnInit {
 
     newRoomName: string;
     roomJoinName: string;
+    userName: string;
     rooms: string[];
     users: string[];
     constructor(private chatService: ChatService,
@@ -22,7 +23,10 @@ export class RoomListComponent implements OnInit {
         });
         this.chatService.getUserList().subscribe(lst => {
             this.users = lst;
-        })
+        });
+        this.chatService.getUserName().subscribe(name => {
+            this.userName = name;
+        });
     }
 
     onNewRoom() {
