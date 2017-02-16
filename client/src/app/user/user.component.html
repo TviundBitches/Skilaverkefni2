@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div class="row center-align">
+  <div class="col s3"></div>
+  <div class="col s6">
+    <p class="roomId">{{userName}}</p>
+    <button class="waves-effect waves-light btn" (click)="backToRoom()">Back</button>
+  </div>
+  <div class="col s3"></div>
+</div>
 
-</body>
-</html>
+<div class="row center-align chatRoom">
+  <div class="col s2"></div>
+  <div class="col s6">
+    <ul id="messages">
+      <div *ngFor="let message of msgs" >
+        <li>{{message}}</li>
+      </div>
+    </ul>
+  </div>
+
+  <div class="col s2"></div>
+</div>
+
+<div class="row center-align">
+  <div class="col s2"></div>
+  <div class="col s8">
+    <form action="">
+      <input name="msg" [(ngModel)]="msg" Placeholder="Write message...." autocomplete="off"/><button class="waves-effect waves-light btn" (click)="onSendPrivMsg()">Send</button>
+    </form>
+  </div>
+  <div class="col s2"></div>
+</div>

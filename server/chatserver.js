@@ -134,15 +134,19 @@ io.sockets.on('connection', function (socket) {
 	});
 
 	socket.on('privatemsg', function (msgObj, fn) {
+        console.log(msgObj)
 
 		//If user exists in global user list.
 		if(users[msgObj.nick] !== undefined) {
-			//Send the message only to this user.
+            console.log(msgObj)
+
+            //Send the message only to this user.
 			users[msgObj.nick].socket.emit('recv_privatemsg', socket.username, msgObj.message);
 			//Callback recieves true.
 			fn(true);
 		}
-		fn(false);
+        console.log('was undefined')
+        fn(false);
 	});
 
 	//When a user leaves a room this gets performed.

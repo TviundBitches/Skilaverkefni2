@@ -75,6 +75,30 @@ export class ChatService {
     return obs;
   }
 
+  sendPrivMsg(userName: string, msg: string): Observable<boolean> {
+    let obs = new Observable(observer => {
+      // validate room name
+      const param = {
+        nick: userName,
+        message: msg
+      };
+      this.socket.emit('privatemsg', param, function (a: boolean, b) {
+        if (a === true) {
+          observer.next(a);
+        }
+     });
+    });
+    console.log(obs)
+    return obs;
+  }
+  /*
+   privatemsg
+   Used if the user wants to send a private message to another user.
+   Parameters:
+   an object containing the following properties: {nick: "the userid which the message should be sent to", message: "The message itself" }
+   a callback function, accepting a single boolean parameter, stating if the message could be sent or not.
+   The server will then emit the "recv_privatemsg" event to the user which should receive the message.*/
+
 //
 //   var socket = io();
 //   $('form').submit(function(){
