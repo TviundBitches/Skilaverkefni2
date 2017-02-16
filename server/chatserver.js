@@ -1,6 +1,6 @@
-var express = require('express'), 
-app = express(), 
-http = require('http'), 
+var express = require('express'),
+app = express(),
+http = require('http'),
 server = http.createServer(app),
 io = require('socket.io').listen(server);
 
@@ -272,8 +272,10 @@ io.sockets.on('connection', function (socket) {
 
 		//We need to construct the list since the users in the global user roster have a reference to socket, which has a reference
 		//back to users so the JSON serializer can't serialize them.
+		console.log("Requesting a list of users");
 		for(var user in users) {
 			userlist.push(user);
+			console.log(user);
 		}
 		socket.emit('userlist', userlist);
 	});

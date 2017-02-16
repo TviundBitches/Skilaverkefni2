@@ -39,6 +39,45 @@ export class ChatService {
 		return obs;
 	}
 
+	// List of all users
+	getUserList(): Observable<string[]> {
+		let obs = new Observable(observer => {
+			this.socket.emit('users');
+			this.socket.on('userlist', (lst) => {
+				console.log(lst);
+				let strArr: string[] = [];
+				for (const x in lst) {
+					console.log(x)
+					strArr.push(x);
+				}
+				observer.next(strArr);
+			});
+		});
+
+		return obs;
+	}
+
+	// updateUsers(roomId): Observable<string[]> {
+	// 	let obs = new Observable(observer => {
+	// 		this.socket.emit('updateUsers')
+	// 	})
+	// }
+
+	joinRoom(roomName: string): Observable<boolean> {
+		const obs = new Observable(observer => {
+			const param = { // Same
+				room: roomName
+			};
+			this.socket.emit('joinroom', param, function (a: boolean, b) {
+				if (a === true) {
+				  observer.next(a);
+				}
+
+			});
+		});
+		return obs;
+	}
+
 	addRoom(roomName: string): Observable<boolean> {
 		const observable = new Observable(observer => {
 			// validate room name

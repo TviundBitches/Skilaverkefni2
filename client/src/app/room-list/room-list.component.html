@@ -1,3 +1,7 @@
+
+<div class="row center-align">
+
+</div>
 <div *ngFor="let room of rooms" >
     <div class="row">
         <div class="col s3"></div>
@@ -7,8 +11,8 @@
                     <img src="./kitten.jpg"/>
                     <span class="card-title">{{room}}</span>
                 </div>
-                <div class="card-action">
-                    <a [routerLink]="['/rooms', room]" class="collection-item teal-text text-lighten-2"> {{room}} </a>
+                <div class="card-action" (click)="onJoinRoom(room)">
+                    <a class="collection-item teal-text text-lighten-2" > {{room}} </a>
                 </div>
             </div>
         </div>

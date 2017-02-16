@@ -12,12 +12,17 @@ export class RoomComponent implements OnInit {
   roomId: string;
   msg: string;
   msgs: string[];
+  users: string[];
   constructor(private chatService: ChatService, private router: Router,
               private route: ActivatedRoute) {  }
 
   ngOnInit() {
       this.roomId  = this.route.snapshot.params['id'];
         // Varud haettulegt sja  fyrirlestur 6a ca 49. Aetti ad duga samt
+        this.chatService.getUserList().subscribe(lst => {
+            console.log(lst);
+            this.users = lst;
+        })
   }
 
   onSendMsg() {
