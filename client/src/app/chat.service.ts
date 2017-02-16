@@ -92,6 +92,20 @@ export class ChatService {
 		return obs;
 	}
 
+	leaveRoom(roomName: string): Observable<boolean> {
+		const obs = new Observable(observer => {
+			const param = {
+				room: roomName
+			};
+			this.socket.emit('partroom', param, function(a: boolean, b) {
+				if(a === true) {
+					observer.next(a);
+				}
+			});
+		});
+		return obs;
+	}
+
 	addRoom(roomName: string): Observable<boolean> {
 		const observable = new Observable(observer => {
 			// validate room name

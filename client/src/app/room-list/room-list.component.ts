@@ -21,11 +21,11 @@ export class RoomListComponent implements OnInit {
         this.chatService.getRoomList().subscribe(lst => {
             this.rooms = lst;
         });
-        this.chatService.getUserList().subscribe(lst => {
-            this.users = lst;
-        });
         this.chatService.getUserName().subscribe(name => {
             this.userName = name;
+        });
+        this.chatService.getUserList().subscribe(lst => {
+            this.users = lst;
         });
     }
 
