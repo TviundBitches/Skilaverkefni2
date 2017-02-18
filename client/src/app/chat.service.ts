@@ -6,7 +6,6 @@ import {Observable} from 'rxjs/Observable';
 export class ChatService {
 	socket: any;
 	userName: string;
-	private loggedIn = false;
 	opRooms: string[];
 
 
@@ -30,19 +29,10 @@ export class ChatService {
 		let observable = new Observable(observer => {
 			this.socket.emit('adduser', userName, succeeded => {
 				observer.next(succeeded);
-				this.loggedIn = true;
 			});
 		});
 
 		return observable;
-	}
-
-	// logout() {
-	//
-	// }
-
-	isLoggedIn() {
-		return this.loggedIn;
 	}
 
 	setUserName(userName: string) : any {

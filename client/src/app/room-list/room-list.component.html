@@ -3,7 +3,7 @@
 <h4 class= "teal-text text-lighten-2">Hey {{userName}} ! </h4>
 <div class="row">
     <div *ngFor="let room of rooms" >
-        <div class="col s12 m4 l2 center-align lobbypic">
+        <div class="col s12 m6 l3 center-align lobbypic">
             <div class="card" (click)="onJoinRoom(room)">
                 <div class="card-image">
                     <img src="./kitten.jpg"/>
@@ -15,13 +15,9 @@
             </div>
         </div>
     </div>
-    <div class="col s12 m4 l2 center-align lobbypic">
+    <div class="col s12 m6 l3 center-align lobbypic addcard">
         <div class="card">
-            <!-- <div class="card-image">
-                <img src="./kitten.jpg"/>
-                <span class="card-title">Add new room</span>
-            </div> -->
-            <div class="card-action">
+            <div class="card-action row">
                 <p><input [(ngModel)]="newRoomName" placeholder="Enter a name" class="center"/></p>
                 <button class="waves-effect waves-light btn" (click)="onNewRoom()">Add new room</button>
             </div>
@@ -32,7 +28,7 @@
 <div class="row center-align">
     <h5 class= "teal-text text-lighten-2">Connected Kitties</h5>
 </div>
-<div class="row">
+<div class="row center-align">
     <ul id="guests" class="collection">
         <div *ngFor="let user of users">
           <div class="card-action" (click)="onVisitProfile(user)">

@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter  } from '@angular/core';
 import { ChatService } from '../chat.service';
 import { Router } from '@angular/router';
 import {MaterializeAction} from 'angular2-materialize';
+import { AppComponent } from '../app.component';
 
 @Component({
     selector: 'app-room-list',
@@ -18,7 +19,7 @@ export class RoomListComponent implements OnInit {
     login: string[];
     modalActions = new EventEmitter<string|MaterializeAction>();
     constructor(private chatService: ChatService,
-          private router: Router) { }
+          private router: Router, private appComponent: AppComponent) { }
 
     ngOnInit() {
         this.chatService.getRoomList().subscribe(lst => {
@@ -35,6 +36,7 @@ export class RoomListComponent implements OnInit {
             this.users = lst;
         });
         this.chatService.reciveMsg();
+        this.appComponent.logoutName = 'Log Out';
     }
 
     onNewRoom() {

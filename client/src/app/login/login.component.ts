@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../chat.service';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 @Component({
     selector: 'app-login',
@@ -12,11 +13,12 @@ export class LoginComponent implements OnInit {
     loginFailed: boolean = false;
 
     constructor(private chatService: ChatService,
-        private router: Router) {
+        private router: Router, private appComponent: AppComponent) {
 
     }
 
     ngOnInit() {
+        this.appComponent.logoutName = '';
     }
 
     onLogin() {
