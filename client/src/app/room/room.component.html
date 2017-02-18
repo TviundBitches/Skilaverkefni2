@@ -25,10 +25,12 @@
      </ul>
   </div>
   <div class="col s2 guests">
-      <p>Operator Kitties</p>
+      <p>OP Kitties</p>
       <ul id="guests" class="collection">
           <div *ngFor="let op of ops">
-              <li class="collection-item">{{op}}</li>
+            <div class="card-action" (click)="onVisitProfile(user)">
+              <a class="collection-item teal-text text-lighten-2" > {{op}} </a>
+            </div>
           </div>
       </ul>
       <p>Guest Kitties</p>

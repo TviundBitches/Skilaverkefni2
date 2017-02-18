@@ -69,6 +69,8 @@ export class ChatService {
 				for (var i = 0; i < lst.length; i++) { // Var var lint error
 					if(this.userName !== lst[i])
 						strArr.push(lst[i]);
+					else
+						strArr.push("You");
 		        }
 				observer.next(strArr);
 			});
@@ -138,17 +140,6 @@ export class ChatService {
 		return obs;
 	}
 
-	// login(userName: string): Observable<boolean> {
-	// 	let observable = new Observable(observer => {
-	// 		this.socket.emit('adduser', userName, succeeded => {
-	// 			console.log('Reply received');
-	// 			observer.next(succeeded);
-	// 		});
-	// 	});
-	//
-	// 	return observable;
-	// }
-
 	leaveRoom(roomName: string): Observable<boolean> {
 		const obs = new Observable(observer => {
 			this.socket.emit('partroom', roomName, succeeded => {
@@ -198,13 +189,11 @@ export class ChatService {
 	  console.log('smuu')
     let strArr: string[] = [];
       this.socket.on('updatechat', (roomName, lst) => {
-        console.log('smuuuuuu')
         console.log(roomName)
        // console.log(lst)
         for (var i = 0; i < lst.length; i++) { // Var var lint error
           strArr.push(lst[i].message);
         }
-        console.log(strArr)
         return strArr;
       });
     return strArr;

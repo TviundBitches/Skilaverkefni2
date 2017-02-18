@@ -32,15 +32,16 @@ export class RoomComponent implements OnInit {
         this.users = lst;
     })
     this.chatService.getOps(this.roomId).subscribe(lst => {
+        for (const op in lst) {
+          console.log(op);
+            if(op === "You")
+              console.log(op);
+              this.isOps = true;
+        }
         this.ops = lst;
     })
     this.chatService.reciveMsg();
     this.msgs = this.chatService.updateChat();
-
-    // if(this.users.length === 0)
-    //     this.noUsers = true;
-    // else
-    //     this.noUsers = false;
 
   }
 
@@ -51,14 +52,13 @@ export class RoomComponent implements OnInit {
       this.msgs = lst;
     });
   }
+
   onLeaveRoom() {
       console.log('Success leaving room!!');
       //this.router.navigate(['/rooms']);
       this.chatService.leaveRoom(this.roomId).subscribe(succeeded => {
           console.log('Success leaving room!!');
-          console.log(succeeded);
           if (succeeded === true) {
-              console.log('hello');
               this.router.navigate(['/rooms']);
           }
       });
@@ -66,6 +66,14 @@ export class RoomComponent implements OnInit {
 
   onVisitProfile(user) {
     this.router.navigate(['/rooms/'+this.roomId+'/users/'+user]);
+  }
+
+  onEditTopic() {
+    this.editTopic = true;
+  }
+
+  onChangeTopic() {
+    this.editTopic = false;
   }
 
 /*  kick
