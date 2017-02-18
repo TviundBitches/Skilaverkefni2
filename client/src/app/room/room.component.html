@@ -2,8 +2,7 @@
   <div class="col s3"></div>
   <div class="col s6">
       <p class="roomId">{{roomId}}</p>
-      <p>{{topic}}</p>
-      <img src="./edit_icon.png" style="width:15px;height:15px;" *ngIf="isOps" (click)="onEditTopic()" >
+      <p><img src="./edit_icon.png" style="width:15px;height:15px;" *ngIf="isOps" (click)="onEditTopic()" >  {{topic}}</p>
       <div class="row" *ngIf="editTopic">
           <input name="topic" [(ngModel)]="topic" Placeholder="Write a new topic...." autocomplete="off"/><button class="waves-effect waves-light btn" (click)="onChangeTopic()">Change</button>
       </div>

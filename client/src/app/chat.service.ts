@@ -6,6 +6,7 @@ import {Observable} from 'rxjs/Observable';
 export class ChatService {
 	socket: any;
 	userName: string;
+	opRooms: string[];
 
 
 	constructor() {
@@ -157,6 +158,7 @@ export class ChatService {
 			};
 			this.socket.emit('joinroom', param, function (a: boolean, b) {
 				if (a === true) {
+				  //this.opRooms.push(roomName);
 				  observer.next(a);
 				}
 
@@ -219,5 +221,29 @@ export class ChatService {
    a callback function, accepting a single boolean parameter, stating if the message could be sent or not.
    The server will then emit the "recv_privatemsg" event to the user which should receive the message.*/
 
+	setTopic(topic: string, roomName: string): Observable<boolean> {
+      let obs = new Observable(observer => {
+		  const param = {
+	        topic: topic,
+			room: roomName
+	      };
+          this.socket.emit('settopic', param, succeeded => {
+          	observer.next(succeeded);
+        });
+      });
+      return obs;
+    }
+
+	getTopic(roomName: string): Observable<string> {
+		let obs = new Observable(observer => {
+			const param = {
+				room: roomName
+			};
+			this.socket.on('updatetopic', (roomName, topic, username) => {
+			  observer.next(topic);
+			});
+		});
+		return obs;
+	}
 
 }

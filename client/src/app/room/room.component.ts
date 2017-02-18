@@ -28,6 +28,9 @@ export class RoomComponent implements OnInit {
     this.chatService.getUserName().subscribe(name => {
         this.userName = name;
     })
+    this.chatService.getTopic(this.roomId).subscribe(t => {
+        this.topic = t;
+    })
     this.chatService.getGuests(this.roomId).subscribe(lst => {
         this.users = lst;
     })
@@ -73,6 +76,7 @@ export class RoomComponent implements OnInit {
   }
 
   onChangeTopic() {
+    this.chatService.setTopic(this.topic, this.roomId);
     this.editTopic = false;
   }
 
