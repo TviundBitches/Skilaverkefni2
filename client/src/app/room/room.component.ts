@@ -17,6 +17,8 @@ export class RoomComponent implements OnInit {
   topic: string;
   userName: string;
   noUsers: boolean = false;
+  editTopic: boolean = false;
+  isOps: boolean = false;
   constructor(private chatService: ChatService, private router: Router,
               private route: ActivatedRoute) {  }
 

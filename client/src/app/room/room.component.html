@@ -3,7 +3,13 @@
   <div class="col s6">
       <p class="roomId">{{roomId}}</p>
       <p>{{topic}}</p>
-      <button class="waves-effect waves-light btn" (click)="onLeaveRoom()">Leave Room</button>
+      <img src="./edit_icon.png" style="width:15px;height:15px;" *ngIf="isOps" (click)="onEditTopic()" >
+      <div class="row" *ngIf="editTopic">
+          <input name="topic" [(ngModel)]="topic" Placeholder="Write a new topic...." autocomplete="off"/><button class="waves-effect waves-light btn" (click)="onChangeTopic()">Change</button>
+      </div>
+      <div class="row">
+          <button class="waves-effect waves-light btn" (click)="onLeaveRoom()">Leave Room</button>
+      </div>
   </div>
   <div class="col s3"></div>
 </div>
@@ -19,7 +25,7 @@
      </ul>
   </div>
   <div class="col s2 guests">
-      <p>Ops</p>
+      <p>Operator Kitties</p>
       <ul id="guests" class="collection">
           <div *ngFor="let op of ops">
               <li class="collection-item">{{op}}</li>
