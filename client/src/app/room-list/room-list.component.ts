@@ -15,6 +15,7 @@ export class RoomListComponent implements OnInit {
     userName: string;
     rooms: string[];
     users: string[];
+    login: string[];
     modalActions = new EventEmitter<string|MaterializeAction>();
     constructor(private chatService: ChatService,
           private router: Router) { }
@@ -24,7 +25,11 @@ export class RoomListComponent implements OnInit {
             this.rooms = lst;
         });
         this.chatService.getUserName().subscribe(name => {
-            this.userName = name;
+            if(name !== undefined){
+                this.userName = name;
+            }
+            else
+                this.router.navigate(['/login']);
         });
         this.chatService.getUserList().subscribe(lst => {
             this.users = lst;

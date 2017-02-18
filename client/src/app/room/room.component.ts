@@ -26,7 +26,11 @@ export class RoomComponent implements OnInit {
     this.roomId  = this.route.snapshot.params['id'];
     // Varud haettulegt sja  fyrirlestur 6a ca 49. Aetti ad duga samt
     this.chatService.getUserName().subscribe(name => {
-        this.userName = name;
+        if(name !== undefined){
+            this.userName = name;
+        }
+        else
+            this.router.navigate(['/login']);
     })
     this.chatService.getGuests(this.roomId).subscribe(lst => {
         this.users = lst;
