@@ -17,13 +17,13 @@ export class ChatService {
 
   reciveMsg() {
     this.socket.on('recv_privatemsg', (username, message) => {
-      console.log("rect-priv: " + username)
-      console.log('rect-priv ' + message)
+      console.log('rect-priv: ' + username);
+      console.log('rect-priv ' + message);
     });
   }
 
-  wasKicked() : Observable<string> {
-    let observable = new Observable(observer => {
+  wasKicked(): Observable<string> {
+    const observable = new Observable(observer => {
       this.socket.on('kicked', (room, user, username) => {
         observer.next(user);
       });
@@ -32,7 +32,7 @@ export class ChatService {
   }
 
   login(userName: string): Observable<boolean> {
-    let observable = new Observable(observer => {
+    const observable = new Observable(observer => {
       this.socket.emit('adduser', userName, succeeded => {
         observer.next(succeeded);
       });
@@ -40,22 +40,22 @@ export class ChatService {
     return observable;
   }
 
-  setUserName(userName: string) : any {
+  setUserName(userName: string): any {
     this.userName = userName;
   }
 
-  getUserName() : Observable<string> {
-    let obs = new Observable(observer => {
+  getUserName(): Observable<string> {
+    const obs = new Observable(observer => {
       observer.next(this.userName);
     });
     return obs;
   }
 
   getRoomList(): Observable<string[]> {
-    let obs = new Observable(observer => {
+    const obs = new Observable(observer => {
       this.socket.emit('rooms');
       this.socket.on('roomlist', (lst) => {
-        let strArr: string[] = [];
+        const strArr: string[] = [];
         for (const x in lst) { // Var var lint error || ADD IF STATEMENT
           strArr.push(x);
         }
@@ -67,16 +67,15 @@ export class ChatService {
 
   // List of all users
   getUserList(): Observable<string[]> {
-    let obs = new Observable(observer => {
+    const obs = new Observable(observer => {
       this.socket.emit('users');
       this.socket.on('userlist', (lst) => {
-        let strArr: string[] = [];
-        for (var i = 0; i < lst.length; i++) { // Var var lint error
-          if(this.userName !== lst[i]) {
+        const strArr: string[] = [];
+        for (let i = 0; i < lst.length; i++) { // Var var lint error
+          if (this.userName !== lst[i]) {
             strArr.push(lst[i]);
-          }
-          else {
-            strArr.push("You");
+          } else {
+            strArr.push('You');
           }
         }
         observer.next(strArr);
@@ -106,19 +105,18 @@ export class ChatService {
   }
 
   getGuests(roomName: string): Observable<string[]> {
-    let obs = new Observable(observer => {
+    const obs = new Observable(observer => {
       const param = {
         room: roomName
       };
       this.socket.emit('updateroom', param);
       this.socket.on('updateusers', (room, lstUsers, lstOps) => {
-        let strArr: string[] = [];
-        for(const user in lstUsers) { // Var var lint error
-          if(user !== this.userName) {
+        const strArr: string[] = [];
+        for (const user in lstUsers) { // Var var lint error
+          if (user !== this.userName) {
             strArr.push(user);
-          }
-          else {
-            strArr.push("You");
+          } else {
+            strArr.push('You');
           }
         }
         observer.next(strArr);
@@ -128,19 +126,18 @@ export class ChatService {
   }
 
   getOps(roomName: string): Observable<string[]> {
-    let obs = new Observable(observer => {
+    const obs = new Observable(observer => {
       const param = {
         room: roomName
       };
       this.socket.emit('updateroom', param);
       this.socket.on('updateusers', (room, lstUsers, lstOps) => {
-        let strArr: string[] = [];
-        for(const user in lstOps) { // Var var lint error
-          if(user !== this.userName) {
+        const strArr: string[] = [];
+        for (const user in lstOps) { // Var var lint error
+          if (user !== this.userName) {
             strArr.push(user);
-          }
-          else {
-            strArr.push("You");
+          } else {
+            strArr.push('You');
           }
         }
         observer.next(strArr);
@@ -166,8 +163,8 @@ export class ChatService {
       };
       this.socket.emit('joinroom', param, function (a: boolean, b) {
         if (a === true) {
-          //this.opRooms.push(roomName);
-        observer.next(a);
+          // this.opRooms.push(roomName);
+          observer.next(a);
         }
       });
     });
@@ -175,7 +172,7 @@ export class ChatService {
   }
 
   sendMsg(roomName: string, msg: string): Observable<string[]> {
-    let obs = new Observable(observer => {
+    const obs = new Observable(observer => {
       // validate room name
       const param = {
         room: roomName,
@@ -183,8 +180,8 @@ export class ChatService {
       };
       this.socket.emit('sendmsg', param);
       this.socket.on('updatechat', (room, lst) => {
-        let strArr: string[] = [];
-        for (var i = 0; i < lst.length; i++) { // Var var lint error
+        const strArr: string[] = [];
+        for (let i = 0; i < lst.length; i++) { // Var var lint error
           strArr.push(lst[i].message);
         }
         observer.next(strArr);
@@ -194,12 +191,12 @@ export class ChatService {
   }
 
   updateChat(): string[] {
-    console.log('smuu')
-    let strArr: string[] = [];
+    console.log('smuu');
+    const strArr: string[] = [];
       this.socket.on('updatechat', (roomName, lst) => {
-        console.log(roomName)
+        console.log(roomName);
        // console.log(lst)
-        for (var i = 0; i < lst.length; i++) { // Var var lint error
+        for (let i = 0; i < lst.length; i++) { // Var var lint error
           strArr.push(lst[i].message);
         }
         return strArr;
@@ -208,7 +205,7 @@ export class ChatService {
   }
 
   sendPrivMsg(userName: string, msg: string): Observable<boolean> {
-    let obs = new Observable(observer => {
+    const obs = new Observable(observer => {
       const param = {
         nick: userName,
         message: msg
@@ -221,16 +218,16 @@ export class ChatService {
   }
 
   kick(userName, roomId) {
-    console.log('got to kick in service')
-    let obs = new Observable(observer => {
-      console.log('got to observer')
+    console.log('got to kick in service');
+    const obs = new Observable(observer => {
+      console.log('got to observer');
       const param = {
         user: userName,
         room: roomId
       };
       this.socket.emit('kick', param, succeeded => {
         observer.next(succeeded);
-        console.log('got to kick in server')
+        console.log('got to kick in server');
       });
 
     });
@@ -259,14 +256,14 @@ export class ChatService {
    should receive the message.*/
 
   setTopic(topic: string, roomName: string): Observable<boolean> {
-      let obs = new Observable(observer => {
+      const obs = new Observable(observer => {
         const param = {
           topic: topic,
           room: roomName
         };
         this.socket.emit('settopic', param, succeeded => {
           console.log(succeeded);
-          console.log("Succeeded set topic!");
+          console.log('Succeeded set topic!');
           observer.next(succeeded);
         });
       });
@@ -274,7 +271,7 @@ export class ChatService {
     }
 
   getTopic(roomName: string): Observable<string> {
-    let obs = new Observable(observer => {
+    const obs = new Observable(observer => {
       const param = {
         room: roomName
       };
@@ -286,7 +283,7 @@ export class ChatService {
   }
 
   banUser(userName: string, roomName: string): Observable<boolean> {
-    let obs = new Observable(observer => {
+    const obs = new Observable(observer => {
       const param = {
         user: userName,
         room: roomName
