@@ -15,20 +15,20 @@ export class ChatService {
     });
   }
 
-	reciveMsg(): Observable<string[]> {
-		let observable = new Observable(observer => {
-			this.socket.on('recv_privatemsg', (username, message) => {
-				console.log("rect-priv: " + username)
-				console.log('rect-priv ' + message)
-				let strArr: string[] = [];
-				strArr.push(username);
-				strArr.push(message);
-				observer.next(strArr);
-			});
+  reciveMsg(): Observable<string[]> {
+    let observable = new Observable(observer => {
+      this.socket.on('recv_privatemsg', (username, message) => {
+        console.log("rect-priv: " + username)
+        console.log('rect-priv ' + message)
+        let strArr: string[] = [];
+        strArr.push(username);
+        strArr.push(message);
+        observer.next(strArr);
+      });
 
-		});
-		return observable;
-	}
+    });
+    return observable;
+  }
   // reciveMsg() {
   //   this.socket.on('recv_privatemsg', (username, message) => {
   //     console.log('rect-priv: ' + username);
@@ -55,15 +55,14 @@ export class ChatService {
     return observable;
   }
 
-	login(userName: string): Observable<boolean> {
-		let observable = new Observable(observer => {
-			this.socket.emit('adduser', userName, succeeded => {
-				observer.next(succeeded);
-			});
-		});
-
-		return observable;
-	}
+  login(userName: string): Observable<boolean> {
+    let observable = new Observable(observer => {
+      this.socket.emit('adduser', userName, succeeded => {
+        observer.next(succeeded);
+      });
+    });
+    return observable;
+  }
 
 	setUserName(userName: string) : any {
 		this.userName = userName;
@@ -158,7 +157,7 @@ export class ChatService {
   }
 
 //  updateChat(): Observable<string[]> {
-//	  let obs = new Observable(observer => {
+//  let obs = new Observable(observer => {
 	// getChat(roomName: string): Observable<string[]> {
 	//   	let obs = new Observable(observer => {
 	//   		//console.log('smuu')
