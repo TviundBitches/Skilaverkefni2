@@ -17,9 +17,9 @@ export class RoomComponent implements OnInit {
   ops: string[];
   topic: string;
   userName: string;
-  noUsers: boolean = false;
-  editTopic: boolean = false;
-  isOps: boolean = false;
+  noUsers= false;
+  editTopic = false;
+  isOps = false;
   constructor(private chatService: ChatService, private router: Router,
               private route: ActivatedRoute, private toastrService: ToastrService) {  }
 
@@ -27,40 +27,36 @@ export class RoomComponent implements OnInit {
     this.roomId  = this.route.snapshot.params['id'];
     // Varud haettulegt sja  fyrirlestur 6a ca 49. Aetti ad duga samt
     this.chatService.getUserName().subscribe(name => {
-        if(name !== undefined){
+        if (name !== undefined) {
             this.userName = name;
-        }
-        else
-        {
+        } else {
             this.router.navigate(['/login']);
         }
-    })
+    });
     this.chatService.getTopic(this.roomId).subscribe(t => {
         this.topic = t;
-    })
+    });
     this.chatService.getGuests(this.roomId).subscribe(lst => {
         this.users = lst;
-    })
+    });
     this.chatService.getOps(this.roomId).subscribe(lst => {
-      for (var i = 0; i < lst.length; i++) { // Var var lint error
-       if(lst[i] === 'You')//this.userName)
-       {
+      for (let i = 0; i < lst.length; i++) { // Var var lint error
+        if (lst[i] === 'You') {
           this.isOps = true;
           break;
-       }
+        }
       }
-        this.ops = lst;
-        console.log('lstt'+lst)
-    })
+      this.ops = lst;
+      console.log('lstt' + lst);
+    });
     this.chatService.reciveMsg();
     this.msgs = this.chatService.updateChat();
     this.chatService.wasKicked().subscribe(str => {
-      if(this.userName === str)
-      {
+      if (this.userName === str) {
           this.router.navigate(['/rooms']);
           this.toastrService.success('You were a bad kitty, you got yourself kicked out of the room. Watch out, you can get banned!');
       }
-    })
+    });
 
 
 
@@ -68,15 +64,15 @@ export class RoomComponent implements OnInit {
 
   onSendMsg() {
     this.chatService.sendMsg(this.roomId, this.msg).subscribe(lst => {
-      for (const x in lst) { // Var var lint error
-      }
+      // for (const x in lst) { // Var var lint error
+      // }
       this.msgs = lst;
     });
   }
 
   onLeaveRoom() {
       console.log('Success leaving room!!');
-      //this.router.navigate(['/rooms']);
+      // this.router.navigate(['/rooms']);
       this.chatService.leaveRoom(this.roomId).subscribe(succeeded => {
           console.log('Success leaving room!!');
           if (succeeded === true) {
@@ -86,7 +82,7 @@ export class RoomComponent implements OnInit {
   }
 
   onVisitProfile(user) {
-    this.router.navigate(['/rooms/'+this.roomId+'/users/'+user]);
+    this.router.navigate(['/rooms/' + this.roomId + '/users/' + user]);
   }
 
   onEditTopic() {
@@ -107,25 +103,29 @@ export class RoomComponent implements OnInit {
     });
   }
   onKick(userName) {
-    console.log('got to onkick')
+    console.log('got to onkick');
     this.chatService.kick(userName, this.roomId).subscribe(succeeded => {
-      console.log('b4succeeded')
+      console.log('b4succeeded');
       if (succeeded === true) {
         // TODO Redirect to RoomList component!
-        console.log('succeeded')
+        console.log('succeeded');
+      } else {
+        console.log('fail');
       }
-      else
-        console.log('fail')
 //      this.msgs = lst;
     });
-    console.log('got to back')
+    console.log('got to back');
   }
 
 /*  kick
   When a room creator wants to kick a user from the room.
   Parameters:
-    an object containing the following properties: { user : "The username of the user being kicked", room: "The ID of the room"
-  a callback function, accepting a single boolean parameter, stating if the user could be kicked or not.
-  The server will emit the following events if the user was successfully kicked: "kicked" to the user being kicked, and "updateusers" to the rest of the users in the room.*/
+    an object containing the following properties: { user : "The username of
+    the user being kicked", room: "The ID of the room"
+    a callback function, accepting a single boolean parameter, stating if the
+    user could be kicked or not.
+  The server will emit the following events if the user was successfully
+  kicked: "kicked" to the user being kicked, and "updateusers" to the rest of
+  the users in the room.*/
 
 }

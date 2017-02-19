@@ -56,8 +56,10 @@ export class ChatService {
       this.socket.emit('rooms');
       this.socket.on('roomlist', (lst) => {
         const strArr: string[] = [];
-        for (const x in lst) { // Var var lint error || ADD IF STATEMENT
-          strArr.push(x);
+        for (const x in lst) {
+          if (x !== undefined) {
+            strArr.push(x);
+          }
         }
         observer.next(strArr);
       });
