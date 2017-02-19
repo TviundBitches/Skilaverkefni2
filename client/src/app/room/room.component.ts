@@ -24,7 +24,6 @@ export class RoomComponent implements OnInit {
 
   ngOnInit() {
     this.roomId  = this.route.snapshot.params['id'];
-    // Varud haettulegt sja  fyrirlestur 6a ca 49. Aetti ad duga samt
     this.chatService.getUserName().subscribe(name => {
         if(name !== undefined){
             this.userName = name;
@@ -40,24 +39,28 @@ export class RoomComponent implements OnInit {
     })
     this.chatService.getOps(this.roomId).subscribe(lst => {
       for (var i = 0; i < lst.length; i++) { // Var var lint error
-       if(lst[i] === 'You')//this.userName)
-       {
-          this.isOps = true;
-          break;
-       }
+         if(lst[i] === 'You')//this.userName)
+         {
+            this.isOps = true;
+            break;
+         }
       }
         this.ops = lst;
-        console.log('lstt'+lst)
     })
-    this.chatService.reciveMsg();
-    this.msgs = this.chatService.updateChat();
+    // this.chatService.getChat(this.roomId).subscribe(lst => {
+    //     console.log(lst + "þetta er lst");
+    //     this.msgs = lst;
+    // })
+    this.msgs = this.chatService.updateChat(this.roomId);
     this.chatService.wasKicked().subscribe(str => {
       if(this.userName === str)
         this.router.navigate(['/rooms']);
     })
-
-
-
+    this.chatService.wasBanned().subscribe(str => {
+      if(this.userName === str)
+        this.router.navigate(['/rooms']);
+    })
+    this.chatService.reciveMsg();
   }
 
   onSendMsg() {
@@ -97,20 +100,20 @@ export class RoomComponent implements OnInit {
 
   onBanUser(user) {
     this.chatService.banUser(user, this.roomId).subscribe(succeeded => {
-        console.log('Success changing topic!');
+        console.log('Success banning user!');
     });
   }
+
   onKick(userName) {
     console.log('got to onkick')
     this.chatService.kick(userName, this.roomId).subscribe(succeeded => {
-      console.log('b4succeeded')
+      console.log('b4succeeded');
       if (succeeded === true) {
         // TODO Redirect to RoomList component!
-        console.log('succeeded')
+        console.log('succeeded');
       }
       else
-        console.log('fail')
-//      this.msgs = lst;
+        console.log('fail');
     });
     console.log('got to back')
   }
