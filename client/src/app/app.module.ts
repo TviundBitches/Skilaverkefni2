@@ -46,7 +46,7 @@ import { CommonModule } from '@angular/common';
             component: UserComponent
         }]),
         CommonModule,
-        ToastrModule.forRoot(), // ToastrModule added
+        ToastrModule.forRoot() // ToastrModule added
     ],
     providers: [ChatService],
     bootstrap: [AppComponent]

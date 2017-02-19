@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../chat.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import {isNullOrUndefined} from "util";
+import {isUndefined} from "util";
 
 @Component({
   selector: 'app-room',
@@ -12,7 +14,7 @@ export class RoomComponent implements OnInit {
 
   roomId: string;
   msg: string;
-  msgs: string[];
+  msgs: string[] = [];
   users: string[];
   ops: string[];
   topic: string;
@@ -39,21 +41,24 @@ export class RoomComponent implements OnInit {
         this.users = lst;
     });
     this.chatService.getOps(this.roomId).subscribe(lst => {
-      for (let i = 0; i < lst.length; i++) { // Var var lint error
-        if (lst[i] === 'You') {
-          this.isOps = true;
-          break;
-        }
-      }
-      this.ops = lst;
-      console.log('lstt' + lst);
-    });
+        this.ops = lst;
+    })
     this.chatService.reciveMsg();
-    // this.chatService.getChat(this.roomId).subscribe(lst => {
-    //     console.log(lst + "þetta er lst");
-    //     this.msgs = lst;
-    // })
-    this.msgs = this.chatService.updateChat(this.roomId);
+
+    this.chatService.updateChat().subscribe(lst => {
+        if(this.roomId === lst[0])
+        {
+            this.msgs = [];
+            for (let i = 1; i < lst.length; i++)
+                this.msgs.push(lst[i]);
+            console.log('this.mesgs: ' + this.msgs);
+        }
+    });
+      // if(this.msgsCheck[0] === this.roomId)
+      //     this.msgs.push(this.msgsCheck[this.msgsCheck.length-1]);
+
+
+
     this.chatService.wasKicked().subscribe(str => {
       if (this.userName === str) {
           this.router.navigate(['/rooms']);
@@ -69,9 +74,13 @@ export class RoomComponent implements OnInit {
 
   onSendMsg() {
     this.chatService.sendMsg(this.roomId, this.msg).subscribe(lst => {
-      // for (const x in lst) { // Var var lint error
-      // }
-      this.msgs = lst;
+        console.log('roomid: ' + this.roomId + 'lst[0]'+lst[0]);
+      if(this.roomId === lst[0]) {
+          this.msgs = [];
+          for (let i = 1; i < lst.length; i++)
+              this.msgs.push(lst[i]);
+      }
+
     });
   }
 

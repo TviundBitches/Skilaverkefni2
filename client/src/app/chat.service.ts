@@ -15,12 +15,26 @@ export class ChatService {
     });
   }
 
-  reciveMsg() {
-    this.socket.on('recv_privatemsg', (username, message) => {
-      console.log('rect-priv: ' + username);
-      console.log('rect-priv ' + message);
-    });
-  }
+	reciveMsg(): Observable<string[]> {
+		let observable = new Observable(observer => {
+			this.socket.on('recv_privatemsg', (username, message) => {
+				console.log("rect-priv: " + username)
+				console.log('rect-priv ' + message)
+				let strArr: string[] = [];
+				strArr.push(username);
+				strArr.push(message);
+				observer.next(strArr);
+			});
+
+		});
+		return observable;
+	}
+  // reciveMsg() {
+  //   this.socket.on('recv_privatemsg', (username, message) => {
+  //     console.log('rect-priv: ' + username);
+  //     console.log('rect-priv ' + message);
+  //   });
+  // }
 
   wasKicked(): Observable<string> {
     const observable = new Observable(observer => {
@@ -143,6 +157,8 @@ export class ChatService {
     return obs;
   }
 
+//  updateChat(): Observable<string[]> {
+//	  let obs = new Observable(observer => {
 	// getChat(roomName: string): Observable<string[]> {
 	//   	let obs = new Observable(observer => {
 	//   		//console.log('smuu')
@@ -164,23 +180,33 @@ export class ChatService {
 	//       return obs;
     // }
 
-  updateChat(roomName: string): string[] {
-   console.log('smuu')
-    let strArr: string[] = [];
-	const param = {
-	   	room: roomName
-	};
-	// this.socket.emit('updateroom', param);
-      this.socket.on('updatechat', (roomName, lst) => {
-        console.log(roomName)
-       // console.log(lst)
-        for (var i = 0; i < lst.length; i++) { // Var var lint error
-          strArr.push(lst[i].message);
-        }
-        return strArr;
-      });
-    return strArr;
-  }
+	updateChat(): Observable<string[]> {
+		let obs = new Observable(observer => {
+			let strArr: string[] = [];
+			this.socket.on('updatechat', (roomName, lst) => {
+				strArr[0] = roomName;
+				if(lst.length !== 0) {
+					for (var i = 0; i < lst.length; i++) { // Var var lint error
+						strArr.push(lst[i].message);
+					}
+				}
+				observer.next(strArr);
+			});
+
+		});
+		return obs;
+	}
+	// updateChat(): string[] {
+	// 	let strArr: string[] = [];
+	// 	this.socket.on('updatechat', (roomName, lst) => {
+	// 		strArr[0] = roomName;
+	// 		for (var i = 0; i < lst.length; i++) { // Var var lint error
+	// 			strArr.push(lst[i].message);
+	// 		}
+	// 		return strArr;
+	// 	});
+	// 	return strArr;
+	// }
   //
   //
 	// leaveRoom(roomName: string): Observable<boolean> {
@@ -296,7 +322,8 @@ export class ChatService {
     return obs;
   }
 
-  kick(userName, roomId) {
+  kick(userName, roomId): Observable<boolean>{
+    let obs = new Observable(observer => {
     console.log('got to kick in service');
     const obs = new Observable(observer => {
       console.log('got to observer');
@@ -308,7 +335,7 @@ export class ChatService {
         observer.next(succeeded);
         console.log('got to kick in server');
       });
-
+	});
     });
     return obs;
   }
@@ -327,12 +354,10 @@ export class ChatService {
    privatemsg
    Used if the user wants to send a private message to another user.
    Parameters:
-   an object containing the following properties: {nick: "the userid which the
-   message should be sent to", message: "The message itself" }
-   a callback function, accepting a single boolean parameter, stating if the
-   message could be sent or not.
-   The server will then emit the "recv_privatemsg" event to the user which
-   should receive the message.*/
+   an object containing the following properties: {nick: "the userid which the message should be sent to", message: "The message itself" }
+   a callback function, accepting a single boolean parameter, stating if the message could be sent or not.
+   The server will then emit the "recv_privatemsg" event to the user which should receive the message.*/
+
 
   setTopic(topic: string, roomName: string): Observable<boolean> {
       const obs = new Observable(observer => {

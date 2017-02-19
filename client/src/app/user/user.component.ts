@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../chat.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user',
@@ -19,7 +20,12 @@ export class UserComponent implements OnInit {
     this.userName  = this.route.snapshot.params['id'];
     this.roomName  = this.route.snapshot.params['roomId'];
     this.msgSent = false;
-    this.chatService.reciveMsg();
+    //this.toastrService.success('You got mail');
+    this.chatService.reciveMsg().subscribe(lst => {
+      if (this.userName === lst[0])
+        console.log('you got mail')
+        //this.toastrService.success('You got mail');
+    });
   }
 
   backToRoom() {
