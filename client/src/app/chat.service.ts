@@ -46,7 +46,7 @@ export class ChatService {
   }
 
 
-  wasBanned() : Observable<string> {
+  wasBanned(): Observable<string> {
     const observable = new Observable(observer => {
       this.socket.on('banned', (room, user, username) => {
         observer.next(user);
@@ -64,11 +64,11 @@ export class ChatService {
     return observable;
   }
 
-  setUserName(userName: string) : any {
+  setUserName(userName: string): any {
     this.userName = userName;
   }
 
-  getUserName() : Observable<string> {
+  getUserName(): Observable<string> {
     const obs = new Observable(observer => {
       observer.next(this.userName);
     });
@@ -143,7 +143,7 @@ export class ChatService {
         const strArr: string[] = [];
         if (room === roomName ) {
           for (const user in lstOps) {
-            if(user !== this.userName) {
+            if (user !== this.userName) {
               strArr.push(user);
             } else {
               strArr.push('You');
@@ -184,7 +184,7 @@ export class ChatService {
       const strArr: string[] = [];
       this.socket.on('updatechat', (roomName, lst) => {
         strArr[0] = roomName;
-        if(lst.length !== 0) {
+        if (lst.length !== 0) {
           for (let i = 0; i < lst.length; i++) { // Var var lint error
             strArr.push(lst[i].message);
           }
