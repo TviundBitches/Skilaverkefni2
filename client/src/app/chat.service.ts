@@ -102,44 +102,46 @@ export class ChatService {
 			const param = {
 				room: roomName
 			};
-			//this.socket.emit('updateroom', param);
+			// this.socket.emit('updateroom', param);
 			this.socket.on('updateusers', (room, lstUsers, lstOps) => {
 			  let strArr: string[] = [];
 			  if(room === roomName){
 				  for(const user in lstUsers) { // Var var lint error
-					  if(user !== this.userName)
-						strArr.push(user);
-					  else
-						strArr.push("You");
-		          }
-		  	  }
-	          observer.next(strArr);
+					  if (user !== this.userName) {
+              strArr.push(user);
+            } else {
+              strArr.push("You");
+            }
+          }
+        }
+        observer.next(strArr);
 			});
 		});
 		return obs;
 	}
 
-	getOps(roomName: string): Observable<string[]> {
-		let obs = new Observable(observer => {
-			const param = {
-				room: roomName
-			};
-			//this.socket.emit('updateroom', param);
-			this.socket.on('updateusers', (room, lstUsers, lstOps) => {
-				let strArr: string[] = [];
-				if(room === roomName ){
-	  			  for(const user in lstOps) { // Var var lint error
-	  				  if(user !== this.userName)
-	  					strArr.push(user);
-	  				  else
-	  				  	strArr.push("You");
-				}
-	          }
-	          observer.next(strArr);
-			});
-		});
-		return obs;
-	}
+  getOps(roomName: string): Observable<string[]> {
+    let obs = new Observable(observer => {
+      const param = {
+        room: roomName
+      };
+      // this.socket.emit('updateroom', param);
+      this.socket.on('updateusers', (room, lstUsers, lstOps) => {
+        let strArr: string[] = [];
+        if (room === roomName ) {
+          for (const user in lstOps) {
+            if(user !== this.userName) {
+              strArr.push(user);
+            } else {
+              strArr.push("You");
+            }
+          }
+        }
+        observer.next(strArr);
+      });
+    });
+    return obs;
+  }
 
 	// getChat(roomName: string): Observable<string[]> {
 	//   	let obs = new Observable(observer => {
@@ -168,7 +170,7 @@ export class ChatService {
 	const param = {
 	   	room: roomName
 	};
-	//this.socket.emit('updateroom', param);
+	// this.socket.emit('updateroom', param);
       this.socket.on('updatechat', (roomName, lst) => {
         console.log(roomName)
        // console.log(lst)
