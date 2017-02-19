@@ -47,6 +47,10 @@
           </div>
         </div>
       </ul>
+
+      <div *ngIf="isOps">
+
+      </div>
       <!-- <div *ngIf="noUsers">
           There are no guests in this room
       </div> -->
@@ -58,7 +62,7 @@
   <div class="col s2"></div>
   <div class="col s8">
       <form action="">
-          <input name="msg" [(ngModel)]="msg" Placeholder="Write message...." autocomplete="off"/><button class="waves-effect waves-light btn" (click)="onSendMsg()">Send</button>
+          <input name="msg" [(ngModel)]="msg" Placeholder="Write message...." autocomplete="off" id="autocomplete-input" class="autocomplete"/><button class="waves-effect waves-light btn" (click)="onSendMsg()">Send</button>
       </form>
   </div>
   <div class="col s2"></div>

@@ -39,16 +39,24 @@ export class RoomComponent implements OnInit {
         this.users = lst;
     })
     this.chatService.getOps(this.roomId).subscribe(lst => {
-        for (const op in lst) {
-          console.log(op);
-            if(op === "You")
-              console.log(op);
-              this.isOps = true;
-        }
+      for (var i = 0; i < lst.length; i++) { // Var var lint error
+       if(lst[i] === 'You')//this.userName)
+       {
+          this.isOps = true;
+          break;
+       }
+      }
         this.ops = lst;
+        console.log('lstt'+lst)
     })
     this.chatService.reciveMsg();
     this.msgs = this.chatService.updateChat();
+    this.chatService.wasKicked().subscribe(str => {
+      if(this.userName === str)
+        this.router.navigate(['/rooms']);
+    })
+
+
 
   }
 
@@ -69,7 +77,7 @@ export class RoomComponent implements OnInit {
               this.router.navigate(['/rooms']);
           }
       });
-}
+  }
 
   onVisitProfile(user) {
     this.router.navigate(['/rooms/'+this.roomId+'/users/'+user]);
@@ -86,10 +94,25 @@ export class RoomComponent implements OnInit {
     this.editTopic = false;
   }
 
+
   onBanUser(user) {
     this.chatService.banUser(user, this.roomId).subscribe(succeeded => {
         console.log('Success changing topic!');
     });
+  }
+  onKick(userName) {
+    console.log('got to onkick')
+    this.chatService.kick(userName, this.roomId).subscribe(succeeded => {
+      console.log('b4succeeded')
+      if (succeeded === true) {
+        // TODO Redirect to RoomList component!
+        console.log('succeeded')
+      }
+      else
+        console.log('fail')
+//      this.msgs = lst;
+    });
+    console.log('got to back')
   }
 
 /*  kick
