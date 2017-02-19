@@ -83,7 +83,7 @@ export class RoomComponent implements OnInit {
               this.router.navigate(['/rooms']);
           }
       });
-}
+  }
 
   onVisitProfile(user) {
     this.router.navigate(['/rooms/'+this.roomId+'/users/'+user]);
@@ -97,10 +97,15 @@ export class RoomComponent implements OnInit {
     this.chatService.setTopic(this.topic, this.roomId).subscribe(succeeded => {
         console.log('Success changing topic!');
     });
-    console.log("In change topic");
     this.editTopic = false;
   }
 
+
+  onBanUser(user) {
+    this.chatService.banUser(user, this.roomId).subscribe(succeeded => {
+        console.log('Success changing topic!');
+    });
+  }
   onKick(userName) {
     console.log('got to onkick')
     this.chatService.kick(userName, this.roomId).subscribe(succeeded => {

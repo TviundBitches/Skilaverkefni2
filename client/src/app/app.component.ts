@@ -19,8 +19,9 @@ export class AppComponent {
     showSuccess() {
         this.toastrService.success('Hello world!', 'Toastr fun!');
     }
+
     navToRooms(){
-      this.router.navigate(['/rooms/']);
+        this.router.navigate(['/rooms/']);
     }
 
     onLogOut() {
