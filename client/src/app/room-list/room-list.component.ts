@@ -26,11 +26,11 @@ export class RoomListComponent implements OnInit {
             this.rooms = lst;
         });
         this.chatService.getUserName().subscribe(name => {
-            if(name !== undefined){
+            if (name !== undefined) {
                 this.userName = name;
-            }
-            else
+            } else {
                 this.router.navigate(['/login']);
+            }
         });
         this.chatService.getUserList().subscribe(lst => {
             this.users = lst;
@@ -54,24 +54,23 @@ export class RoomListComponent implements OnInit {
 
     onJoinRoom(roomName) {
         this.chatService.joinRoom(roomName).subscribe(succeeded => {
-            console.log("success join room");
+            console.log('success join room');
             if (succeeded === true) {
                 this.router.navigate(['rooms', roomName]);
             }
-
         });
           // this.newRoomName = "";
     }
 
     openModal() {
-      this.modalActions.emit({action:"modal",params:['open']});
+        this.modalActions.emit({action: 'modal', params: ['open']});
     }
     closeModal() {
-      this.modalActions.emit({action:"modal",params:['close']});
-  }
+        this.modalActions.emit({action: 'modal', params: ['close']});
+    }
 
     onVisitProfile(user) {
-      this.router.navigate(['/rooms/default/users/'+user]);
+        this.router.navigate(['/rooms/default/users/' + user]);
     }
 
 }

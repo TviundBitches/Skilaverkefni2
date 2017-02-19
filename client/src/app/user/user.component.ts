@@ -14,9 +14,7 @@ export class UserComponent implements OnInit {
   msgSent: boolean;
   msg: string;
   constructor(private chatService: ChatService,
-              private router: Router, private route: ActivatedRoute) {
-
-  }
+              private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.userName  = this.route.snapshot.params['id'];
@@ -31,21 +29,21 @@ export class UserComponent implements OnInit {
   }
 
   backToRoom() {
-    if (this.roomName === 'default')
+    if (this.roomName === 'default') {
       this.router.navigate(['/rooms']);
-    else
-      this.router.navigate(['/rooms/'+this.roomName]);
+    } else {
+      this.router.navigate(['/rooms/' + this.roomName]);
+    }
   }
 
   onSendPrivMsg() {
     this.chatService.sendPrivMsg(this.userName, this.msg).subscribe(succeeded => {
       if (succeeded === true) {
         // TODO Redirect to RoomList component!
+      } else {
+        console.log('fail');
+        // this.msgs = lst;
       }
-      else
-        console.log('fail')
-//      this.msgs = lst;
     });
   }
 }
-

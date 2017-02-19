@@ -20,7 +20,7 @@ export class AppComponent {
         this.toastrService.success('Hello world!', 'Toastr fun!');
     }
 
-    navToRooms(){
+    navToRooms() {
         this.router.navigate(['/rooms/']);
     }
 

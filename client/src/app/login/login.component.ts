@@ -10,7 +10,7 @@ import { AppComponent } from '../app.component';
 })
 export class LoginComponent implements OnInit {
     userName: string;
-    loginFailed: boolean = false;
+    loginFailed = false;
 
     constructor(private chatService: ChatService,
         private router: Router, private appComponent: AppComponent) {
