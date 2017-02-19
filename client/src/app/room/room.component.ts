@@ -83,8 +83,13 @@ export class RoomComponent implements OnInit {
     this.chatService.setTopic(this.topic, this.roomId).subscribe(succeeded => {
         console.log('Success changing topic!');
     });
-    console.log("In change topic");
     this.editTopic = false;
+  }
+
+  onBanUser(user) {
+    this.chatService.banUser(user, this.roomId).subscribe(succeeded => {
+        console.log('Success changing topic!');
+    });
   }
 
 /*  kick

@@ -39,8 +39,9 @@
       <ul id="guests" class="collection">
         <div *ngFor="let user of users">
           <div class="card-action" (click)="onVisitProfile(user)">
-            <a class="collection-item teal-text text-lighten-2" > {{user}} </a>
+            <a class="collection-item teal-text text-lighten-2" > {{user}}  </a>
           </div>
+          <img src="./ban.png" style="width:12px;height:12px;" *ngIf="isOps" (click)="onBanUser(user)" >
           <div *ngIf="isOps" class="card-action" (click)="onKick(user)">
             <i class="material-icons not_interested"></i>
           </div>

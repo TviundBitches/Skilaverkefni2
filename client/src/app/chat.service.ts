@@ -273,4 +273,16 @@ export class ChatService {
 		return obs;
 	}
 
+	banUser(userName: string, roomName: string): Observable<boolean> {
+      let obs = new Observable(observer => {
+		  const param = {
+	        user: userName,
+			room: roomName
+	      };
+          this.socket.emit('ban', param, succeeded => {
+          	observer.next(succeeded);
+        });
+      });
+      return obs;
+    }
 }
