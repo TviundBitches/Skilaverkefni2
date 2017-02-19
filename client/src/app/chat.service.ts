@@ -315,14 +315,11 @@ export class ChatService {
       this.socket.emit('privatemsg', param, succeeded => {
         observer.next(succeeded);
       });
-
-	});
+    });
     return obs;
   }
 
   kick(userName, roomId): Observable<boolean>{
-    let obs = new Observable(observer => {
-    console.log('got to kick in service');
     const obs = new Observable(observer => {
       console.log('got to observer');
       const param = {
@@ -333,7 +330,6 @@ export class ChatService {
         observer.next(succeeded);
         console.log('got to kick in server');
       });
-	});
     });
     return obs;
   }
