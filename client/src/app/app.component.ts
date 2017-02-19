@@ -9,9 +9,15 @@ import { Router } from '@angular/router';
 export class AppComponent {
     title = 'KittyChats';
     underTitle = 'If you are a cat, then chat';
+    logoutName = '';
 
     constructor(private router: Router) {}
+    
     navToRooms(){
       this.router.navigate(['/rooms/']);
+    }
+
+    onLogOut() {
+        this.router.navigate(['/login']);
     }
 }

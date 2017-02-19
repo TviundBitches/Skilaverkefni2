@@ -14,34 +14,41 @@ export class RoomComponent implements OnInit {
   msgs: string[];
   users: string[];
   ops: string[];
+  topic: string;
   userName: string;
-  isOp: boolean;
+  noUsers: boolean = false;
+  editTopic: boolean = false;
+  isOps: boolean = false;
   constructor(private chatService: ChatService, private router: Router,
               private route: ActivatedRoute) {  }
 
   ngOnInit() {
-    this.roomId = this.route.snapshot.params['id'];
+    this.roomId  = this.route.snapshot.params['id'];
     // Varud haettulegt sja  fyrirlestur 6a ca 49. Aetti ad duga samt
     this.chatService.getUserName().subscribe(name => {
-      this.userName = name;
+        if(name !== undefined){
+            this.userName = name;
+        }
+        else
+            this.router.navigate(['/login']);
+    })
+    this.chatService.getTopic(this.roomId).subscribe(t => {
+        this.topic = t;
     })
     this.chatService.getGuests(this.roomId).subscribe(lst => {
-      this.users = lst;
+        this.users = lst;
     })
     this.chatService.getOps(this.roomId).subscribe(lst => {
-      this.ops = lst;
+        for (const op in lst) {
+          console.log(op);
+            if(op === "You")
+              console.log(op);
+              this.isOps = true;
+        }
+        this.ops = lst;
     })
     this.chatService.reciveMsg();
     this.msgs = this.chatService.updateChat();
-
-    for (let op in this.ops)
-    {
-      if(this.userName === op)
-      {
-        this.isOp = true;
-        break;
-      }
-    }
 
   }
 
@@ -52,35 +59,29 @@ export class RoomComponent implements OnInit {
       this.msgs = lst;
     });
   }
+
   onLeaveRoom() {
       console.log('Success leaving room!!');
-      this.router.navigate(['/rooms']);
-    //   this.chatService.leaveRoom(this.roomId).subscribe(succeeded => {
-    //       console.log('Success leaving room!!');
-    //       if (succeeded === true) {
-    //           console.log('hello');
-    //           this.router.navigate(['/rooms']);
-    //       }
-    //   });
+      //this.router.navigate(['/rooms']);
+      this.chatService.leaveRoom(this.roomId).subscribe(succeeded => {
+          console.log('Success leaving room!!');
+          if (succeeded === true) {
+              this.router.navigate(['/rooms']);
+          }
+      });
 }
 
   onVisitProfile(user) {
     this.router.navigate(['/rooms/'+this.roomId+'/users/'+user]);
   }
 
-  onKick(userName) {
-    console.log('got to onkick')
-    this.chatService.kick(userName, this.roomId).subscribe(succeeded => {
-      console.log('b4succeeded')
-      if (succeeded === true) {
-        // TODO Redirect to RoomList component!
-        console.log('succeeded')
-      }
-      else
-        console.log('fail')
-//      this.msgs = lst;
-    });
-    console.log('got to back')
+  onEditTopic() {
+    this.editTopic = true;
+  }
+
+  onChangeTopic() {
+    this.chatService.setTopic(this.topic, this.roomId);
+    this.editTopic = false;
   }
 
 /*  kick

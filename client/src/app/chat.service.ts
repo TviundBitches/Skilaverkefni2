@@ -6,6 +6,7 @@ import {Observable} from 'rxjs/Observable';
 export class ChatService {
 	socket: any;
 	userName: string;
+	opRooms: string[];
 
 
 	constructor() {
@@ -69,6 +70,8 @@ export class ChatService {
 				for (var i = 0; i < lst.length; i++) { // Var var lint error
 					if(this.userName !== lst[i])
 						strArr.push(lst[i]);
+					else
+						strArr.push("You");
 		        }
 				observer.next(strArr);
 			});
@@ -105,8 +108,6 @@ export class ChatService {
 			this.socket.emit('updateroom', param);
 			this.socket.on('updateusers', (roomName, lstUsers, lstOps) => {
 			  let strArr: string[] = [];
-			  console.log(lstUsers);
-			  console.log(lstOps);
 			  for(const user in lstUsers) { // Var var lint error
 				  if(user !== this.userName)
 					strArr.push(user);
@@ -140,27 +141,11 @@ export class ChatService {
 		return obs;
 	}
 
-	// login(userName: string): Observable<boolean> {
-	// 	let observable = new Observable(observer => {
-	// 		this.socket.emit('adduser', userName, succeeded => {
-	// 			console.log('Reply received');
-	// 			observer.next(succeeded);
-	// 		});
-	// 	});
-	//
-	// 	return observable;
-	// }
-
 	leaveRoom(roomName: string): Observable<boolean> {
 		const obs = new Observable(observer => {
-			// const param = {
-			// 	room: roomName
-			// };
-			// this.socket.emit('partroom', param, succeeded => {
-			// 	console.log("LeaveRoom succeeded (chat service)")
-			// 	observer.next(succeeded);
-			// });
-			observer.next(true);
+			this.socket.emit('partroom', roomName, succeeded => {
+				observer.next(succeeded);
+			});
 		});
 		return obs;
 	}
@@ -173,6 +158,7 @@ export class ChatService {
 			};
 			this.socket.emit('joinroom', param, function (a: boolean, b) {
 				if (a === true) {
+				  //this.opRooms.push(roomName);
 				  observer.next(a);
 				}
 
@@ -205,13 +191,11 @@ export class ChatService {
 	  console.log('smuu')
     let strArr: string[] = [];
       this.socket.on('updatechat', (roomName, lst) => {
-        console.log('smuuuuuu')
         console.log(roomName)
        // console.log(lst)
         for (var i = 0; i < lst.length; i++) { // Var var lint error
           strArr.push(lst[i].message);
         }
-        console.log(strArr)
         return strArr;
       });
     return strArr;
@@ -262,5 +246,29 @@ export class ChatService {
    a callback function, accepting a single boolean parameter, stating if the message could be sent or not.
    The server will then emit the "recv_privatemsg" event to the user which should receive the message.*/
 
+	setTopic(topic: string, roomName: string): Observable<boolean> {
+      let obs = new Observable(observer => {
+		  const param = {
+	        topic: topic,
+			room: roomName
+	      };
+          this.socket.emit('settopic', param, succeeded => {
+          	observer.next(succeeded);
+        });
+      });
+      return obs;
+    }
+
+	getTopic(roomName: string): Observable<string> {
+		let obs = new Observable(observer => {
+			const param = {
+				room: roomName
+			};
+			this.socket.on('updatetopic', (roomName, topic, username) => {
+			  observer.next(topic);
+			});
+		});
+		return obs;
+	}
 
 }

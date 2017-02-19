@@ -5,8 +5,13 @@
   <div class="col s3"></div>
   <div class="col s6">
       <p class="roomId">{{roomId}}</p>
-      <p>{{topic}}</p>
-      <button class="waves-effect waves-light btn" (click)="onLeaveRoom()">Leave Room</button>
+      <p><img src="./edit_icon.png" style="width:15px;height:15px;" *ngIf="isOps" (click)="onEditTopic()" >  {{topic}}</p>
+      <div class="row" *ngIf="editTopic">
+          <input name="topic" [(ngModel)]="topic" Placeholder="Write a new topic...." autocomplete="off"/><button class="waves-effect waves-light btn" (click)="onChangeTopic()">Change</button>
+      </div>
+      <div class="row">
+          <button class="waves-effect waves-light btn" (click)="onLeaveRoom()">Leave Room</button>
+      </div>
   </div>
   <div class="col s3"></div>
 </div>
@@ -16,29 +21,34 @@
   <div class="col s2"></div>
   <div class="col s6">
     <ul id="messages">
-      <div *ngFor="let message of msgs" >
+      <div *ngFor="let message of (msgs | slice:msgs.length - 6);" >
           <li>{{message}}</li>
       </div>
      </ul>
   </div>
   <div class="col s2 guests">
-      <p>Ops</p>
+      <p>OP Kitties</p>
       <ul id="guests" class="collection">
           <div *ngFor="let op of ops">
-              <li class="collection-item">{{op}}</li>
+            <div class="card-action" (click)="onVisitProfile(user)">
+              <a class="collection-item teal-text text-lighten-2" > {{op}} </a>
+            </div>
           </div>
       </ul>
-      <p>Guests</p>
+      <p>Guest Kitties</p>
       <ul id="guests" class="collection">
         <div *ngFor="let user of users">
           <div class="card-action" (click)="onVisitProfile(user)">
             <a class="collection-item teal-text text-lighten-2" > {{user}} </a>
           </div>
-          <div *ngIf="isOp" class="card-action" (click)="onKick(user)">
+          <div *ngIf="isOps" class="card-action" (click)="onKick(user)">
             <i class="material-icons not_interested"></i>
           </div>
         </div>
       </ul>
+      <!-- <div *ngIf="noUsers">
+          There are no guests in this room
+      </div> -->
   </div>
   <div class="col s2"></div>
 </div>
