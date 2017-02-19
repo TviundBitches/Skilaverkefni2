@@ -12,9 +12,9 @@ export class AppComponent {
     logoutName = '';
 
     constructor(private router: Router) {}
-    
+
     navToRooms(){
-      this.router.navigate(['/rooms/']);
+        this.router.navigate(['/rooms/']);
     }
 
     onLogOut() {
