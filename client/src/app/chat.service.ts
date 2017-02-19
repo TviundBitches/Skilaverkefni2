@@ -22,7 +22,15 @@ export class ChatService {
       console.log("rect-priv: " + username)
       console.log('rect-priv ' + message)
     });
+  }
 
+  wasKicked() : Observable<string> {
+    let observable = new Observable(observer => {
+      this.socket.on('kicked', (room, user, username) => {
+        observer.next(user);
+      });
+    });
+    return observable;
   }
 
 	login(userName: string): Observable<boolean> {
