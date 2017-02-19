@@ -17,12 +17,20 @@ export class ChatService {
 
 	}
 
-	reciveMsg() {
-    this.socket.on('recv_privatemsg', (username, message) => {
-      console.log("rect-priv: " + username)
-      console.log('rect-priv ' + message)
-    });
-  }
+	reciveMsg(): Observable<string[]> {
+		let observable = new Observable(observer => {
+			this.socket.on('recv_privatemsg', (username, message) => {
+				console.log("rect-priv: " + username)
+				console.log('rect-priv ' + message)
+				let strArr: string[] = [];
+				strArr.push(username);
+				strArr.push(message);
+				observer.next(strArr);
+			});
+
+		});
+		return observable;
+	}
 
   wasKicked() : Observable<string> {
     let observable = new Observable(observer => {
@@ -183,8 +191,9 @@ export class ChatService {
         msg: msg
       };
       this.socket.emit('sendmsg', param);
-      this.socket.on('updatechat', (roomName, lst) => {
+      this.socket.on('updatechat', (room, lst) => {
         let strArr: string[] = [];
+        strArr.push(room);
         for (var i = 0; i < lst.length; i++) { // Var var lint error
           strArr.push(lst[i].message);
         }
@@ -195,20 +204,33 @@ export class ChatService {
     return obs;
   }
 
-  updateChat(): string[] {
-	  console.log('smuu')
+  updateChat(): Observable<string[]> {
+	  let obs = new Observable(observer => {
     let strArr: string[] = [];
       this.socket.on('updatechat', (roomName, lst) => {
-        console.log(roomName)
-       // console.log(lst)
-        for (var i = 0; i < lst.length; i++) { // Var var lint error
-          strArr.push(lst[i].message);
-        }
-        return strArr;
-      });
-    return strArr;
-  }
+		  strArr[0] = roomName;
+		  if(lst.length !== 0) {
+			  for (var i = 0; i < lst.length; i++) { // Var var lint error
+				  strArr.push(lst[i].message);
+			  }
+		  }
+		  observer.next(strArr);
+	  });
 
+	  });
+    return obs;
+  }
+	// updateChat(): string[] {
+	// 	let strArr: string[] = [];
+	// 	this.socket.on('updatechat', (roomName, lst) => {
+	// 		strArr[0] = roomName;
+	// 		for (var i = 0; i < lst.length; i++) { // Var var lint error
+	// 			strArr.push(lst[i].message);
+	// 		}
+	// 		return strArr;
+	// 	});
+	// 	return strArr;
+	// }
   sendPrivMsg(userName: string, msg: string): Observable<boolean> {
     let obs = new Observable(observer => {
       const param = {
@@ -223,16 +245,13 @@ export class ChatService {
   }
 
   kick(userName, roomId) {
-    console.log('got to kick in service')
     let obs = new Observable(observer => {
-      console.log('got to observer')
       const param = {
         user: userName,
         room: roomId
       };
       this.socket.emit('kick', param, succeeded => {
         observer.next(succeeded);
-        console.log('got to kick in server')
       });
 
     });
@@ -261,8 +280,6 @@ export class ChatService {
 			room: roomName
 	      };
           this.socket.emit('settopic', param, succeeded => {
-			  console.log(succeeded);
-			  console.log("Succeeded set topic!");
           	observer.next(succeeded);
         });
       });
