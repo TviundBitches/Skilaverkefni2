@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../chat.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-room',
@@ -20,7 +21,7 @@ export class RoomComponent implements OnInit {
   editTopic: boolean = false;
   isOps: boolean = false;
   constructor(private chatService: ChatService, private router: Router,
-              private route: ActivatedRoute) {  }
+              private route: ActivatedRoute, private toastrService: ToastrService) {  }
 
   ngOnInit() {
     this.roomId  = this.route.snapshot.params['id'];
@@ -29,7 +30,9 @@ export class RoomComponent implements OnInit {
             this.userName = name;
         }
         else
+        {
             this.router.navigate(['/login']);
+        }
     })
     this.chatService.getTopic(this.roomId).subscribe(t => {
         this.topic = t;
@@ -54,7 +57,10 @@ export class RoomComponent implements OnInit {
     this.msgs = this.chatService.updateChat(this.roomId);
     this.chatService.wasKicked().subscribe(str => {
       if(this.userName === str)
-        this.router.navigate(['/rooms']);
+      {
+          this.router.navigate(['/rooms']);
+          this.toastrService.success('You were a bad kitty, you got yourself kicked out of the room. Watch out, you can get banned!');
+      }
     })
     this.chatService.wasBanned().subscribe(str => {
       if(this.userName === str)

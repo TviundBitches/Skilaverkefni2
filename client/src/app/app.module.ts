@@ -11,6 +11,9 @@ import { UserComponent } from './user/user.component';
 import { RoomListComponent } from './room-list/room-list.component';
 import { RoomComponent } from './room/room.component';
 import { ChatService } from './chat.service';
+import { ToastrModule } from 'ngx-toastr';
+import { CommonModule } from '@angular/common';
+
 
 @NgModule({
     declarations: [
@@ -41,9 +44,13 @@ import { ChatService } from './chat.service';
         }, {
             path: 'rooms/:roomId/users/:id',
             component: UserComponent
-        }])
+        }]),
+        CommonModule,
+        ToastrModule.forRoot(), // ToastrModule added
     ],
     providers: [ChatService],
     bootstrap: [AppComponent]
 })
+
+
 export class AppModule { }
