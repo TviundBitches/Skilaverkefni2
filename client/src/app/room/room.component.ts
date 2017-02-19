@@ -17,7 +17,7 @@ export class RoomComponent implements OnInit {
   ops: string[];
   topic: string;
   userName: string;
-  noUsers= false;
+  noUsers = false;
   editTopic = false;
   isOps = false;
   constructor(private chatService: ChatService, private router: Router,
@@ -25,7 +25,6 @@ export class RoomComponent implements OnInit {
 
   ngOnInit() {
     this.roomId  = this.route.snapshot.params['id'];
-    // Varud haettulegt sja  fyrirlestur 6a ca 49. Aetti ad duga samt
     this.chatService.getUserName().subscribe(name => {
         if (name !== undefined) {
             this.userName = name;
@@ -50,16 +49,22 @@ export class RoomComponent implements OnInit {
       console.log('lstt' + lst);
     });
     this.chatService.reciveMsg();
-    this.msgs = this.chatService.updateChat();
+    // this.chatService.getChat(this.roomId).subscribe(lst => {
+    //     console.log(lst + "þetta er lst");
+    //     this.msgs = lst;
+    // })
+    this.msgs = this.chatService.updateChat(this.roomId);
     this.chatService.wasKicked().subscribe(str => {
       if (this.userName === str) {
           this.router.navigate(['/rooms']);
           this.toastrService.success('You were a bad kitty, you got yourself kicked out of the room. Watch out, you can get banned!');
       }
     });
-
-
-
+    this.chatService.wasBanned().subscribe(str => {
+      if(this.userName === str)
+        this.router.navigate(['/rooms']);
+    })
+    this.chatService.reciveMsg();
   }
 
   onSendMsg() {
@@ -99,9 +104,10 @@ export class RoomComponent implements OnInit {
 
   onBanUser(user) {
     this.chatService.banUser(user, this.roomId).subscribe(succeeded => {
-        console.log('Success changing topic!');
+        console.log('Success banning user!');
     });
   }
+
   onKick(userName) {
     console.log('got to onkick');
     this.chatService.kick(userName, this.roomId).subscribe(succeeded => {
@@ -112,7 +118,6 @@ export class RoomComponent implements OnInit {
       } else {
         console.log('fail');
       }
-//      this.msgs = lst;
     });
     console.log('got to back');
   }
