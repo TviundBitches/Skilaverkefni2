@@ -1,7 +1,7 @@
 import { Component, OnInit, EventEmitter  } from '@angular/core';
 import { ChatService } from '../chat.service';
 import { Router } from '@angular/router';
-import {MaterializeAction} from 'angular2-materialize';
+//import {MaterializeAction} from 'angular2-materialize';
 
 @Component({
     selector: 'app-room-list',
@@ -15,7 +15,7 @@ export class RoomListComponent implements OnInit {
     userName: string;
     rooms: string[];
     users: string[];
-    modalActions = new EventEmitter<string|MaterializeAction>();
+   // modalActions = new EventEmitter<string|MaterializeAction>();
     constructor(private chatService: ChatService,
           private router: Router) { }
 
@@ -26,13 +26,10 @@ export class RoomListComponent implements OnInit {
         this.chatService.getUserName().subscribe(name => {
             this.userName = name;
         });
-<<<<<<< HEAD
         this.chatService.getUserList().subscribe(lst => {
             this.users = lst;
         });
-=======
         this.chatService.reciveMsg();
->>>>>>> 775b270c5e8ebd640b390ce51d05416a87c77c0b
     }
 
     onNewRoom() {
@@ -59,17 +56,14 @@ export class RoomListComponent implements OnInit {
           // this.newRoomName = "";
     }
 
-<<<<<<< HEAD
-
-    openModal() {
+   /* openModal() {
       this.modalActions.emit({action:"modal",params:['open']});
     }
     closeModal() {
-      this.modalActions.emit({action:"modal",params:['close']});
-=======
+      this.modalActions.emit({action: "modal", params: ['close']});
+    }*/
     onVisitProfile(user) {
       this.router.navigate(['/rooms/default/users/'+user]);
->>>>>>> 775b270c5e8ebd640b390ce51d05416a87c77c0b
     }
 
 }

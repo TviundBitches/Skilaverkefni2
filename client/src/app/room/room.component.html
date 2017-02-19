@@ -1,5 +1,4 @@
 <head>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
 <div class="row center-align">
@@ -35,7 +34,7 @@
           <div class="card-action" (click)="onVisitProfile(user)">
             <a class="collection-item teal-text text-lighten-2" > {{user}} </a>
           </div>
-          <div class="card-action" (click)="onKick(user)">
+          <div *ngIf="isOp" class="card-action" (click)="onKick(user)">
             <i class="material-icons not_interested"></i>
           </div>
         </div>

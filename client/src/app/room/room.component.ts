@@ -15,23 +15,33 @@ export class RoomComponent implements OnInit {
   users: string[];
   ops: string[];
   userName: string;
+  isOp: boolean;
   constructor(private chatService: ChatService, private router: Router,
               private route: ActivatedRoute) {  }
 
   ngOnInit() {
-    this.roomId  = this.route.snapshot.params['id'];
+    this.roomId = this.route.snapshot.params['id'];
     // Varud haettulegt sja  fyrirlestur 6a ca 49. Aetti ad duga samt
     this.chatService.getUserName().subscribe(name => {
-        this.userName = name;
+      this.userName = name;
     })
     this.chatService.getGuests(this.roomId).subscribe(lst => {
-        this.users = lst;
+      this.users = lst;
     })
     this.chatService.getOps(this.roomId).subscribe(lst => {
-        this.ops = lst;
+      this.ops = lst;
     })
     this.chatService.reciveMsg();
     this.msgs = this.chatService.updateChat();
+
+    for (let op in this.ops)
+    {
+      if(this.userName === op)
+      {
+        this.isOp = true;
+        break;
+      }
+    }
 
   }
 
@@ -59,8 +69,18 @@ export class RoomComponent implements OnInit {
   }
 
   onKick(userName) {
-    this.chatService.kick(userName, this.roomId);
-
+    console.log('got to onkick')
+    this.chatService.kick(userName, this.roomId).subscribe(succeeded => {
+      console.log('b4succeeded')
+      if (succeeded === true) {
+        // TODO Redirect to RoomList component!
+        console.log('succeeded')
+      }
+      else
+        console.log('fail')
+//      this.msgs = lst;
+    });
+    console.log('got to back')
   }
 
 /*  kick

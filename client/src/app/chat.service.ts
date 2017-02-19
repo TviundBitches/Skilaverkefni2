@@ -231,13 +231,16 @@ export class ChatService {
   }
 
   kick(userName, roomId) {
+    console.log('got to kick in service')
     let obs = new Observable(observer => {
+      console.log('got to observer')
       const param = {
         user: userName,
         room: roomId
       };
       this.socket.emit('kick', param, succeeded => {
         observer.next(succeeded);
+        console.log('got to kick in server')
       });
 
     });
