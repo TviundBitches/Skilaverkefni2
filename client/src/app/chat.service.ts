@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import * as io from 'socket.io-client';
 import {Observable} from 'rxjs/Observable';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class ChatService {
@@ -8,7 +9,7 @@ export class ChatService {
   userName: string;
   opRooms: string[];
 
-  constructor() {
+  constructor(private router: Router) {
     this.socket = io('http://localhost:8080/');
     this.socket.on('connect', function () {
       console.log('connect');
@@ -29,12 +30,6 @@ export class ChatService {
     });
     return observable;
   }
-  // reciveMsg() {
-  //   this.socket.on('recv_privatemsg', (username, message) => {
-  //     console.log('rect-priv: ' + username);
-  //     console.log('rect-priv ' + message);
-  //   });
-  // }
 
   wasKicked(): Observable<string> {
     const observable = new Observable(observer => {
@@ -44,7 +39,6 @@ export class ChatService {
     });
     return observable;
   }
-
 
   wasBanned(): Observable<string> {
     const observable = new Observable(observer => {
@@ -65,7 +59,11 @@ export class ChatService {
   }
 
   setUserName(userName: string): any {
-    this.userName = userName;
+    if (name !== undefined) {
+        this.userName = name;
+    } else {
+        this.router.navigate(['/login']);
+    }
   }
 
   getUserName(): Observable<string> {
@@ -272,22 +270,13 @@ export class ChatService {
       };
       this.socket.emit('sendmsg', param);
 
-    //   this.socket.on('updatechat', (roomName, lst) => {
-    //     let strArr: string[] = [];
-    //     for (var i = 0; i < lst.length; i++) { // Var var lint error
-    //       strArr.push(lst[i].message);
-    //     }
-    //     observer.next(strArr);
-    //   });
-
-
-      this.socket.on('updatechat', (room, lst) => {
-        const strArr: string[] = [];
-        for (let i = 0; i < lst.length; i++) { // Var var lint error
-          strArr.push(lst[i].message);
-        }
-        observer.next(strArr);
-      });
+      // this.socket.on('updatechat', (room, lst) => {
+      //   const strArr: string[] = [];
+      //   for (let i = 0; i < lst.length; i++) { // Var var lint error
+      //     strArr.push(lst[i].message);
+      //   }
+      //   observer.next(strArr);
+      // });
     });
     return obs;
   }

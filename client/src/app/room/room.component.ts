@@ -43,7 +43,6 @@ export class RoomComponent implements OnInit {
     this.chatService.getOps(this.roomId).subscribe(lst => {
         this.ops = lst;
     });
-    this.chatService.reciveMsg();
 
     this.chatService.updateChat().subscribe(lst => {
         if (this.roomId === lst[0]) {
