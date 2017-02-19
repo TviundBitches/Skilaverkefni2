@@ -180,26 +180,22 @@ export class ChatService {
 	//       return obs;
     // }
 
-  updateChat(roomName: string): string[] {
-   console.log('smuu')
-    let strArr: string[] = [];
-	const param = {
-	   	room: roomName
-	};
-	// this.socket.emit('updateroom', param);
-      this.socket.on('updatechat', (roomName, lst) => {
-		  strArr[0] = roomName;
-		  if(lst.length !== 0) {
-			  for (var i = 0; i < lst.length; i++) { // Var var lint error
-				  strArr.push(lst[i].message);
-			  }
-		  }
-		  observer.next(strArr);
-	  });
+	updateChat(): Observable<string[]> {
+		let obs = new Observable(observer => {
+			let strArr: string[] = [];
+			this.socket.on('updatechat', (roomName, lst) => {
+				strArr[0] = roomName;
+				if(lst.length !== 0) {
+					for (var i = 0; i < lst.length; i++) { // Var var lint error
+						strArr.push(lst[i].message);
+					}
+				}
+				observer.next(strArr);
+			});
 
-	 // });
-    //return obs;
-  }
+		});
+		return obs;
+	}
 	// updateChat(): string[] {
 	// 	let strArr: string[] = [];
 	// 	this.socket.on('updatechat', (roomName, lst) => {
