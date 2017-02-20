@@ -70,6 +70,8 @@ export class RoomComponent implements OnInit {
     this.chatService.wasBanned().subscribe(str => {
       if (this.userName === str) {
         this.router.navigate(['/rooms']);
+        this.toastrService.success('You were a bad kitty, you got yourself banned from the room!');
+
       }
     });
   }
@@ -90,7 +92,7 @@ export class RoomComponent implements OnInit {
   }
 
   onSendMsg() {
-        this.chatService.sendMsg(this.roomId, this.msg).subscribe(lst => {
+        this.chatService.sendMsg(this.roomId, this.userName+' says: '+this.msg).subscribe(lst => {
             if (this.roomId === lst[0]) {
                 this.msgs = [];
                 for (let i = 1; i < lst.length; i++) {
