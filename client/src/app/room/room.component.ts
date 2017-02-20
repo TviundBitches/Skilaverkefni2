@@ -124,10 +124,6 @@ export class RoomComponent implements OnInit {
       });
   }
 
-  onVisitProfile(user) {
-    this.router.navigate(['/rooms/' + this.roomId + '/users/' + user]);
-  }
-
   onEditTopic() {
     this.editTopic = true;
   }

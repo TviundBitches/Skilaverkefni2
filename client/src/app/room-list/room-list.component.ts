@@ -69,8 +69,4 @@ export class RoomListComponent implements OnInit {
         this.modalActions.emit({action: 'modal', params: ['close']});
     }
 
-    onVisitProfile(user) {
-        this.router.navigate(['/rooms/default/users/' + user]);
-    }
-
 }
