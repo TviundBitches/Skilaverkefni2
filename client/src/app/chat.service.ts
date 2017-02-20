@@ -261,48 +261,47 @@ export class ChatService {
     return observable;
   }
 
-  // sendMsg(roomName: string, msg: string): Observable<string[]> {
-	//   const obs = new Observable(observer => {
-	// 	  // validate room name
-  //     const param = {
-  //       room: roomName,
-  //       msg: msg
-  //     };
-  //     this.socket.emit('sendmsg', param);
-	//   const strArr: string[] = [];
-	//   this.socket.on('updatechat', (room, lst) => {
-	// 	  strArr[0] = room;
-	// 	  if (lst.length !== 0) {
-	// 		  for (let i = 0; i < lst.length; i++) { // Var var lint error
-	// 			  strArr.push(lst[i].message);
-	// 		  }
-	// 	  }
-	// 	  observer.next(strArr);
-	//   });
-  //
-	//   });
-	//   return obs;
-  // }
-	sendMsg(roomName: string, msg: string): Observable<string[]> {
-		let obs = new Observable(observer => {
-			// validate room name
-			const param = {
-				roomName: roomName,
-				msg: msg
-			};
-			this.socket.emit('sendmsg', param);
-			this.socket.on('updatechat', (room, lst) => {
-				let strArr: string[] = [];
-				strArr.push(room);
-				for (var i = 0; i < lst.length; i++) { // Var var lint error
-					strArr.push(lst[i].message);
-				}
-				observer.next(strArr);
-			});
-
-		});
-		return obs;
-	}
+// sendMsg(roomName: string, msg: string): Observable<string[]> {
+//   const obs = new Observable(observer => {
+// 	  // validate room name
+//     const param = {
+//       room: roomName,
+//       msg: msg
+//     };
+//     this.socket.emit('sendmsg', param);
+//   const strArr: string[] = [];
+//   this.socket.on('updatechat', (room, lst) => {
+// 	  strArr[0] = room;
+// 	  if (lst.length !== 0) {
+// 		  for (let i = 0; i < lst.length; i++) { // Var var lint error
+// 			  strArr.push(lst[i].message);
+// 		  }
+// 	  }
+// 	  observer.next(strArr);
+//   });
+//
+//   });
+//   return obs;
+// }
+  sendMsg(roomName: string, msg: string): Observable<string[]> {
+    const obs = new Observable(observer => {
+      // validate room name
+      const param = {
+        roomName: roomName,
+        msg: msg
+      };
+      this.socket.emit('sendmsg', param);
+      this.socket.on('updatechat', (room, lst) => {
+        const strArr: string[] = [];
+        strArr.push(room);
+        for (let i = 0; i < lst.length; i++) {
+          strArr.push(lst[i].message);
+        }
+        observer.next(strArr);
+      });
+    });
+    return obs;
+  }
 
   // updateChat(): string[] {
   //   console.log('smuu');
