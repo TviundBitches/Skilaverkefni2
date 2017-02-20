@@ -13,7 +13,8 @@ export class UserComponent implements OnInit {
   roomName: string;
   msgSent: boolean;
   msg: string;
-  msgs: {};
+  msgs: any = {};
+  tmp: string;
   constructor(private chatService: ChatService, private router: Router,
               private route: ActivatedRoute) {  }
 
@@ -23,6 +24,8 @@ export class UserComponent implements OnInit {
     this.msgSent = false;
     console.log(this.chatService.privateMessageHistory)
     this.msgs = this.chatService.privateMessageHistory;
+    console.log('NgOn jakob'+this.chatService.privateMessageHistory['jakob'])
+    this.tmp = this.chatService.privateMessageHistory['jakob'];
     // this.toastrService.success('You got mail');
     this.chatService.reciveMsg().subscribe(lst => {
       if (this.userName === lst[0]) {
