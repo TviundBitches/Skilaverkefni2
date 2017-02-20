@@ -107,15 +107,12 @@ export class ChatService {
     return obs;
   }
 
-  getGuests(roomName: string): Observable<string[]> {
+  getGuests(): Observable<string[]> {
     const obs = new Observable(observer => {
-      const param = {
-        room: roomName
-      };
-      // this.socket.emit('updateroom', param);
-      this.socket.on('updateusers', (room, lstUsers, lstOps) => {
+      this.socket.on('updateusers', (roomName, lstUsers, lstOps) => {
         const strArr: string[] = [];
-        if (room === roomName) {
+        strArr[0] = roomName;
+        //if (room === roomName) {
           for (const user in lstUsers) { // Var var lint error
             if (user !== this.userName) {
               strArr.push(user);
@@ -123,30 +120,27 @@ export class ChatService {
               strArr.push('(You) ' + this.userName);
             }
           }
-        }
+        //}
         observer.next(strArr);
       });
     });
     return obs;
   }
 
-  getOps(roomName: string): Observable<string[]> {
+  getOps(): Observable<string[]> {
     const obs = new Observable(observer => {
-      const param = {
-        room: roomName
-      };
-      // this.socket.emit('updateroom', param);
-      this.socket.on('updateusers', (room, lstUsers, lstOps) => {
+      this.socket.on('updateusers', (roomName, lstUsers, lstOps) => {
         const strArr: string[] = [];
-        if (room === roomName ) {
+        strArr[0] = roomName;
+        //if (room === roomName ) {
           for (const user in lstOps) {
             if (user !== this.userName) {
               strArr.push(user);
             } else {
-              strArr.push('You');
+              strArr.push('(You) ' + this.userName);
             }
           }
-        }
+        //}
         observer.next(strArr);
       });
     });
