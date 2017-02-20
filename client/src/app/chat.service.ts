@@ -272,6 +272,7 @@ export class ChatService {
 	//   const strArr: string[] = [];
 	//   this.socket.on('updatechat', (room, lst) => {
 	// 	  strArr[0] = room;
+
 	// 	  if (lst.length !== 0) {
 	// 		  for (let i = 0; i < lst.length; i++) { // Var var lint error
 	// 			  strArr.push(lst[i].message);
@@ -318,18 +319,19 @@ export class ChatService {
   //   return strArr;
   // }
 
-  sendPrivMsg(userName: string, msg: string): Observable<boolean> {
-    const obs = new Observable(observer => {
-      const param = {
-        nick: userName,
-        message: msg
-      };
-      this.socket.emit('privatemsg', param, succeeded => {
-        observer.next(succeeded);
-      });
-    });
-    return obs;
-  }
+	sendPrivMsg(userName: string, msg: string): Observable<boolean> {
+		let obs = new Observable(observer => {
+			const param = {
+				nick: userName,
+				message: msg
+			};
+			console.log(param)
+			this.socket.emit('privatemsg', param, succeeded => {
+                observer.next(succeeded);
+			});
+		});
+		return obs;
+	}
 
   kick(userName, roomId): Observable<boolean> {
     const obs = new Observable(observer => {

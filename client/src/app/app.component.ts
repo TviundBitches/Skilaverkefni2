@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-root',
@@ -14,10 +13,7 @@ export class AppComponent {
     underTitle = 'If you are a cat, then chat';
     logoutName = '';
 
-    constructor(private router: Router, private toastrService: ToastrService) {
-    }
-    showSuccess() {
-        this.toastrService.success('Hello world!', 'Toastr fun!');
+    constructor(private router: Router) {
     }
 
     navToRooms() {
