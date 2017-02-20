@@ -38,7 +38,6 @@ export class RoomListComponent implements OnInit {
         this.chatService.getUserList().subscribe(lst => {
             this.users = lst;
         });
-        this.chatService.reciveMsg();
         this.appComponent.logoutName = 'Log Out';
     }
 
@@ -52,7 +51,7 @@ export class RoomListComponent implements OnInit {
     }
 
     onSendPrivMsg() {
-        if (this.privateReceiver === 'You') {
+        if (this.privateReceiver === '(You) '+this.userName) {
             this.privateReceiver = this.userName;
         }
         this.chatService.sendPrivMsg(this.privateReceiver, this.privMsg).subscribe(succeeded => {
