@@ -21,14 +21,10 @@ export class ChatService {
   reciveMsg(): Observable<string[]> {
     const observable = new Observable(observer => {
       this.socket.on('recv_privatemsg', (username, message) => {
-        console.log('rect-priv username: ' + username);
-        console.log('rect-priv ' + message);
+          console.log('usrname in chats: ' + username)
         const strArr: string[] = [];
         strArr.push(username);
         strArr.push(message);
-          console.log('rect-priv ' + this.privateMessageHistory);
-          this.privateMessageHistory[username] = message;
-          console.log('[jakob]' + this.privateMessageHistory[username]);
           observer.next(strArr);
       });
     });
@@ -249,18 +245,18 @@ export class ChatService {
   }
 
   kick(userName, roomId): Observable<boolean> {
-    const obs = new Observable(observer => {
-      console.log('got to observer');
-      const param = {
-        user: userName,
-        room: roomId
-      };
-      this.socket.emit('kick', param, succeeded => {
-        observer.next(succeeded);
-        console.log('got to kick in server');
+      const obs = new Observable(observer => {
+          console.log('got to observer');
+          const param = {
+              user: userName,
+              room: roomId
+          };
+          this.socket.emit('kick', param, succeeded => {
+              observer.next(succeeded);
+              console.log('got to kick in server');
+          });
       });
-    });
-    return obs;
+      return obs;
   }
 
   setTopic(topic: string, roomName: string): Observable<boolean> {
@@ -270,7 +266,7 @@ export class ChatService {
           room: roomName
         };
         this.socket.emit('settopic', param, succeeded => {
-          console.log(succeeded);
+            console.log(succeeded);
           console.log('Succeeded set topic!');
           observer.next(succeeded);
         });
