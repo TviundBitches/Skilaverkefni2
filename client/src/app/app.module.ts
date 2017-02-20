@@ -7,7 +7,6 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { UserComponent } from './user/user.component';
 import { RoomListComponent } from './room-list/room-list.component';
 import { RoomComponent } from './room/room.component';
 import { ChatService } from './chat.service';
@@ -21,7 +20,6 @@ import { CommonModule } from '@angular/common';
         LoginComponent,
         RoomListComponent,
         RoomComponent,
-        UserComponent
     ],
     imports: [
         BrowserModule,
@@ -41,9 +39,6 @@ import { CommonModule } from '@angular/common';
         }, {
             path: 'rooms/:id',
             component: RoomComponent
-        }, {
-            path: 'rooms/:roomId/users/:id',
-            component: UserComponent
         }]),
         CommonModule,
         ToastrModule.forRoot() // ToastrModule added
