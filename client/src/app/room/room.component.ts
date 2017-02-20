@@ -12,6 +12,8 @@ import { isUndefined } from 'util';
 })
 export class RoomComponent implements OnInit {
 
+    isPrivate: boolean = false;
+    privateReceiver: string;
   roomId: string;
   msg: string;
   msgs: string[] = [];
@@ -69,21 +71,41 @@ export class RoomComponent implements OnInit {
         this.router.navigate(['/rooms']);
       }
     });
-    this.chatService.reciveMsg();
+      this.chatService.reciveMsg().subscribe(lst => {
+          if (this.userName === lst[0]) {
+              this.toastrService.success(lst[1]);
+          }
+      });
   }
 
   onSendMsg() {
-      console.log('roomid: ' + this.roomId);
-      this.chatService.sendMsg(this.roomId, this.msg).subscribe(lst => {
-      console.log('roomid: ' + this.roomId + 'lst[0]' + lst[0]);
-      if (this.roomId === lst[0]) {
-          this.msgs = [];
-          for (let i = 1; i < lst.length; i++) {
-              this.msgs.push(lst[i]);
-          }
-      }
+    if (!this.isPrivate) {
+        console.log('roomid: ' + this.roomId);
+        this.chatService.sendMsg(this.roomId, this.msg).subscribe(lst => {
+            console.log('roomid: ' + this.roomId + 'lst[0]' + lst[0]);
+            if (this.roomId === lst[0]) {
+                this.msgs = [];
+                for (let i = 1; i < lst.length; i++) {
+                    this.msgs.push(lst[i]);
+                }
+            }
 
-    });
+        });
+    } else {
+        this.chatService.sendPrivMsg(this.privateReceiver, this.msg).subscribe(succeeded => {
+            if (succeeded === true) {
+                // TODO Redirect to RoomList component!
+            } else {
+                console.log('fail');
+            }
+//      this.msgs = lst;
+        });
+    }
+  }
+
+  onSetTrue(user) {
+      this.isPrivate = true;
+      this.privateReceiver = user;
   }
 
   onLeaveRoom() {

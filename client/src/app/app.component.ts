@@ -19,7 +19,8 @@ export class AppComponent implements OnInit {
     }
     ngOnInit() {
         this.chatService.reciveMsg().subscribe(lst => {
-            this.toastrService.success('You\'ve got mail!');
+            //this.toastrService.success('You\'ve got mail!');
+            this.toastrService.success(lst[0] +' says: '+lst[1]);
         });
     }
 

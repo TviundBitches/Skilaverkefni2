@@ -56,7 +56,7 @@ export class ChatService {
   login(userName: string): Observable<boolean> {
     const observable = new Observable(observer => {
       this.socket.emit('adduser', userName, succeeded => {
-          console.log(this.userName)
+          console.log('usern i login'+this.userName)
         observer.next(succeeded);
       });
     });
