@@ -83,15 +83,11 @@ export class RoomComponent implements OnInit {
         this.router.navigate(['/rooms']);
       }
     });
-      this.chatService.reciveMsg().subscribe(lst => {
-          if (this.userName === lst[0]) {
-              this.toastrService.success(lst[1]);
-          }
-      });
   }
 
   onSendPrivMsg() {
-      if (this.privateReceiver === 'You') {
+      console.log('pprivate rec '+this.privateReceiver)
+      if (this.privateReceiver === '(You) '+this.userName) {
           this.privateReceiver = this.userName;
       }
       this.chatService.sendPrivMsg(this.privateReceiver, this.privMsg).subscribe(succeeded => {

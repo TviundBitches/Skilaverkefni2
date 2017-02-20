@@ -1,7 +1,6 @@
 import { Component, OnInit, EventEmitter  } from '@angular/core';
 import { ChatService } from '../chat.service';
 import { Router } from '@angular/router';
-import {MaterializeAction} from 'angular2-materialize';
 import { AppComponent } from '../app.component';
 
 @Component({
@@ -9,6 +8,7 @@ import { AppComponent } from '../app.component';
     templateUrl: './room-list.component.html',
     styleUrls: ['./room-list.component.css']
 })
+
 export class RoomListComponent implements OnInit {
 
     newRoomName: string;
@@ -20,7 +20,7 @@ export class RoomListComponent implements OnInit {
     privMsg: string;
     privateMsg = false;
     privateReceiver: string;
-    modalActions = new EventEmitter<string|MaterializeAction>();
+
     constructor(private chatService: ChatService,
           private router: Router, private appComponent: AppComponent) { }
 
@@ -38,9 +38,9 @@ export class RoomListComponent implements OnInit {
         this.chatService.getUserList().subscribe(lst => {
             this.users = lst;
         });
-        this.chatService.reciveMsg();
         this.appComponent.logoutName = 'Log Out';
     }
+
     onSetTrue(user) {
         this.privateMsg = true;
         this.privateReceiver = user;
@@ -51,7 +51,7 @@ export class RoomListComponent implements OnInit {
     }
 
     onSendPrivMsg() {
-        if (this.privateReceiver === 'You') {
+        if (this.privateReceiver === '(You) '+this.userName) {
             this.privateReceiver = this.userName;
         }
         this.chatService.sendPrivMsg(this.privateReceiver, this.privMsg).subscribe(succeeded => {
@@ -60,11 +60,9 @@ export class RoomListComponent implements OnInit {
             } else {
                 console.log('fail');
             }
-//      this.msgs = lst;
         });
         this.privMsg = '';
     }
-
 
     onNewRoom() {
         if (this.newRoomName.length < 1) {
@@ -73,10 +71,8 @@ export class RoomListComponent implements OnInit {
         this.chatService.addRoom(this.newRoomName).subscribe(succeeded => {
             if (succeeded === true) {
                 this.router.navigate(['rooms', this.newRoomName]);
-
             }
         });
-          // this.newRoomName = "";
     }
 
     onJoinRoom(roomName) {
@@ -86,14 +82,5 @@ export class RoomListComponent implements OnInit {
                 this.router.navigate(['rooms', roomName]);
             }
         });
-          // this.newRoomName = "";
     }
-
-    openModal() {
-        this.modalActions.emit({action: 'modal', params: ['open']});
-    }
-    closeModal() {
-        this.modalActions.emit({action: 'modal', params: ['close']});
-    }
-
 }
