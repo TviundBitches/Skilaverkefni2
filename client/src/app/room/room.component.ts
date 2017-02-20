@@ -61,10 +61,6 @@ export class RoomComponent implements OnInit {
             console.log('this.mesgs in updateChat: ' + this.msgs);
         }
     });
-      // if(this.msgsCheck[0] === this.roomId)
-      //     this.msgs.push(this.msgsCheck[this.msgsCheck.length-1]);
-
-
 
     this.chatService.wasKicked().subscribe(str => {
       if (this.userName === str) {
@@ -91,13 +87,11 @@ export class RoomComponent implements OnInit {
           } else {
               console.log('fail');
           }
-//      this.msgs = lst;
       });
       this.privMsg = '';
   }
 
   onSendMsg() {
-    // if (!this.isPrivate) {
         console.log('roomid: ' + this.roomId);
         this.chatService.sendMsg(this.roomId, this.msg).subscribe(lst => {
             console.log('roomid: ' + this.roomId + 'lst[0]' + lst[0]);
@@ -110,16 +104,6 @@ export class RoomComponent implements OnInit {
 
         });
         this.msg = '';
-//     } else {
-//         this.chatService.sendPrivMsg(this.privateReceiver, this.msg).subscribe(succeeded => {
-//             if (succeeded === true) {
-//                 // TODO Redirect to RoomList component!
-//             } else {
-//                 console.log('fail');
-//             }
-// //      this.msgs = lst;
-//         });
-//     }
   }
 
   onSetTrue(user) {
