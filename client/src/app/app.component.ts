@@ -23,11 +23,6 @@ export class AppComponent implements OnInit {
         });
     }
 
-
-    navToRooms() {
-        this.router.navigate(['/rooms/']);
-    }
-
     onLogOut() {
         this.router.navigate(['/login']);
     }

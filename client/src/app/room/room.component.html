@@ -26,7 +26,7 @@
       </div>
      </ul>
   </div>
-  <div class="col s2 guests">
+  <div class="col s3 guests">
       <p>OP Kitties</p>
       <ul id="guests" class="collection">
           <div *ngFor="let op of ops">
@@ -40,16 +40,16 @@
       <ul id="guests" class="collection">
           <div *ngFor="let user of users">
             <img src="./ban.png" style="width:12px;height:12px;" *ngIf="isOps" (click)="onBanUser(user)" >
-          <div class="card-action">
-            <a class="collection-item teal-text text-lighten-2" > {{user}}  </a>
+          <div class="card-action" (click)="onSetTrue(user)">
+            <a class="collection-item teal-text text-lighten-2" > {{user}}  <span class="new badge" data-badge-caption=" ">Private<img src="./logo2.png" style="width:17px;height:17px;"></span></a>
           </div>
           <div *ngIf="isOps" class="card-action" (click)="onKick(user)">
             <i class="material-icons not_interested"></i>
           </div>
-            <button (click)="onSetTrue(user)">Send private message</button>
-        <div class="card-action" (click)="onSetTrue(user)">
+            <!-- <button (click)="onSetTrue(user)">Send private message</button> -->
+        <!-- <div class="card-action" (click)="onSetTrue(user)">
             <i class="material-icons not_interested"></i>
-        </div>
+        </div> -->
         </div>
       </ul>
       </div>
@@ -57,23 +57,22 @@
 
       </div>
       <div *ngIf="isPrivate">
-          <button (click)="onSetFalse()">close!</button>
           <div class="row">
               <form class="col s12">
                   <div class="row">
                       <div class="input-field col s12">
                           <textarea name="privMsg" [(ngModel)]="privMsg" id="textarea1" class="materialize-textarea"></textarea>
-                          <label for="textarea1">Send private message</label>
+                          <label for="textarea1">Send private message to {{privateReceiver}}</label>
                       </div>
                   </div>
-                  <button (click)="onSendPrivMsg()">Send!</button>
+                  <button class="waves-effect waves-light btn" (click)="onSendPrivMsg()">Send!</button> <button class="waves-effect waves-light btn" (click)="onSetFalse()">close!</button>
               </form>
           </div>
       </div>      <!-- <div *ngIf="noUsers">
           There are no guests in this room
       </div> -->
   </div>
-  <div class="col s2"></div>
+  <div class="col s1"></div>
 </div>
 
 <div class="row center-align">

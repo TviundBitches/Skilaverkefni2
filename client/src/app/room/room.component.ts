@@ -80,6 +80,9 @@ export class RoomComponent implements OnInit {
   }
 
   onSendPrivMsg() {
+      if (this.privateReceiver === 'You') {
+          this.privateReceiver = this.userName;
+      }
       this.chatService.sendPrivMsg(this.privateReceiver, this.privMsg).subscribe(succeeded => {
           if (succeeded === true) {
               // TODO Redirect to RoomList component!
