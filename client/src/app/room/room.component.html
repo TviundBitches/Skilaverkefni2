@@ -1,47 +1,78 @@
 <head>
 </head>
 <body>
-<div class="row center-align">
-  <div class="col s3"></div>
-  <div class="col s6">
-      <p class="roomId">{{roomId}}</p>
-      <p><img src="./edit_icon.png" style="width:15px;height:15px;" *ngIf="isOps" (click)="onEditTopic()" >  {{topic}}</p>
-      <div class="row" *ngIf="editTopic">
-          <input name="topic" [(ngModel)]="topic" Placeholder="Write a new topic...." autocomplete="off"/><button class="waves-effect waves-light btn" (click)="onChangeTopic()">Change</button>
-      </div>
-      <div class="row">
-          <button class="waves-effect waves-light btn" (click)="onLeaveRoom()">Leave Room</button>
-      </div>
-  </div>
-  <div class="col s3"></div>
-</div>
-
-
-<div class="row center-align chatRoom">
-  <div class="col s2"></div>
-  <div class="col s6">
-    <ul id="messages">
-      <div *ngIf="msgs.length > 6">
-        <div *ngFor="let message of (msgs | slice:msgs.length - 6);" >
-          <li>{{message}}</li>
-        </div>
-      </div>
-      <div *ngIf="msgs.length <= 6">
-        <div *ngFor="let message of msgs;" >
-          <li>{{message}}</li>
-        </div>
-      </div>
-     </ul>
-  </div>
-  <div class="col s3 guests">
-      <p>OP Kitties</p>
-      <ul id="guests" class="collection">
-          <div *ngFor="let op of ops">
-            <div class="card-action" (click)="onSetTrue(op)">
-              <a class="collection-item teal-text text-lighten-2" > {{op}} <span class="new badge" data-badge-caption=" ">Private<img src="./logo2.png" style="width:17px;height:17px;"></span></a>
+    <div class="row center-align">
+        <div class="col s3"></div>
+        <div class="col s6">
+            <p class="roomId">{{roomId}}</p>
+            <p><img src="./edit_icon.png" style="width:15px;height:15px;" *ngIf="isOps" (click)="onEditTopic()" >  {{topic}}</p>
+            <div class="row" *ngIf="editTopic">
+                <input name="topic" [(ngModel)]="topic" Placeholder="Write a new topic...." autocomplete="off"/><button class="waves-effect waves-light btn" (click)="onChangeTopic()">Change</button>
             </div>
-          </div>
-      </ul>
+            <div class="row">
+                <button class="waves-effect waves-light btn" (click)="onLeaveRoom()">Leave Room</button>
+            </div>
+        </div>
+        <div class="col s3"></div>
+    </div>
+
+    <div class="row center-align chatRoom">
+        <div class="col s2"></div>
+        <div class="col s6">
+            <ul id="messages">
+                <div *ngIf="msgs.length > 6">
+                    <div *ngFor="let message of (msgs | slice:msgs.length - 6);" >
+                        <li>{{message}}</li>
+                    </div>
+                </div>
+                <div *ngIf="msgs.length <= 6">
+                    <div *ngFor="let message of msgs;" >
+                        <li>{{message}}</li>
+                    </div>
+                </div>
+             </ul>
+        </div>
+        <div class="col s3 guests">
+            <p>OP Kitties</p>
+            <ul id="guests" class="collection">
+                <div *ngFor="let op of ops">
+                    <div class="card-action" (click)="onSetTrue(op)">
+                        <a class="collection-item teal-text text-lighten-2" > {{op}} <span class="new badge" data-badge-caption=" ">Private<img src="./logo2.png" style="width:17px;height:17px;"></span></a>
+                    </div>
+                </div>
+            </ul>
+            <div *ngIf="!isPrivate">
+                <p>Guest Kitties</p>
+                <ul id="guests" class="collection">
+                    <div *ngFor="let user of users">
+                      <a>
+                        <img src="./kick.png" style="width:16px;height:16px;" *ngIf="isOps" (click)="onKick(user)">
+                        <img src="./ban.png" style="width:16px;height:16px;" *ngIf="isOps" (click)="onBanUser(user)" >
+                        <img src="./admin.png" style="width:16px;height:16px;" *ngIf="isOps" (click)="onMakeAdmin(user)" >
+                      </a>
+                      <div class="card-action" (click)="onSetTrue(user)">
+                          <a class="collection-item teal-text text-lighten-2" > {{user}}  <span class="new badge" data-badge-caption=" ">Private<img src="./logo2.png" style="width:17px;height:17px;"></span></a>
+                      </div>
+                    </div>
+                </ul>
+            </div>
+            <div *ngIf="isOps">
+            </div>
+            <div *ngIf="isPrivate">
+                <div class="row">
+                    <form class="col s12">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <textarea name="privMsg" [(ngModel)]="privMsg" id="textarea1" class="materialize-textarea"></textarea>
+                                <label for="textarea1">Send private message to {{privateReceiver}}</label>
+                            </div>
+                        </div>
+                        <button class="waves-effect waves-light btn" (click)="onSendPrivMsg()">Send!</button> <button class="waves-effect waves-light btn" (click)="onSetFalse()">close!</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+      <!-- </ul>
       <div *ngIf="!isPrivate">
       <p>Guest Kitties</p>
       <ul id="guests" class="collection">
@@ -53,44 +84,23 @@
           </a>
           <div class="card-action" (click)="onSetTrue(user)">
             <a class="collection-item teal-text text-lighten-2" > {{user}}  <span class="new badge" data-badge-caption=" ">Private<img src="./logo2.png" style="width:17px;height:17px;"></span></a>
-          </div>
+          </div> -->
 
             <!-- <button (click)="onSetTrue(user)">Send private message</button> -->
         <!-- <div class="card-action" (click)="onSetTrue(user)">
             <i class="material-icons not_interested"></i>
         </div> -->
+        <div class="col s1"></div>
         </div>
-      </ul>
-      </div>
-      <div *ngIf="isOps">
 
-      </div>
-      <div *ngIf="isPrivate">
-          <div class="row">
-              <form class="col s12">
-                  <div class="row">
-                      <div class="input-field col s12">
-                          <textarea name="privMsg" [(ngModel)]="privMsg" id="textarea1" class="materialize-textarea"></textarea>
-                          <label for="textarea1">Send private message to {{privateReceiver}}</label>
-                      </div>
-                  </div>
-                  <button class="waves-effect waves-light btn" (click)="onSendPrivMsg()">Send!</button> <button class="waves-effect waves-light btn" (click)="onSetFalse()">close!</button>
-              </form>
-          </div>
-      </div>      <!-- <div *ngIf="noUsers">
-          There are no guests in this room
-      </div> -->
-  </div>
-  <div class="col s1"></div>
-</div>
 
-<div class="row center-align">
-  <div class="col s2"></div>
-  <div class="col s8">
-      <form action="">
-          <input name="msg" [(ngModel)]="msg" Placeholder="Write message...." autocomplete="off" id="autocomplete-input" class="autocomplete"/><button class="waves-effect waves-light btn" (click)="onSendMsg()">Send</button>
-      </form>
-  </div>
-  <div class="col s2"></div>
-</div>
+    <div class="row center-align">
+        <div class="col s2"></div>
+        <div class="col s8">
+            <form action="">
+                <input name="msg" [(ngModel)]="msg" Placeholder="Write message...." autocomplete="off" id="autocomplete-input" class="autocomplete"/><button class="waves-effect waves-light btn" (click)="onSendMsg()">Send</button>
+            </form>
+        </div>
+        <div class="col s2"></div>
+    </div>
 </body>

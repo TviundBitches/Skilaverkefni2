@@ -9,14 +9,14 @@ import { ToastrService } from 'ngx-toastr';
     styleUrls: ['./app.component.css']
 })
 
-
 export class AppComponent implements OnInit {
     title = 'KittyChats';
     underTitle = 'If you are a cat, then chat';
     logoutName = '';
 
-    constructor(private chatService: ChatService, private router: Router, private toastrService: ToastrService) {
-    }
+    constructor(private chatService: ChatService, private router: Router,
+              private toastrService: ToastrService) {}
+
     ngOnInit() {
         this.chatService.reciveMsg().subscribe(lst => {
             this.toastrService.success(lst[0] + ' says: ' + lst[1]);
