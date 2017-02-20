@@ -51,7 +51,7 @@ export class RoomListComponent implements OnInit {
     }
 
     onSendPrivMsg() {
-        if (this.privateReceiver === '(You) '+this.userName) {
+        if (this.privateReceiver === '(You) ' + this.userName) {
             this.privateReceiver = this.userName;
         }
         this.chatService.sendPrivMsg(this.privateReceiver, this.privMsg).subscribe(succeeded => {
@@ -77,7 +77,6 @@ export class RoomListComponent implements OnInit {
 
     onJoinRoom(roomName) {
         this.chatService.joinRoom(roomName).subscribe(succeeded => {
-            console.log('success join room');
             if (succeeded === true) {
                 this.router.navigate(['rooms', roomName]);
             }
