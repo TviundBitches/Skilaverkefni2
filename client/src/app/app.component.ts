@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
+import { ChatService } from '../app/chat.service'
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-root',
@@ -8,13 +10,19 @@ import { Router } from '@angular/router';
 })
 
 
-export class AppComponent {
+export class AppComponent implements OnInit {
     title = 'KittyChats';
     underTitle = 'If you are a cat, then chat';
     logoutName = '';
 
-    constructor(private router: Router) {
+    constructor(private chatService: ChatService, private router: Router, private toastrService: ToastrService) {
     }
+    ngOnInit() {
+        this.chatService.reciveMsg().subscribe(lst => {
+            this.toastrService.success('You\'ve got mail!');
+        });
+    }
+
 
     navToRooms() {
         this.router.navigate(['/rooms/']);

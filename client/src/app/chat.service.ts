@@ -8,12 +8,14 @@ export class ChatService {
   socket: any;
   userName: string;
   opRooms: string[];
+  privateMessageHistory: any = {};
 
   constructor(private router: Router) {
     this.socket = io('http://localhost:8080/');
     this.socket.on('connect', function () {
       console.log('connect');
     });
+
   }
 
   reciveMsg(): Observable<string[]> {
@@ -24,6 +26,8 @@ export class ChatService {
         const strArr: string[] = [];
         strArr.push(username);
         strArr.push(message);
+          console.log('rect-priv ' + this.privateMessageHistory);
+          this.privateMessageHistory[username] = message;
         observer.next(strArr);
       });
 
@@ -67,7 +71,8 @@ export class ChatService {
   }
 
   getUserName(): Observable<string> {
-    const obs = new Observable(observer => {
+    let obs = new Observable(observer => {
+        console.log(this.userName)
       observer.next(this.userName);
     });
     return obs;

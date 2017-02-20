@@ -13,7 +13,7 @@ export class UserComponent implements OnInit {
   roomName: string;
   msgSent: boolean;
   msg: string;
-  msgs: string[] = [];
+  msgs: {};
   constructor(private chatService: ChatService, private router: Router,
               private route: ActivatedRoute) {  }
 
@@ -21,19 +21,13 @@ export class UserComponent implements OnInit {
     this.userName  = this.route.snapshot.params['id'];
     this.roomName  = this.route.snapshot.params['roomId'];
     this.msgSent = false;
-    this.chatService.getUserName().subscribe(name => {
-      if (name !== undefined) {
-        // this.userName = name;
-      } else {
-        this.router.navigate(['/login']);
-      }
-    });
+    console.log(this.chatService.privateMessageHistory)
+    this.msgs = this.chatService.privateMessageHistory;
     // this.toastrService.success('You got mail');
     this.chatService.reciveMsg().subscribe(lst => {
       if (this.userName === lst[0]) {
         console.log('you got mail');
       }
-        // this.toastrService.success('You got mail');
     });
   }
 
