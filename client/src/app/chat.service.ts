@@ -99,11 +99,11 @@ export class ChatService {
       this.socket.emit('users');
       this.socket.on('userlist', (lst) => {
         const strArr: string[] = [];
-        for (let i = 0; i < lst.length; i++) { // Var var lint error
+        for (let i = 0; i < lst.length; i++) {
           if (this.userName !== lst[i]) {
             strArr.push(lst[i]);
           } else {
-            strArr.push('You');
+            strArr.push('(You) ' + this.userName);
           }
         }
         observer.next(strArr);
@@ -125,7 +125,7 @@ export class ChatService {
             if (user !== this.userName) {
               strArr.push(user);
             } else {
-              strArr.push('You');
+              strArr.push('(You) ' + this.userName);
             }
           }
         }
