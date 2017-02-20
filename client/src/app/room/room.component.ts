@@ -139,6 +139,17 @@ export class RoomComponent implements OnInit {
         this.editTopic = false;
     }
 
+
+  onMakeAdmin(userName) {
+    this.chatService.makeOp(userName, this.roomId).subscribe(succeeded => {
+      if (succeeded === true) {
+        console.log('succeeded');
+      } else {
+        console.log('fail');
+      }
+    });
+  }
+
     onBanUser(user) {
         this.chatService.banUser(user, this.roomId).subscribe(succeeded => {
             console.log('Success banning user!');
