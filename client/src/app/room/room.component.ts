@@ -12,10 +12,11 @@ import { isUndefined } from 'util';
 })
 export class RoomComponent implements OnInit {
 
-    isPrivate: boolean = false;
+    isPrivate = false;
     privateReceiver: string;
   roomId: string;
   msg: string;
+  privMsg: string;
   msgs: string[] = [];
   users: string[];
   ops: string[];
@@ -78,6 +79,18 @@ export class RoomComponent implements OnInit {
       });
   }
 
+  onSendPrivMsg() {
+      this.chatService.sendPrivMsg(this.privateReceiver, this.privMsg).subscribe(succeeded => {
+          if (succeeded === true) {
+              // TODO Redirect to RoomList component!
+          } else {
+              console.log('fail');
+          }
+//      this.msgs = lst;
+      });
+      this.privMsg = "";
+  }
+
   onSendMsg() {
     if (!this.isPrivate) {
         console.log('roomid: ' + this.roomId);
@@ -107,6 +120,10 @@ export class RoomComponent implements OnInit {
       this.isPrivate = true;
       this.privateReceiver = user;
   }
+
+    onSetFalse() {
+        this.isPrivate = false;
+    }
 
   onLeaveRoom() {
       console.log('Success leaving room!!');
