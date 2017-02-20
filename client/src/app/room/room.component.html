@@ -45,11 +45,11 @@
                 <p>Guest Kitties</p>
                 <ul id="guests" class="collection">
                     <div *ngFor="let user of users">
-                      <a>
-                        <img src="./kick.png" style="width:16px;height:16px;" *ngIf="isOps" (click)="onKick(user)">
-                        <img src="./ban.png" style="width:16px;height:16px;" *ngIf="isOps" (click)="onBanUser(user)" >
-                        <img src="./admin.png" style="width:16px;height:16px;" *ngIf="isOps" (click)="onMakeAdmin(user)" >
-                      </a>
+                      <div>
+                        <a *ngIf="isOps" class="optionIcon" (click)="onKick(user)"><img src="./kick.png" style="width:16px;height:16px;" *ngIf="isOps" > Kick out </a>
+                        <a *ngIf="isOps" class="optionIcon" (click)="onBanUser(user)"><img src="./ban.png" style="width:16px;height:16px;" *ngIf="isOps" > Ban </a>
+                        <a *ngIf="isOps" class="optionIcon" (click)="onMakeAdmin(user)"><img src="./admin.png" style="width:16px;height:16px;" *ngIf="isOps" > Make OP </a>
+                      </div>
                       <div class="card-action" (click)="onSetTrue(user)">
                           <a class="collection-item teal-text text-lighten-2" > {{user}}  <span class="new badge" data-badge-caption=" ">Private<img src="./logo2.png" style="width:17px;height:17px;"></span></a>
                       </div>
