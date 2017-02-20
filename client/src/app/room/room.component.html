@@ -20,12 +20,7 @@
         <div class="col s2"></div>
         <div class="col s6">
             <ul id="messages">
-                <div *ngIf="msgs.length > 6">
-                    <div *ngFor="let message of (msgs | slice:msgs.length - 6);" >
-                        <li>{{message}}</li>
-                    </div>
-                </div>
-                <div *ngIf="msgs.length <= 6">
+                <div class="scroller">
                     <div *ngFor="let message of msgs;" >
                         <li>{{message}}</li>
                     </div>

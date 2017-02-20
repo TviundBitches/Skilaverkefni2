@@ -38,3 +38,8 @@ form {
 #isOps{
   background-color: deeppink;
 }
+
+.scroller {
+    height: 286px;
+    overflow-y: scroll;
+}
