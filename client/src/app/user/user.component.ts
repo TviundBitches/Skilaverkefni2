@@ -23,7 +23,7 @@ export class UserComponent implements OnInit {
     this.msgSent = false;
     this.chatService.getUserName().subscribe(name => {
       if (name !== undefined) {
-        //this.userName = name;
+        // this.userName = name;
       } else {
         this.router.navigate(['/login']);
       }
@@ -46,15 +46,15 @@ export class UserComponent implements OnInit {
   }
 
   onSendPrivMsg() {
-    console.log('uuser name in func' + this.userName)
-    console.log('message' + this.msg)
-    console.log('roomname' + this.roomName)
+    console.log('uuser name in func' + this.userName);
+    console.log('message' + this.msg);
+    console.log('roomname' + this.roomName);
     this.chatService.sendPrivMsg(this.userName, this.msg).subscribe(succeeded => {
       if (succeeded === true) {
         // TODO Redirect to RoomList component!
+      } else {
+        console.log('fail');
       }
-      else
-        console.log('fail')
 //      this.msgs = lst;
     });
   }

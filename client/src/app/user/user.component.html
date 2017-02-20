@@ -19,20 +19,6 @@
 
   <div class="col s2"></div>
 </div>
-<!-- Modal Trigger -->
-<a class="waves-effect waves-light btn" href="#modal1">Modal</a>
-
-<!-- Modal Structure -->
-<div id="modal1" class="modal">
-  <div class="modal-content">
-    <h4>Modal Header</h4>
-    <p>A bunch of text</p>
-  </div>
-  <div class="modal-footer">
-    <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-  </div>
-</div>
-
 <div class="row center-align chatRoom">
   <div class="col s2"></div>
   <div class="col s6">
@@ -45,26 +31,13 @@
   <div class="col s2 guests">
     <p>OP Kitties</p>
     <ul id="guest" class="collection">
-      <div *ngFor="let op of ops">
-        <div class="card-action" (click)="onVisitProfile(user)">
-          <a class="collection-item teal-text text-lighten-2" > {{op}} </a>
-        </div>
+      <div >
       </div>
     </ul>
     <p>Guest Kitties</p>
     <ul id="guestd" class="collection">
-      <div *ngFor="let user of users">
-        <img src="./ban.png" style="width:12px;height:12px;" *ngIf="isOps" (click)="onBanUser(user)" >
-        <div class="card-action" (click)="onVisitProfile(user)">
-          <a class="collection-item teal-text text-lighten-2" > {{user}}  </a>
-        </div>
-        <div *ngIf="isOps" class="card-action" (click)="onKick(user)">
-          <i class="material-icons not_interested"></i>
-        </div>
-      </div>
     </ul>
 
-    <div *ngIf="isOps">
 
     </div>
     <!-- <div *ngIf="noUsers">
