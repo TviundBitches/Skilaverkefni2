@@ -42,6 +42,12 @@ export class RoomComponent implements OnInit {
     });
     this.chatService.getOps(this.roomId).subscribe(lst => {
         this.ops = lst;
+        for (let i = 0; i < lst.length; i++) {
+            if(lst[i] === "You")
+            {
+              this.isOps = true;
+            }
+        }
     });
 
     this.chatService.updateChat().subscribe(lst => {
@@ -50,7 +56,7 @@ export class RoomComponent implements OnInit {
             for (let i = 1; i < lst.length; i++) {
                 this.msgs.push(lst[i]);
             }
-            console.log('this.mesgs: ' + this.msgs);
+            console.log('this.mesgs in updateChat: ' + this.msgs);
         }
     });
       // if(this.msgsCheck[0] === this.roomId)
