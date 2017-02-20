@@ -241,7 +241,7 @@ export class ChatService {
         return obs;
     }
 
-    makeOp(userName, roomId) : Observable<boolean> {
+    makeOp(userName, roomId): Observable<boolean> {
         const obs = new Observable(observer => {
             const param = {
                 user: userName,

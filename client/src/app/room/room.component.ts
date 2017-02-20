@@ -42,7 +42,7 @@ export class RoomComponent implements OnInit {
             this.topic = t;
         });
         this.chatService.getGuests().subscribe(lst => {
-            //this.users = lst;
+            // this.users = lst;
             if (this.roomId === lst[0]) {
                 this.users = [];
                 for (let i = 1; i < lst.length; i++) {
