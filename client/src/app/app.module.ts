@@ -1,10 +1,8 @@
-import { MaterializeModule } from 'angular2-materialize';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RoomListComponent } from './room-list/room-list.component';
@@ -25,7 +23,6 @@ import { CommonModule } from '@angular/common';
         BrowserModule,
         FormsModule,
         HttpModule,
-        MaterializeModule,
         RouterModule.forRoot([{
             path: '',
             redirectTo: 'login',
