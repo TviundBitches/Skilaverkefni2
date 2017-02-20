@@ -28,14 +28,29 @@
 <div class="row center-align">
     <h5 class= "teal-text text-lighten-2">Connected Kitties</h5>
 </div>
-<div class="row center-align">
+<div class="row center-align" *ngIf="!privateMsg">
     <ul id="guests" class="collection">
         <div *ngFor="let user of users">
           <div class="card-action">
             <a class="collection-item" > {{user}} </a>
+              <button (click)="onSetTrue(user)">Send private message</button>
           </div>
         </div>
     </ul>
+</div>
+<div *ngIf="privateMsg">
+    <button (click)="onSetFalse()">close!</button>
+    <div class="row">
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s12">
+                    <textarea name="privMsg" [(ngModel)]="privMsg" id="textarea1" class="materialize-textarea"></textarea>
+                    <label for="textarea1">Send {{privateReceiver}} a message</label>
+                </div>
+            </div>
+            <button (click)="onSendPrivMsg()">Send!</button>
+        </form>
+    </div>
 </div>
 <!-- Modal Trigger -->
 <!-- <a class="waves-effect waves-light btn modal-trigger" (click)="openModal()">Modal</a> -->

@@ -63,7 +63,7 @@
                   <div class="row">
                       <div class="input-field col s12">
                           <textarea name="privMsg" [(ngModel)]="privMsg" id="textarea1" class="materialize-textarea"></textarea>
-                          <label for="textarea1">Send private message</label>
+                          <label for="textarea1">Send {{privateReceiver}} a message</label>
                       </div>
                   </div>
                   <button (click)="onSendPrivMsg()">Send!</button>

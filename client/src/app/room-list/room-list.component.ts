@@ -17,6 +17,9 @@ export class RoomListComponent implements OnInit {
     rooms: string[];
     users: string[];
     login: string[];
+    privMsg: string;
+    privateMsg = false;
+    privateReceiver: string;
     modalActions = new EventEmitter<string|MaterializeAction>();
     constructor(private chatService: ChatService,
           private router: Router, private appComponent: AppComponent) { }
@@ -38,6 +41,30 @@ export class RoomListComponent implements OnInit {
         this.chatService.reciveMsg();
         this.appComponent.logoutName = 'Log Out';
     }
+    onSetTrue(user) {
+        this.privateMsg = true;
+        this.privateReceiver = user;
+    }
+
+    onSetFalse() {
+        this.privateMsg = false;
+    }
+
+    onSendPrivMsg() {
+        if (this.privateReceiver === 'You') {
+            this.privateReceiver = this.userName;
+        }
+        this.chatService.sendPrivMsg(this.privateReceiver, this.privMsg).subscribe(succeeded => {
+            if (succeeded === true) {
+                // TODO Redirect to RoomList component!
+            } else {
+                console.log('fail');
+            }
+//      this.msgs = lst;
+        });
+        this.privMsg = '';
+    }
+
 
     onNewRoom() {
         if (this.newRoomName.length < 1) {
