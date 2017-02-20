@@ -253,6 +253,20 @@ export class ChatService {
       return obs;
   }
 
+  makeOp(userName, roomId) : Observable<boolean> {
+      const obs = new Observable(observer => {
+          const param = {
+              user: userName,
+              room: roomId
+          };
+          this.socket.emit('op', param, succeeded => {
+              observer.next(succeeded);
+              console.log('got to kick in server');
+          });
+      });
+      return obs;
+  }
+
   setTopic(topic: string, roomName: string): Observable<boolean> {
       const obs = new Observable(observer => {
         const param = {

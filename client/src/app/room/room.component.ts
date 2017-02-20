@@ -165,6 +165,16 @@ export class RoomComponent implements OnInit {
     console.log('got to back');
   }
 
+  onMakeAdmin(userName) {
+    this.chatService.makeOp(userName, this.roomId).subscribe(succeeded => {
+      if (succeeded === true) {
+        console.log('succeeded');
+      } else {
+        console.log('fail');
+      }
+    });
+  }
+
 /*  kick
   When a room creator wants to kick a user from the room.
   Parameters:
