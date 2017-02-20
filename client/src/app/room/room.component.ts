@@ -99,16 +99,15 @@ export class RoomComponent implements OnInit {
     }
 
     onSendMsg() {
-          this.chatService.sendMsg(this.roomId, this.msg).subscribe(lst => {
-              if (this.roomId === lst[0]) {
-                  this.msgs = [];
-                  for (let i = 1; i < lst.length; i++) {
-                      this.msgs.push(lst[i]);
-                  }
-              }
-
-          });
-          this.msg = '';
+        this.chatService.sendMsg(this.roomId, this.msg).subscribe(lst => {
+            if (this.roomId === lst[0]) {
+                this.msgs = [];
+                for (let i = 1; i < lst.length; i++) {
+                    this.msgs.push(lst[i]);
+                }
+            }
+        });
+        this.msg = '';
     }
 
     onSetTrue(user) {
@@ -116,15 +115,12 @@ export class RoomComponent implements OnInit {
         this.privateReceiver = user;
     }
 
-      onSetFalse() {
-          this.isPrivate = false;
-      }
+    onSetFalse() {
+        this.isPrivate = false;
+    }
 
     onLeaveRoom() {
-        console.log('Success leaving room!!');
-        // this.router.navigate(['/rooms']);
         this.chatService.leaveRoom(this.roomId).subscribe(succeeded => {
-            console.log('Success leaving room!!');
             if (succeeded === true) {
                 this.router.navigate(['/rooms']);
             }
@@ -132,46 +128,30 @@ export class RoomComponent implements OnInit {
     }
 
     onEditTopic() {
-      this.editTopic = true;
+        this.editTopic = true;
     }
 
     onChangeTopic() {
-      this.chatService.setTopic(this.topic, this.roomId).subscribe(succeeded => {
-          console.log('Success changing topic!');
-      });
-      this.editTopic = false;
+        this.chatService.setTopic(this.topic, this.roomId).subscribe(succeeded => {
+            console.log('Success changing topic!');
+        });
+        this.editTopic = false;
     }
 
-
     onBanUser(user) {
-      this.chatService.banUser(user, this.roomId).subscribe(succeeded => {
-          console.log('Success banning user!');
-      });
+        this.chatService.banUser(user, this.roomId).subscribe(succeeded => {
+            console.log('Success banning user!');
+        });
     }
 
     onKick(userName) {
-      console.log('got to onkick');
-      this.chatService.kick(userName, this.roomId).subscribe(succeeded => {
-        console.log('b4succeeded');
-        if (succeeded === true) {
-          // TODO Redirect to RoomList component!
-          console.log('succeeded');
-        } else {
-          console.log('fail');
-        }
-      });
-      console.log('got to back');
+        this.chatService.kick(userName, this.roomId).subscribe(succeeded => {
+            if (succeeded === true) {
+              // TODO Redirect to RoomList component!
+                console.log('succeeded');
+            } else {
+                console.log('fail');
+            }
+        });
     }
-
-  /*  kick
-    When a room creator wants to kick a user from the room.
-    Parameters:
-      an object containing the following properties: { user : "The username of
-      the user being kicked", room: "The ID of the room"
-      a callback function, accepting a single boolean parameter, stating if the
-      user could be kicked or not.
-    The server will emit the following events if the user was successfully
-    kicked: "kicked" to the user being kicked, and "updateusers" to the rest of
-    the users in the room.*/
-
 }
