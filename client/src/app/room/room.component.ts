@@ -45,8 +45,7 @@ export class RoomComponent implements OnInit {
     this.chatService.getOps(this.roomId).subscribe(lst => {
         this.ops = lst;
         for (let i = 0; i < lst.length; i++) {
-            if(lst[i] === "You")
-            {
+            if (lst[i] === 'You') {
               this.isOps = true;
             }
         }
