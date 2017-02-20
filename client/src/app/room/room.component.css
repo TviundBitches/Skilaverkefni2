@@ -35,11 +35,24 @@ form {
     font-size: 24px;
 }
 
-#isOps{
-  background-color: deeppink;
+#isOps {
+    background-color: deeppink;
 }
 
 .scroller {
     height: 280px;
     overflow-y: scroll;
+}
+
+.optionIcon {
+    color: #d3d3d3;
+    font-size: 12px;
+    margin: 6px;
+}
+
+.privateBox {
+    background-color: white;
+    border-style: solid;
+    padding: 10px;
+    border-color: lightgrey;
 }

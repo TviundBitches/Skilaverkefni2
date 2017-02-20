@@ -81,6 +81,7 @@ export class RoomComponent implements OnInit, AfterViewChecked {
         this.chatService.wasBanned().subscribe(str => {
             if (this.userName === str) {
                 this.router.navigate(['/rooms']);
+                this.toastrService.success('You were a bad kitty, you got yourself banned from the room.!');
             }
         });
 

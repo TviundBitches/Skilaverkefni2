@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="dad8fb4b-f401-4e06-bd10-7ebddcef504e" name="Default" comment="Merge branch 'master' of github.com:TviundBitches/Skilaverkefni2&#10;&#10;# Conflicts:&#10;#&#9;client/src/app/chat.service.ts&#10;">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/room-list/room-list.component.css" afterPath="$PROJECT_DIR$/client/src/app/room-list/room-list.component.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/room-list/room-list.component.html" afterPath="$PROJECT_DIR$/client/src/app/room-list/room-list.component.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/room/room.component.css" afterPath="$PROJECT_DIR$/client/src/app/room/room.component.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/room/room.component.html" afterPath="$PROJECT_DIR$/client/src/app/room/room.component.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/room/room.component.ts" afterPath="$PROJECT_DIR$/client/src/app/room/room.component.ts" />
@@ -70,15 +72,20 @@
         <entry file="file://$PROJECT_DIR$/client/src/app/room-list/room-list.component.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="354">
-              <caret line="49" column="49" lean-forward="false" selection-start-line="49" selection-start-column="49" selection-end-line="49" selection-end-column="49" />
+              <caret line="50" column="49" lean-forward="false" selection-start-line="50" selection-start-column="49" selection-end-line="50" selection-end-column="49" />
               <folding>
                 <element signature="n#style#0;n#img#0;n#span#0;n#a#0;n#div#0;n#div#0;n#ul#0;n#div#2;n#!!top" expanded="true" />
+                <marker date="1487633360723" expanded="true" signature="1760:2399" ph="..." />
+                <marker date="1487633360723" expanded="true" signature="1791:2388" ph="..." />
+                <marker date="1487633360723" expanded="true" signature="1821:2123" ph="..." />
+                <marker date="1487633360723" expanded="true" signature="1872:2104" ph="..." />
+                <marker date="1487633360723" expanded="true" signature="2153:2372" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="room.component.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="room.component.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/app/room/room.component.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="330">
@@ -98,18 +105,18 @@
       <file leaf-file-name="room.component.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/app/room/room.component.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="41" column="1" lean-forward="false" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
+            <state relative-caret-position="824">
+              <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="room.component.ts" pinned="false" current-in-tab="false">
+      <file leaf-file-name="room.component.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/src/app/room/room.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="89" column="12" lean-forward="true" selection-start-line="89" selection-start-column="12" selection-end-line="89" selection-end-column="12" />
+            <state relative-caret-position="1245">
+              <caret line="83" column="104" lean-forward="false" selection-start-line="83" selection-start-column="104" selection-end-line="83" selection-end-column="104" />
               <folding>
                 <element signature="e#0#91#0" expanded="true" />
               </folding>
@@ -190,9 +197,9 @@
         <option value="$PROJECT_DIR$/client/src/app/room-list/room-list.component.html" />
         <option value="$PROJECT_DIR$/client/src/app/room-list/room-list.component.ts" />
         <option value="$PROJECT_DIR$/client/src/app/chat.service.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/room/room.component.ts" />
         <option value="$PROJECT_DIR$/client/src/app/room/room.component.html" />
         <option value="$PROJECT_DIR$/client/src/app/room/room.component.css" />
+        <option value="$PROJECT_DIR$/client/src/app/room/room.component.ts" />
       </list>
     </option>
   </component>
@@ -479,12 +486,12 @@
       <option name="presentableId" value="Default" />
       <updated>1487077003015</updated>
       <workItem from="1487077004609" duration="8747000" />
-      <workItem from="1487173656344" duration="95243000" />
+      <workItem from="1487173656344" duration="95918000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103990000" />
+    <option name="totallyTimeSpent" value="104665000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
@@ -493,8 +500,8 @@
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.031266846" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14169215" sideWeight="0.5061995" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14169215" sideWeight="0.49380055" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14169215" sideWeight="0.5083558" order="0" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14169215" sideWeight="0.4916442" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -581,6 +588,11 @@
           <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#img#0;n#span#0;n#a#0;n#div#0;n#div#0;n#ul#0;n#div#2;n#!!top" expanded="true" />
+            <marker date="1487633360723" expanded="true" signature="1760:2399" ph="..." />
+            <marker date="1487633360723" expanded="true" signature="1791:2388" ph="..." />
+            <marker date="1487633360723" expanded="true" signature="1821:2123" ph="..." />
+            <marker date="1487633360723" expanded="true" signature="1872:2104" ph="..." />
+            <marker date="1487633360723" expanded="true" signature="2153:2372" ph="..." />
           </folding>
         </state>
       </provider>
@@ -835,9 +847,14 @@
     <entry file="file://$PROJECT_DIR$/client/src/app/room-list/room-list.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="354">
-          <caret line="49" column="49" lean-forward="false" selection-start-line="49" selection-start-column="49" selection-end-line="49" selection-end-column="49" />
+          <caret line="50" column="49" lean-forward="false" selection-start-line="50" selection-start-column="49" selection-end-line="50" selection-end-column="49" />
           <folding>
             <element signature="n#style#0;n#img#0;n#span#0;n#a#0;n#div#0;n#div#0;n#ul#0;n#div#2;n#!!top" expanded="true" />
+            <marker date="1487633360723" expanded="true" signature="1760:2399" ph="..." />
+            <marker date="1487633360723" expanded="true" signature="1791:2388" ph="..." />
+            <marker date="1487633360723" expanded="true" signature="1821:2123" ph="..." />
+            <marker date="1487633360723" expanded="true" signature="1872:2104" ph="..." />
+            <marker date="1487633360723" expanded="true" signature="2153:2372" ph="..." />
           </folding>
         </state>
       </provider>
@@ -870,20 +887,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/room/room.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="89" column="12" lean-forward="true" selection-start-line="89" selection-start-column="12" selection-end-line="89" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#91#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/app/room/room.component.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="1" lean-forward="false" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
+        <state relative-caret-position="824">
+          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -899,6 +906,16 @@
             <element signature="n#style#0;n#img#0;n#a#1;n#div#0;n#div#0;n#ul#0;n#div#0;n#div#2;n#div#1;n#body#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#a#2;n#div#0;n#div#0;n#ul#0;n#div#0;n#div#2;n#div#1;n#body#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#span#0;n#a#0;n#div#1;n#div#0;n#ul#0;n#div#0;n#div#2;n#div#1;n#body#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/room/room.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1245">
+          <caret line="83" column="104" lean-forward="false" selection-start-line="83" selection-start-column="104" selection-end-line="83" selection-end-column="104" />
+          <folding>
+            <element signature="e#0#91#0" expanded="true" />
           </folding>
         </state>
       </provider>

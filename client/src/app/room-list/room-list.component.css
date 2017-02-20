@@ -10,3 +10,10 @@
 .material-icons {
     color: #4db6ac;
 }
+
+.privateBox {
+    background-color: white;
+    border-style: solid;
+    padding: 10px;
+    border-color: lightgrey;
+}
