@@ -77,8 +77,7 @@ export class RoomComponent implements OnInit {
   }
 
   onSendPrivMsg() {
-      console.log('pprivate rec '+this.privateReceiver)
-      if (this.privateReceiver === '(You) '+this.userName) {
+      if (this.privateReceiver === '(You) ' + this.userName) {
           this.privateReceiver = this.userName;
       }
       this.chatService.sendPrivMsg(this.privateReceiver, this.privMsg).subscribe(succeeded => {
@@ -92,7 +91,7 @@ export class RoomComponent implements OnInit {
   }
 
   onSendMsg() {
-        this.chatService.sendMsg(this.roomId, this.userName+' says: '+this.msg).subscribe(lst => {
+        this.chatService.sendMsg(this.roomId, this.userName + ' says: ' + this.msg).subscribe(lst => {
             if (this.roomId === lst[0]) {
                 this.msgs = [];
                 for (let i = 1; i < lst.length; i++) {

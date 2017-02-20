@@ -21,7 +21,6 @@ export class ChatService {
   reciveMsg(): Observable<string[]> {
     const observable = new Observable(observer => {
       this.socket.on('recv_privatemsg', (username, message) => {
-          console.log('usrname in chats: ' + username)
         const strArr: string[] = [];
         strArr.push(username);
         strArr.push(message);
