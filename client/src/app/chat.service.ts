@@ -261,8 +261,6 @@ export class ChatService {
                 room: roomName
             };
             this.socket.emit('settopic', param, succeeded => {
-                console.log(succeeded);
-                console.log('Succeeded set topic!');
                 observer.next(succeeded);
             });
         });
