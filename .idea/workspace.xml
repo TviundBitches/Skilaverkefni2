@@ -4,12 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/client/src/app/room-list/room-list.component.ts" line="75" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dad8fb4b-f401-4e06-bd10-7ebddcef504e" name="Default" comment="Merge branch 'master' of github.com:TviundBitches/Skilaverkefni2&#10;&#10;# Conflicts:&#10;#&#9;client/src/app/chat.service.ts&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/room-list/room-list.component.html" afterPath="$PROJECT_DIR$/client/src/app/room-list/room-list.component.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/room-list/room-list.component.ts" afterPath="$PROJECT_DIR$/client/src/app/room-list/room-list.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/room/room.component.html" afterPath="$PROJECT_DIR$/client/src/app/room/room.component.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/room/room.component.ts" afterPath="$PROJECT_DIR$/client/src/app/room/room.component.ts" />
-    </list>
+    <list default="true" id="dad8fb4b-f401-4e06-bd10-7ebddcef504e" name="Default" comment="Merge branch 'master' of github.com:TviundBitches/Skilaverkefni2&#10;&#10;# Conflicts:&#10;#&#9;client/src/app/chat.service.ts&#10;" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -101,8 +96,8 @@
       <file leaf-file-name="room.component.ts" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/src/app/room/room.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="98" column="24" lean-forward="false" selection-start-line="98" selection-start-column="24" selection-end-line="98" selection-end-column="24" />
+            <state relative-caret-position="195">
+              <caret line="85" column="7" lean-forward="true" selection-start-line="85" selection-start-column="7" selection-end-line="85" selection-end-column="7" />
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
               </folding>
@@ -462,12 +457,12 @@
       <option name="presentableId" value="Default" />
       <updated>1487077003015</updated>
       <workItem from="1487077004609" duration="8747000" />
-      <workItem from="1487173656344" duration="86966000" />
+      <workItem from="1487173656344" duration="87146000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95713000" />
+    <option name="totallyTimeSpent" value="95893000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
@@ -858,8 +853,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/src/app/room/room.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="98" column="24" lean-forward="false" selection-start-line="98" selection-start-column="24" selection-end-line="98" selection-end-column="24" />
+        <state relative-caret-position="195">
+          <caret line="85" column="7" lean-forward="true" selection-start-line="85" selection-start-column="7" selection-end-line="85" selection-end-column="7" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
           </folding>
