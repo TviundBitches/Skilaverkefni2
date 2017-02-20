@@ -183,8 +183,8 @@ export class ChatService {
 
   updateChat(): Observable<string[]> {
     const obs = new Observable(observer => {
-      const strArr: string[] = [];
       this.socket.on('updatechat', (roomName, lst) => {
+        const strArr: string[] = [];
         strArr[0] = roomName;
         if (lst.length !== 0) {
           for (let i = 0; i < lst.length; i++) { // Var var lint error
@@ -301,6 +301,7 @@ export class ChatService {
         for (let i = 0; i < lst.length; i++) {
           strArr.push(lst[i].message);
         }
+
         observer.next(strArr);
       });
     });
