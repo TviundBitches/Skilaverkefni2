@@ -21,8 +21,15 @@
   <div class="col s2"></div>
   <div class="col s6">
     <ul id="messages">
-      <div *ngFor="let message of (msgs | slice:msgs.length - 6);" >
+      <div *ngIf="msgs.length > 6">
+        <div *ngFor="let message of (msgs | slice:msgs.length - 6);" >
           <li>{{message}}</li>
+        </div>
+      </div>
+      <div *ngIf="msgs.length <= 6">
+        <div *ngFor="let message of msgs;" >
+          <li>{{message}}</li>
+        </div>
       </div>
      </ul>
   </div>
@@ -30,22 +37,21 @@
       <p>OP Kitties</p>
       <ul id="guests" class="collection">
           <div *ngFor="let op of ops">
-            <div class="card-action">
-              <a class="collection-item teal-text text-lighten-2" > {{op}} </a>
+            <div class="card-action" (click)="onSetTrue(op)">
+              <a class="collection-item teal-text text-lighten-2" > {{op}} <span class="new badge" data-badge-caption=" ">Private<img src="./logo2.png" style="width:17px;height:17px;"></span></a>
             </div>
           </div>
       </ul>
       <div *ngIf="!isPrivate">
       <p>Guest Kitties</p>
       <ul id="guests" class="collection">
-          <div *ngFor="let user of users">
-            <img src="./ban.png" style="width:12px;height:12px;" *ngIf="isOps" (click)="onBanUser(user)" >
+        <div *ngFor="let user of users">
+          <img src="./kick.png" style="width:12px;height:12px;" *ngIf="isOps" (click)="onKick(user)" class="material-icons not_interested">
+          <img src="./ban.png" style="width:12px;height:12px;" *ngIf="isOps" (click)="onBanUser(user)" >
           <div class="card-action" (click)="onSetTrue(user)">
             <a class="collection-item teal-text text-lighten-2" > {{user}}  <span class="new badge" data-badge-caption=" ">Private<img src="./logo2.png" style="width:17px;height:17px;"></span></a>
           </div>
-          <div *ngIf="isOps" class="card-action" (click)="onKick(user)">
-            <i class="material-icons not_interested"></i>
-          </div>
+
             <!-- <button (click)="onSetTrue(user)">Send private message</button> -->
         <!-- <div class="card-action" (click)="onSetTrue(user)">
             <i class="material-icons not_interested"></i>
