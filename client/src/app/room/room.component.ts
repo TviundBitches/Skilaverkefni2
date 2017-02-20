@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../chat.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import {isNullOrUndefined} from "util";
-import {isUndefined} from "util";
+import { isNullOrUndefined } from 'util';
+import { isUndefined } from 'util';
 
 @Component({
   selector: 'app-room',
@@ -42,15 +42,14 @@ export class RoomComponent implements OnInit {
     });
     this.chatService.getOps(this.roomId).subscribe(lst => {
         this.ops = lst;
-    })
-    this.chatService.reciveMsg();
+    });
 
     this.chatService.updateChat().subscribe(lst => {
-        if(this.roomId === lst[0])
-        {
+        if (this.roomId === lst[0]) {
             this.msgs = [];
-            for (let i = 1; i < lst.length; i++)
+            for (let i = 1; i < lst.length; i++) {
                 this.msgs.push(lst[i]);
+            }
             console.log('this.mesgs: ' + this.msgs);
         }
     });
@@ -66,19 +65,22 @@ export class RoomComponent implements OnInit {
       }
     });
     this.chatService.wasBanned().subscribe(str => {
-      if(this.userName === str)
+      if (this.userName === str) {
         this.router.navigate(['/rooms']);
-    })
+      }
+    });
     this.chatService.reciveMsg();
   }
 
   onSendMsg() {
-    this.chatService.sendMsg(this.roomId, this.msg).subscribe(lst => {
-        console.log('roomid: ' + this.roomId + 'lst[0]'+lst[0]);
-      if(this.roomId === lst[0]) {
+      console.log('roomid: ' + this.roomId);
+      this.chatService.sendMsg(this.roomId, this.msg).subscribe(lst => {
+      console.log('roomid: ' + this.roomId + 'lst[0]' + lst[0]);
+      if (this.roomId === lst[0]) {
           this.msgs = [];
-          for (let i = 1; i < lst.length; i++)
+          for (let i = 1; i < lst.length; i++) {
               this.msgs.push(lst[i]);
+          }
       }
 
     });
