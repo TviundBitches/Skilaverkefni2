@@ -41,14 +41,25 @@ export class RoomComponent implements OnInit {
         this.chatService.getTopic(this.roomId).subscribe(t => {
             this.topic = t;
         });
-        this.chatService.getGuests(this.roomId).subscribe(lst => {
-            this.users = lst;
+        this.chatService.getGuests().subscribe(lst => {
+            //this.users = lst;
+            if (this.roomId === lst[0]) {
+                this.users = [];
+                for (let i = 1; i < lst.length; i++) {
+                    this.users.push(lst[i]);
+                }
+            }
         });
-        this.chatService.getOps(this.roomId).subscribe(lst => {
-            this.ops = lst;
+        this.chatService.getOps().subscribe(lst => {
+            if (this.roomId === lst[0]) {
+                this.ops = [];
+                for (let i = 1; i < lst.length; i++) {
+                    this.ops.push(lst[i]);
+                }
+            }
             for (let i = 0; i < lst.length; i++) {
-                if (lst[i] === 'You') {
-                    this.isOps = true;
+                if (lst[i] === '(You) ' + this.userName) {
+                  this.isOps = true;
                 }
             }
         });
