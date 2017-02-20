@@ -25,13 +25,13 @@ export class RoomListComponent implements OnInit {
         this.chatService.getRoomList().subscribe(lst => {
             this.rooms = lst;
         });
-        this.chatService.getUserName().subscribe(name => {
-            if (name !== undefined) {
-                this.userName = name;
-            } else {
-                this.router.navigate(['/login']);
-            }
-        });
+        // this.chatService.getUserName().subscribe(name => {
+        //     if (name !== undefined) {
+        //         this.userName = name;
+        //     } else {
+        //         this.router.navigate(['/login']);
+        //     }
+        // });
         this.chatService.getUserList().subscribe(lst => {
             this.users = lst;
         });

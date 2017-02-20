@@ -21,16 +21,16 @@ export class ChatService {
   reciveMsg(): Observable<string[]> {
     const observable = new Observable(observer => {
       this.socket.on('recv_privatemsg', (username, message) => {
-        console.log('rect-priv: ' + username);
+        console.log('rect-priv username: ' + username);
         console.log('rect-priv ' + message);
         const strArr: string[] = [];
         strArr.push(username);
         strArr.push(message);
           console.log('rect-priv ' + this.privateMessageHistory);
           this.privateMessageHistory[username] = message;
-        observer.next(strArr);
+          console.log('[jakob]' + this.privateMessageHistory[username]);
+          observer.next(strArr);
       });
-
     });
     return observable;
   }
