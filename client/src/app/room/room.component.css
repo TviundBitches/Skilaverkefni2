@@ -40,6 +40,6 @@ form {
 }
 
 .scroller {
-    height: 286px;
+    height: 280px;
     overflow-y: scroll;
 }

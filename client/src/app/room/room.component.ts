@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewChecked, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ChatService } from '../chat.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+
 import { isNullOrUndefined } from 'util';
 import { isUndefined } from 'util';
 
@@ -11,8 +12,8 @@ import { isUndefined } from 'util';
     styleUrls: ['./room.component.css']
 })
 
-export class RoomComponent implements OnInit {
-
+export class RoomComponent implements OnInit, AfterViewChecked {
+    @ViewChild('scroller') private myScrollContainer: ElementRef;
     isPrivate = false;
     privateReceiver: string;
     roomId: string;
@@ -82,8 +83,19 @@ export class RoomComponent implements OnInit {
                 this.router.navigate(['/rooms']);
             }
         });
+
+        this.scrollToBottom();
+
+    }
+    ngAfterViewChecked() {
+        this.scrollToBottom();
     }
 
+    scrollToBottom(): void {
+        try {
+            this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+        } catch(err) { }
+    }
     onSendPrivMsg() {
         if (this.privateReceiver === '(You) ' + this.userName) {
             this.privateReceiver = this.userName;
