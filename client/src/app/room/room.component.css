@@ -35,6 +35,11 @@ form {
     font-size: 24px;
 }
 
-#isOps{
+#isOps {
   background-color: deeppink;
+}
+
+.optionIcon {
+  color: #d3d3d3;
+  font-size: 12px;
 }
