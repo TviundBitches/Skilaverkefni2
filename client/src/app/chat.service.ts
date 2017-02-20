@@ -56,6 +56,7 @@ export class ChatService {
   login(userName: string): Observable<boolean> {
     const observable = new Observable(observer => {
       this.socket.emit('adduser', userName, succeeded => {
+          console.log(this.userName)
         observer.next(succeeded);
       });
     });
@@ -63,8 +64,8 @@ export class ChatService {
   }
 
   setUserName(userName: string): any {
-    if (name !== undefined) {
-        this.userName = name;
+    if (userName !== undefined) {
+        this.userName = userName;
     } else {
         this.router.navigate(['/login']);
     }
