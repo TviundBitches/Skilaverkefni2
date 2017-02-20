@@ -180,8 +180,9 @@ export class ChatService {
   updateChat(): Observable<string[]> {
     const obs = new Observable(observer => {
       const strArr: string[] = [];
-      this.socket.on('updatechat', (roomName, lst) => {
+      this.socket.on('updatechat', (roomName, user, lst) => {
         strArr[0] = roomName;
+        strArr.push(user);
         if (lst.length !== 0) {
           for (let i = 0; i < lst.length; i++) { // Var var lint error
             strArr.push(lst[i].message);
@@ -283,17 +284,19 @@ export class ChatService {
 //   });
 //   return obs;
 // }
-  sendMsg(roomName: string, msg: string): Observable<string[]> {
+  sendMsg(roomName: string, msg: string, user: string): Observable<string[]> {
     const obs = new Observable(observer => {
       // validate room name
       const param = {
         roomName: roomName,
-        msg: msg
+        msg: msg,
+        user: user
       };
       this.socket.emit('sendmsg', param);
-      this.socket.on('updatechat', (room, lst) => {
+      this.socket.on('updatechat', (room, user, lst) => {
         const strArr: string[] = [];
         strArr.push(room);
+        strArr.push(user);
         for (let i = 0; i < lst.length; i++) {
           strArr.push(lst[i].message);
         }

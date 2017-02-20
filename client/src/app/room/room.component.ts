@@ -74,7 +74,7 @@ export class RoomComponent implements OnInit {
 
   onSendMsg() {
       console.log('roomid: ' + this.roomId);
-      this.chatService.sendMsg(this.roomId, this.msg).subscribe(lst => {
+      this.chatService.sendMsg(this.roomId, this.msg, this.userName).subscribe(lst => {
       console.log('roomid: ' + this.roomId + 'lst[0]' + lst[0]);
       if (this.roomId === lst[0]) {
           this.msgs = [];
