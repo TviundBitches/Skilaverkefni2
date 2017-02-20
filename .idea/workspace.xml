@@ -4,13 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/client/src/app/room-list/room-list.component.ts" line="48" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dad8fb4b-f401-4e06-bd10-7ebddcef504e" name="Default" comment="Merge branch 'master' of github.com:TviundBitches/Skilaverkefni2&#10;&#10;# Conflicts:&#10;#&#9;client/src/app/chat.service.ts&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/app.component.ts" afterPath="$PROJECT_DIR$/client/src/app/app.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/chat.service.ts" afterPath="$PROJECT_DIR$/client/src/app/chat.service.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/user/user.component.html" afterPath="$PROJECT_DIR$/client/src/app/user/user.component.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/user/user.component.ts" afterPath="$PROJECT_DIR$/client/src/app/user/user.component.ts" />
-    </list>
+    <list default="true" id="dad8fb4b-f401-4e06-bd10-7ebddcef504e" name="Default" comment="Merge branch 'master' of github.com:TviundBitches/Skilaverkefni2&#10;&#10;# Conflicts:&#10;#&#9;client/src/app/chat.service.ts&#10;" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -107,7 +101,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="chat.service.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="chat.service.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/src/app/chat.service.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="345">
@@ -119,11 +113,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user.component.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="user.component.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/src/app/user/user.component.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="40" lean-forward="false" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
+            <state relative-caret-position="480">
+              <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -193,8 +187,8 @@
         <option value="$PROJECT_DIR$/client/src/app/room/room.component.ts" />
         <option value="$PROJECT_DIR$/client/src/app/app.component.ts" />
         <option value="$PROJECT_DIR$/client/src/app/user/user.component.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/user/user.component.html" />
         <option value="$PROJECT_DIR$/client/src/app/chat.service.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/user/user.component.html" />
       </list>
     </option>
   </component>
@@ -506,12 +500,12 @@
       <option name="presentableId" value="Default" />
       <updated>1487077003015</updated>
       <workItem from="1487077004609" duration="8747000" />
-      <workItem from="1487173656344" duration="72837000" />
+      <workItem from="1487173656344" duration="73041000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81584000" />
+    <option name="totallyTimeSpent" value="81788000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1985" y="24" width="1855" height="1056" extended-state="6" />
@@ -869,14 +863,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/user/user.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="40" lean-forward="false" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/app/room-list/room-list.component.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -902,6 +888,14 @@
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/user/user.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
