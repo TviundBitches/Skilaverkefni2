@@ -58,7 +58,6 @@ export class RoomComponent implements OnInit {
             for (let i = 1; i < lst.length; i++) {
                 this.msgs.push(lst[i]);
             }
-            console.log('this.mesgs in updateChat: ' + this.msgs);
         }
     });
 
@@ -95,9 +94,7 @@ export class RoomComponent implements OnInit {
   }
 
   onSendMsg() {
-        console.log('roomid: ' + this.roomId);
         this.chatService.sendMsg(this.roomId, this.msg).subscribe(lst => {
-            console.log('roomid: ' + this.roomId + 'lst[0]' + lst[0]);
             if (this.roomId === lst[0]) {
                 this.msgs = [];
                 for (let i = 1; i < lst.length; i++) {
